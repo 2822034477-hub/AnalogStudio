@@ -1,0 +1,4 @@
+# Keep exact verified source bytes on every platform. Generated Windows batch
+# fixtures intentionally use CRLF; the HTML and JavaScript generators use LF.
+# Disabling newline conversion does not disable normal text diffs.
+* -text whitespace=blank-at-eol,blank-at-eof,space-before-tab,cr-at-eol

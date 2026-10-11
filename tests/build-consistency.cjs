@@ -1,0 +1,7 @@
+'use strict';
+const fs=require('node:fs'),path=require('node:path'),vm=require('node:vm'),assert=require('node:assert/strict');const p=path.resolve(__dirname,'..'),html=fs.readFileSync(path.join(p,'AnalogStudio.html'),'utf8');
+let scripts=0;for(const match of html.matchAll(/<script>([\s\S]*?)<\/script>/g)){new vm.Script(match[1]);scripts++;}
+for(const name of ['digital-root-editor.js','digital-design.js','engineering-branches.js','simulation-runners.js','project-manager.js'])assert(html.includes(fs.readFileSync(path.join(p,name),'utf8')),name+' missing from generated HTML');
+const D=require('../digital-design'),R=require('../simulation-runners');let cases=0;
+for(const name of ['lowpass','saturation','notch','delay','fir','floor','wide','edited']){const dir=path.join(p,'examples/simulation',name),model=D.load(JSON.parse(fs.readFileSync(path.join(dir,'model.json'),'utf8')));assert.equal(fs.readFileSync(path.join(dir,'digital_filter.v'),'utf8'),D.generateVerilog(model),name+' RTL mismatch');assert.equal(fs.readFileSync(path.join(dir,'digital_filter_tb.sv'),'utf8'),D.generateTestbench(model),name+' TB mismatch');for(const f of R.generate())assert.equal(fs.readFileSync(path.join(dir,f.filename),'utf8'),f.content,name+' '+f.filename);cases++;}
+console.log(`PASS build/source consistency: ${scripts} inline scripts parse, embedded source modules identical, ${cases} vendor RTL/TB/runner fixtures exactly match current generators.`);

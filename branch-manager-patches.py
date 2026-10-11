@@ -1,0 +1,55 @@
+from pathlib import Path
+p=Path(__file__).parent
+s=(p/'project-manager.folder-hierarchy.js').read_text(encoding='utf-8')
+def sub(a,b):
+ global s
+ if a not in s:raise RuntimeError('Missing branch integration target: '+a[:100])
+ s=s.replace(a,b,1)
+sub("const supported=c=>c.kind==='simulation'&&c.domain==='analog'&&c.direction==='forward';", "const BR=window.AnalogEngineeringBranches;\nconst branch=c=>!!BR?.key(c);\nconst supported=c=>BR?BR.supported(c):c.kind==='simulation'&&c.domain==='analog'&&c.direction==='forward';\nconst classificationLabel=c=>({analog:'模拟电路',digital:'数字系统',mixed:'数模混合'}[c.domain]||c.domain)+' / '+(c.direction==='reverse'?'逆向设计':'正向设计');")
+sub("function snapshot(){const state=C.snapshot();return", "function snapshot(){const state=C.snapshot();if(branch(classification))return {format:FORMAT,version:3,name:state.projectName,classification:clone(classification),design:BR.snapshot(classification)};return")
+sub("{const circuit=C.validate(C.defaults());return {format:FORMAT,version:VERSION,name,classification:clone(type)", "{if(branch(type))return {format:FORMAT,version:3,name,classification:clone(type),design:BR.defaults(type)};const circuit=C.validate(C.defaults());return {format:FORMAT,version:VERSION,name,classification:clone(type)")
+sub("function circuitState(project,prefs){const value=C.defaults();", "function circuitState(project,prefs){if(!project.circuit){const blank=C.defaults();blank.projectName=project.name;return blank;}const value=C.defaults();")
+sub("![1,VERSION].includes(value.version)", "![1,VERSION,3].includes(value.version)")
+sub(" validName(value.name);\n if(value.version===1)", """ validName(value.name);
+ if(value.version===3){onlyKeys(value,['format','version','name','classification','design'],'工程');onlyKeys(value.classification,['kind','domain','direction'],'工程分类');const type=value.classification;if(!type||!supported(type)||!branch(type))throw Error('此工程设计分支尚未实现或分类格式有误。');return {project:{format:FORMAT,version:3,name:value.name,classification:clone(type),design:BR.validate(type,value.design)},legacy:false,migrated:false};}
+ if(value.version===1)""")
+sub("if(!supported(type))throw Error", "if(!supported(type)||branch(type))throw Error")
+sub("function replace(project,clean,resetSelection=false){const previous={", "function replace(project,clean,resetSelection=false){const previousBranch=branch(classification)?BR.snapshot(classification):null;const previous={")
+sub("prefs.circuit.selectedId=project.circuit.workspace.id", "prefs.circuit.selectedId=project.circuit?.workspace?.id||''")
+sub("F.replace(feedbackState(project.feedback,prefs));W.replace", "F.replace(project.feedback?feedbackState(project.feedback,prefs):F.defaults());if(branch(project.classification))BR.replace(project.classification,project.design);W.replace")
+sub("classification=clone(project.classification);baseline=", "classification=clone(project.classification);BR?.view(classification,homeMode);baseline=")
+sub("F.replace(previous.feedback);W.replace(previous.ui.workspace)", "F.replace(previous.feedback);if(previousBranch)BR.replace(previous.classification,previousBranch);BR?.view(previous.classification,homeMode);W.replace(previous.ui.workspace)")
+sub("});}refresh();}\nfunction returnHome", "});}BR?.view(classification,show);refresh();}\nfunction returnHome")
+sub("<p class=\"project-classification\">仿真工程 / 模拟电路 / 正向设计</p>", "<p class=\"project-classification\">仿真工程 / '+classificationLabel(classification)+'</p>")
+sub("数字电路 · 规划中", "数字系统")
+sub("数模混合 · 规划中", "数模混合")
+sub("逆向设计 · 规划中", "逆向设计")
+start=s.index("$('projectWizardAvailability').textContent=allowed?")
+end=s.index(";$('projectWizardAvailability').classList",start)
+s=s[:start]+"$('projectWizardAvailability').textContent=BR?BR.description(wizard.classification):(allowed?'模拟正向设计已就绪。':'此分支尚未实现。')"+s[end:]
+sub("note('已创建模拟正向仿真工程。'", "note('已创建'+classificationLabel(project.classification)+'工程。'")
+sub("for(const event of ['analog:circuit-render','analog:plot-view'])", "for(const event of ['analog:circuit-render','analog:plot-view','analog:design-change'])")
+sub("window.AnalogProject={directoryStatus,saveBlackbox,", "window.AnalogProject={directoryStatus,saveBlackbox,saveGenerated,")
+sub("directoryPath(record.directory,record.name,record.kind==='blackbox')+(record.filename", "directoryPath(record.directory,record.name,record.kind==='blackbox'||record.category==='blackbox')+(record.filename")
+sub("record.target=record.kind==='blackbox'?binding.blackbox:binding.project", "record.target=(record.kind==='blackbox'||record.category==='blackbox')?binding.blackbox:binding.project")
+sub("record.path=directoryPath(record.directory,record.name,record.kind==='blackbox')", "record.path=directoryPath(record.directory,record.name,record.kind==='blackbox'||record.category==='blackbox')")
+sub("type:record.kind==='blackbox'?'blackbox':'directory'", "type:record.kind==='blackbox'?'blackbox':record.kind==='artifact'?'artifact':'directory'")
+sub("record.kind==='blackbox'?'覆盖同名黑箱文件？':'覆盖同名工程文件？'", "record.kind==='blackbox'?'覆盖同名黑箱文件？':record.kind==='artifact'?'覆盖同名生成文件？':'覆盖同名工程文件？'")
+sub("record.kind==='blackbox'?'modelOverwrite':'overwrite'", "record.kind==='blackbox'?'modelOverwrite':record.kind==='artifact'?'artifactOverwrite':'overwrite'")
+sub("return record.kind==='blackbox'?await writeModel(record):await writeDirectory(record);", "return record.kind==='blackbox'?await writeModel(record):record.kind==='artifact'?await writeGenerated(record):await writeDirectory(record);")
+sub("if(action.startsWith('model'))", "if(action==='artifactDownload'&&pending?.type==='artifact'&&pending.stage==='download'){const record=pending;downloadGenerated(record);return;}if(action==='artifactOverwrite'&&pending?.type==='artifact'&&pending.stage==='overwrite'){const record=pending;pending=null;writeGenerated(record);return;}if(action.startsWith('model'))")
+sub("function setBusy(){", (p/'generated-artifact-save.js').read_text(encoding='utf-8')+"\nfunction setBusy(){")
+sub("构建模拟电路，探索频率响应与反馈系统。", "构建模拟电路、数字滤波器与数模链路。")
+sub("工程仅保存电路与模型设计。支持时可选择文件夹直接保存", "工程保存当前分支的设计与编辑草稿。支持时可选择文件夹直接保存")
+sub("保存工程分类、单元参数、嵌套组合、内嵌模型，以及反馈实验定义（包括未计算的输入）。", "按工程分支保存电路组合、数字差分模型、目标零极点或混合链路，以及尚未计算的编辑草稿。")
+sub("format:FORMAT,version:VERSION};", "format:FORMAT,version:3,analogVersion:VERSION};")
+
+# Canonical digital classification, while accepting both historical directions on import.
+sub("const classificationLabel=c=>", "const classificationLabel=c=>c.domain==='digital'?'数字系统 / 数字设计':")
+sub("{if(branch(type))return", "{type=BR?.normalizeType(type)||type;if(branch(type))return")
+sub("classification:clone(type),design:BR.validate(type,value.design)},legacy:false,migrated:false", "classification:BR.normalizeType(type),design:BR.validate(type,value.design)},legacy:false,migrated:type.domain==='digital'&&type.direction!=='design'")
+sub("direction:$('projectWizardDirection').value};const allowed=", "direction:$('projectWizardDomain').value==='digital'?'design':$('projectWizardDirection').value};$('projectWizardDirection').closest('label').hidden=wizard.classification.domain==='digital';$('projectWizardDirection').disabled=wizard.classification.domain==='digital';const allowed=")
+sub("wizard.name=$('projectWizardName').value;wizard.classification=", "wizard.name=$('projectWizardName').value;if(!['forward','reverse'].includes($('projectWizardDirection').value))$('projectWizardDirection').value='forward';wizard.classification=")
+
+(p/'project-manager.js').write_text(s,encoding='utf-8',newline='\n')
+print('Applied branch manager schema and routing')

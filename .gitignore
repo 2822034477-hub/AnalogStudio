@@ -1,0 +1,52 @@
+# Local dependencies and Python cache
+node_modules/
+__pycache__/
+*.py[cod]
+
+# Local tests, vendor output and original diagnostic records
+/test-results/
+/vendor-results/
+/validation/
+**/analogstudio_modelsim_build/
+**/analogstudio_xsim_build/
+xsim.dir/
+modelsim.ini
+transcript
+*.log
+*.jou
+*.pb
+*.wlf
+*.wdb
+*.vcd
+*.vpd
+*.fst
+*.o
+*.obj
+*.exe
+*.dll
+
+# Packaged deliverables and local editor/OS state
+*.zip
+*.7z
+*.rar
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+*.local.*
+
+# Credentials and machine-only configuration
+.env
+.env.*
+*.pem
+*.key
+*.p12
+*.pfx
+*.lic
+license.dat
+licenses/
+.ssh/
+.aws/
+.codex/
+.npmrc
+.netrc

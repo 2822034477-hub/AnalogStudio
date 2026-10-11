@@ -1,0 +1,27 @@
+{
+  "format": "analog-studio-digital",
+  "version": 1,
+  "model": {
+    "b": [
+      0.9542677669529664,
+      -1.3495384181603733,
+      0.9542677669529664
+    ],
+    "a": [
+      1,
+      -1.3435028842544403,
+      0.9024999999999999
+    ],
+    "sampleRate": 48000,
+    "fixed": {
+      "coefficientBits": 18,
+      "coefficientFraction": 15,
+      "inputBits": 16,
+      "outputBits": 16,
+      "dataFraction": 14,
+      "accumulatorBits": 40,
+      "rounding": "nearest"
+    },
+    "convention": "ascending-z-inverse"
+  }
+}

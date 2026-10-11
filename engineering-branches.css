@@ -1,0 +1,7 @@
+#engineeringBranchHost{min-width:0;overflow:auto;padding:16px 20px 50px;background:#edf3f7;color:#23485f}
+#engineeringBranchHost[hidden],.engineering-branch-panel[hidden]{display:none!important}
+body.engineering-branch-active main{display:block;overflow:auto}
+body.engineering-branch-active #dockCenter,body.engineering-branch-active #dockInspector,body.engineering-branch-active #sidebar{display:none!important}
+body.engineering-branch-active .workspace{margin-left:0}
+body.engineering-branch-active #dockViewMenu,body.engineering-branch-active #focusAnalysisButton,body.engineering-branch-active .menu-button{display:none!important}
+@media(max-width:650px){#engineeringBranchHost{padding:12px 10px 45px}}
