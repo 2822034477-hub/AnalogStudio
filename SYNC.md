@@ -1,6 +1,6 @@
 # 本机与云端同步
 
-唯一远端：`https://github.com/2822034477-hub/AnalogStudio.git`，私有，默认分支 `main`。
+唯一远端：`https://github.com/2822034477-hub/AnalogStudio.git`，公开，默认分支 `main`。
 
 在工程目录打开终端，开始工作前先检查状态并取回更新：
 
@@ -37,3 +37,5 @@ python verify_release.py --rebuild
 ```
 
 双方交替使用 pull → 编辑/验证 → commit → push 即可。未配置定时同步、自动部署或自动安装依赖。
+
+公开分发：使用者可下载 Releases 中的 AnalogStudio.html，或下载仓库 ZIP 并解压；打开 HTML 不需要安装开发依赖。

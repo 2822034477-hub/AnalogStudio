@@ -1,0 +1,50 @@
+{
+  "format": "analog-studio-digital",
+  "version": 1,
+  "model": {
+    "b": [
+      0,
+      0,
+      0,
+      0.01,
+      -0.003
+    ],
+    "a": [
+      1,
+      -2,
+      1.5425,
+      -0.546,
+      0.07650000000000001
+    ],
+    "sampleRate": 48000,
+    "fixed": {
+      "coefficientBits": 18,
+      "coefficientFraction": 15,
+      "inputBits": 16,
+      "outputBits": 16,
+      "dataFraction": 14,
+      "sectionBits": 24,
+      "accumulatorBits": 48,
+      "rounding": "floor"
+    },
+    "convention": "ascending-z-inverse",
+    "factors": {
+      "zeros": [
+        {
+          "re": 0.3,
+          "im": 0
+        }
+      ],
+      "poles": [
+        {
+          "re": 0.4,
+          "im": 0.2
+        },
+        {
+          "re": 0.6,
+          "im": 0.15
+        }
+      ]
+    }
+  }
+}

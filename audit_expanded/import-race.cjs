@@ -3,7 +3,7 @@ const {JSDOM}=require('../testdeps/node_modules/jsdom');
 const wait=()=>new Promise(r=>setTimeout(r,20));
 (async()=>{
 for(const name of ['digital-design','inverse-mixed']){
-const d=new JSDOM('<div id="mount"></div>',{runScripts:'dangerously',pretendToBeVisual:true});const w=d.window;w.eval(fs.readFileSync(__dirname+'/../'+name+'.js','utf8'));
+const d=new JSDOM('<div id="mount"></div>',{runScripts:'dangerously',pretendToBeVisual:true});const w=d.window;if(name==='digital-design')for(const dependency of ['digital-sos','digital-width'])w.eval(fs.readFileSync(__dirname+'/../'+dependency+'.js','utf8'));w.eval(fs.readFileSync(__dirname+'/../'+name+'.js','utf8'));
 const api=name==='digital-design'?w.DigitalDesign:w.InverseMixed,root=w.document.querySelector('#mount'),adapter=api.mount(root),f=root.querySelector('input[type=file]');
 let release;const old=api.defaults(),newer=api.defaults();if(name==='digital-design'){old.model.b=[.333];newer.model.b=[.777];}else{old.target.gain=333;newer.target.gain=777;}
 Object.defineProperty(f,'files',{configurable:true,value:[{size:300,text:()=>new Promise(r=>release=r)}]});f.dispatchEvent(new w.Event('change',{bubbles:true}));adapter.replace(newer);release(JSON.stringify(old));await wait();

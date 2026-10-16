@@ -1,0 +1,17 @@
+{
+  "date": "2026-10-16",
+  "feature": "Original gain K directly below magnitude plot",
+  "regression_suites_passed": 41,
+  "regression_suites_failed": 0,
+  "original_math_and_code_generator_unchanged": true,
+  "original_gain_handler_unchanged": true,
+  "byte_identical_original_modules": [
+    "digital-sos.js",
+    "digital-magnitude.js",
+    "digital-width.js"
+  ],
+  "rtl_testbench_fixture_pairs_matching_original_generator": 24,
+  "removed_post_filter_output_gain": true,
+  "browser_visual_qa": "Not performed: native file:// observation is blocked by protocol policy. Source and jsdom interaction checks passed.",
+  "hdl_execution": "Not rerun: 24 existing RTL/testbench fixtures exactly match restored generators."
+}

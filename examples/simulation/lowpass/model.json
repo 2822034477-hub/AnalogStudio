@@ -16,6 +16,7 @@
       "inputBits": 16,
       "outputBits": 16,
       "dataFraction": 14,
+      "sectionBits": 16,
       "accumulatorBits": 40,
       "rounding": "nearest"
     },

@@ -7,10 +7,11 @@ AnalogStudio 数字滤波器：本地仿真 / Codex 任务说明
 文件与接口
 - RTL：digital_filter.v；顶层模块：digital_filter
 - 自检 testbench：digital_filter_tb.sv；顶层：digital_filter_tb
-- 时钟 10 ns；同步高有效复位；in_valid=1 的上升沿接收输入。
-- 输出在该沿之后更新；无效周期保持数据并拉低 out_valid。
+- 仿真激励时钟周期 10 ns；同步低有效 rst_n 复位；每个上升沿接收输入。实际 clk 频率由外部匹配 RTL 注释的 Fs。
+- 只有 clk/rst_n/data_in/data_out 四端口；接收沿计第1拍，一阶1拍、二阶2拍，级联相加；顶层不加寄存级。零阶增益1拍；显式延迟另加。
+- RTL 的 LATENCY_CYCLES 给出总拍数，EDGE_OFFSET 给出相对接收沿的后续沿数；复位清空所有状态和填充输出。
 - TB 在下降沿驱动，在上升沿后 1 ns 检查，避免与非阻塞赋值竞争。
-- 黄金输出来自导出模型的定点整数参考：包含满量程输入、符号、有效间隙和复位。
+- 黄金输出来自导出模型的定点整数参考：包含满量程输入、符号、连续采样、流水延迟和复位。
 - 是否真正发生输出饱和取决于此模型的系数与位宽；不能把满量程输入等同于饱和覆盖。
 
 Windows 运行
@@ -21,7 +22,7 @@ Windows 运行
 4. Vivado XSim：使用现有 Vivado 命令提示符，确认 xvlog、xelab、xsim 可用，运行 run_xsim.bat。
    日志：analogstudio_xsim_build\xsim_run.log；中间文件保存在该目录。
 5. 通过条件：脚本退出码为 0，且本轮日志含以下精确文本：
-   PASS: fixed-point vectors, valid gaps, reset
+   PASS: four-port SOS, continuous samples, reset, latency
    非零退出码、找不到 PASS、编译/展开失败或任一 mismatch 都不能报告通过。
    启动失败时日志可能尚未生成；请保留命令行错误。
 6. 脚本复用专用构建目录并覆盖本轮日志；请勿在该目录放手工源码。并行运行请用不同解压目录。

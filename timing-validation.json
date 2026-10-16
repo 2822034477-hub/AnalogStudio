@@ -1,0 +1,1168 @@
+{
+  "part": "xc7a50tfgg484-1",
+  "tool": "Vivado 2022.2",
+  "mode": "out_of_context",
+  "setup_uncertainty_ns": 0.2,
+  "hold_uncertainty_ns": 0.05,
+  "board_io_constrained": false,
+  "full_board_clock_tree_verified": false,
+  "retiming_requested": false,
+  "latency_changed": false,
+  "numeric_behavior_changed": false,
+  "cases": [
+    {
+      "clock_mhz": 100,
+      "case": "lowpass",
+      "status": "FAIL_INTERNAL_TIMING",
+      "return_code": 0,
+      "rtl_sha256": "313b78192a559862ff78244556c28eff6e21ea4d1da7feccb71194b76e3c3ac9",
+      "fixed": {
+        "coefficientBits": 18,
+        "coefficientFraction": 15,
+        "inputBits": 16,
+        "outputBits": 16,
+        "dataFraction": 14,
+        "sectionBits": 16,
+        "accumulatorBits": 40,
+        "rounding": "nearest"
+      },
+      "sections": [
+        {
+          "b": [
+            6554
+          ],
+          "a": [
+            32768,
+            -26214
+          ],
+          "order": 1,
+          "latency": 1,
+          "inputBits": 16,
+          "outputBits": 16,
+          "requiredAccumulatorBits": 36
+        }
+      ],
+      "latency": 1,
+      "edgeOffset": 0,
+      "timing": {
+        "wns_ns": -3.037,
+        "tns_ns": -117.493,
+        "setup_failing_endpoints": 46,
+        "setup_total_endpoints": 46,
+        "whs_ns": 1.243,
+        "ths_ns": 0.0,
+        "hold_failing_endpoints": 0,
+        "hold_total_endpoints": 46,
+        "wpws_ns": 4.5,
+        "tpws_ns": 0.0,
+        "pulse_failing_endpoints": 0,
+        "pulse_total_endpoints": 16
+      },
+      "resources": {
+        "Total LUTs": 104,
+        "Logic LUTs": 104,
+        "LUTRAMs": 0,
+        "SRLs": 0,
+        "FFs": 16,
+        "RAMB36": 0,
+        "RAMB18": 0,
+        "DSP Blocks": 2
+      },
+      "checks": {
+        "no_clock": 0,
+        "constant_clock": 0,
+        "pulse_width_clock": 0,
+        "unconstrained_internal_endpoints": 0,
+        "no_input_delay": 17,
+        "no_output_delay": 16,
+        "multiple_clock": 0,
+        "generated_clocks": 0,
+        "loops": 0,
+        "partial_input_delay": 0,
+        "partial_output_delay": 0,
+        "latch_loops": 0
+      },
+      "critical_paths": [
+        {
+          "type": "max",
+          "slack_ns": -3.037,
+          "startpoint": "s0/P_A1/CLK",
+          "endpoint": "s0/P_A1/A[6]",
+          "logic_levels": 15,
+          "datapath_delay_ns": 12.391
+        },
+        {
+          "type": "min",
+          "slack_ns": 1.243,
+          "startpoint": "s0/P_A1/CLK",
+          "endpoint": "s0/y1_reg[6]/D",
+          "logic_levels": 3,
+          "datapath_delay_ns": 1.407
+        }
+      ],
+      "critical_delay_breakdown": {
+        "data_ns": 12.391,
+        "logic_ns": 7.989,
+        "route_ns": 4.402
+      },
+      "critical_primitives": "CARRY4=10 LUT2=1 LUT4=2 LUT6=2",
+      "route_errors": 0,
+      "report_hashes": {
+        "run.tcl": "3fef9924fe0a82bf5e57c2f878c024eae84eb49f2ea2d28002920d6b5f37be09",
+        "timing.xdc": "a948f2103d7abe3f28ff8e828768d4ffaa9ff2ed7f9b894dc9ddbf6c60e6a8d2",
+        "timing_summary.rpt": "6232e8ab417215703f0360cc908f22b004ea19e13253c39f46bc27a8cd1e8972",
+        "internal_setup.rpt": "4d578959596ed44fb8c1c43fceaa62c8a731bf91ef2398912e5f73312ef5387a",
+        "internal_hold.rpt": "90e9d82cfce0e035f21c5df71b3e708993d7df338c063351665db18e20e0a122",
+        "utilization_routed.rpt": "01e1fe8c32b31fb6cb7b703279a785f4ddbc7945465ef2c5ab1c45cd14b87317"
+      }
+    },
+    {
+      "clock_mhz": 100,
+      "case": "notch",
+      "status": "FAIL_INTERNAL_TIMING",
+      "return_code": 0,
+      "rtl_sha256": "f732113e48638d126972732415442fcf895861a040ba09017b5a4d1ea11d91eb",
+      "fixed": {
+        "coefficientBits": 18,
+        "coefficientFraction": 15,
+        "inputBits": 16,
+        "outputBits": 16,
+        "dataFraction": 14,
+        "sectionBits": 16,
+        "accumulatorBits": 40,
+        "rounding": "nearest"
+      },
+      "sections": [
+        {
+          "b": [
+            31269,
+            -44222,
+            31269
+          ],
+          "a": [
+            32768,
+            -44024,
+            29573
+          ],
+          "order": 2,
+          "latency": 2,
+          "inputBits": 16,
+          "outputBits": 16,
+          "requiredAccumulatorBits": 38
+        }
+      ],
+      "latency": 2,
+      "edgeOffset": 1,
+      "timing": {
+        "wns_ns": -4.33,
+        "tns_ns": -235.501,
+        "setup_failing_endpoints": 62,
+        "setup_total_endpoints": 108,
+        "whs_ns": 0.146,
+        "ths_ns": 0.0,
+        "hold_failing_endpoints": 0,
+        "hold_total_endpoints": 108,
+        "wpws_ns": 4.5,
+        "tpws_ns": 0.0,
+        "pulse_failing_endpoints": 0,
+        "pulse_total_endpoints": 49
+      },
+      "resources": {
+        "Total LUTs": 273,
+        "Logic LUTs": 273,
+        "LUTRAMs": 0,
+        "SRLs": 0,
+        "FFs": 48,
+        "RAMB36": 0,
+        "RAMB18": 0,
+        "DSP Blocks": 5
+      },
+      "checks": {
+        "no_clock": 0,
+        "constant_clock": 0,
+        "pulse_width_clock": 0,
+        "unconstrained_internal_endpoints": 0,
+        "no_input_delay": 17,
+        "no_output_delay": 16,
+        "multiple_clock": 0,
+        "generated_clocks": 0,
+        "loops": 0,
+        "partial_input_delay": 0,
+        "partial_output_delay": 0,
+        "latch_loops": 0
+      },
+      "critical_paths": [
+        {
+          "type": "max",
+          "slack_ns": -4.33,
+          "startpoint": "s0/P_B1/CLK",
+          "endpoint": "s0/P_A1/A[24]",
+          "logic_levels": 14,
+          "datapath_delay_ns": 13.684
+        },
+        {
+          "type": "min",
+          "slack_ns": 0.146,
+          "startpoint": "s0/y1_reg[12]/C",
+          "endpoint": "s0/y2_reg[12]/D",
+          "logic_levels": 0,
+          "datapath_delay_ns": 0.28
+        }
+      ],
+      "critical_delay_breakdown": {
+        "data_ns": 13.684,
+        "logic_ns": 7.581,
+        "route_ns": 6.103
+      },
+      "critical_primitives": "CARRY4=9 LUT3=1 LUT4=1 LUT5=2 LUT6=1",
+      "route_errors": 0,
+      "report_hashes": {
+        "run.tcl": "3fef9924fe0a82bf5e57c2f878c024eae84eb49f2ea2d28002920d6b5f37be09",
+        "timing.xdc": "a948f2103d7abe3f28ff8e828768d4ffaa9ff2ed7f9b894dc9ddbf6c60e6a8d2",
+        "timing_summary.rpt": "216368028efcdcb8025d1b1162ebd594df9037eea46103c15d059986e4d9f09e",
+        "internal_setup.rpt": "1dd372c32c93c630149e60f67a25a04f833d4deb9a4bdf352047c390a8575b4c",
+        "internal_hold.rpt": "6ac1cd08d40711e93d10be4937caad6ff7e3dfbe7a527349090adf48ea70063b",
+        "utilization_routed.rpt": "6c48ebd6da25bda7e388f89cc2aa4744feb6073e83c565ca1484d3c9979fbcef"
+      }
+    },
+    {
+      "clock_mhz": 100,
+      "case": "sos8",
+      "status": "FAIL_INTERNAL_TIMING",
+      "return_code": 0,
+      "rtl_sha256": "93742f8d468539365051343c53945f0f8db2532338ff05ca0f0193968e31cadb",
+      "fixed": {
+        "coefficientBits": 18,
+        "coefficientFraction": 15,
+        "inputBits": 16,
+        "outputBits": 16,
+        "dataFraction": 14,
+        "sectionBits": 20,
+        "accumulatorBits": 44,
+        "rounding": "nearest"
+      },
+      "sections": [
+        {
+          "b": [
+            15343,
+            5830,
+            1672
+          ],
+          "a": [
+            32768,
+            -13107,
+            1707
+          ],
+          "order": 2,
+          "latency": 2,
+          "inputBits": 16,
+          "outputBits": 20,
+          "requiredAccumulatorBits": 42
+        },
+        {
+          "b": [
+            11193,
+            5596,
+            1241
+          ],
+          "a": [
+            32768,
+            -19661,
+            3757
+          ],
+          "order": 2,
+          "latency": 2,
+          "inputBits": 20,
+          "outputBits": 20,
+          "requiredAccumulatorBits": 42
+        },
+        {
+          "b": [
+            10977,
+            1537,
+            1557
+          ],
+          "a": [
+            32768,
+            -26214,
+            6607
+          ],
+          "order": 2,
+          "latency": 2,
+          "inputBits": 20,
+          "outputBits": 20,
+          "requiredAccumulatorBits": 42
+        },
+        {
+          "b": [
+            7950,
+            2067,
+            948
+          ],
+          "a": [
+            32768,
+            -32768,
+            10256
+          ],
+          "order": 2,
+          "latency": 2,
+          "inputBits": 20,
+          "outputBits": 16,
+          "requiredAccumulatorBits": 42
+        }
+      ],
+      "latency": 8,
+      "edgeOffset": 7,
+      "timing": {
+        "wns_ns": -5.176,
+        "tns_ns": -1413.149,
+        "setup_failing_endpoints": 332,
+        "setup_total_endpoints": 798,
+        "whs_ns": 0.107,
+        "ths_ns": 0.0,
+        "hold_failing_endpoints": 0,
+        "hold_total_endpoints": 798,
+        "wpws_ns": 4.5,
+        "tpws_ns": 0.0,
+        "pulse_failing_endpoints": 0,
+        "pulse_total_endpoints": 295
+      },
+      "resources": {
+        "Total LUTs": 1154,
+        "Logic LUTs": 1154,
+        "LUTRAMs": 0,
+        "SRLs": 0,
+        "FFs": 288,
+        "RAMB36": 0,
+        "RAMB18": 0,
+        "DSP Blocks": 20
+      },
+      "checks": {
+        "no_clock": 0,
+        "constant_clock": 0,
+        "pulse_width_clock": 0,
+        "unconstrained_internal_endpoints": 0,
+        "no_input_delay": 17,
+        "no_output_delay": 16,
+        "multiple_clock": 0,
+        "generated_clocks": 0,
+        "loops": 0,
+        "partial_input_delay": 0,
+        "partial_output_delay": 0,
+        "latch_loops": 0
+      },
+      "critical_paths": [
+        {
+          "type": "max",
+          "slack_ns": -5.176,
+          "startpoint": "s2/P_B0/CLK",
+          "endpoint": "s2/P_A1/A[12]",
+          "logic_levels": 16,
+          "datapath_delay_ns": 14.53
+        },
+        {
+          "type": "min",
+          "slack_ns": 0.107,
+          "startpoint": "s3/y1_reg[14]/C",
+          "endpoint": "s3/y2_reg[14]/D",
+          "logic_levels": 0,
+          "datapath_delay_ns": 0.251
+        }
+      ],
+      "critical_delay_breakdown": {
+        "data_ns": 14.53,
+        "logic_ns": 7.906,
+        "route_ns": 6.624
+      },
+      "critical_primitives": "CARRY4=11 LUT3=1 LUT4=1 LUT5=2 LUT6=1",
+      "route_errors": 0,
+      "report_hashes": {
+        "run.tcl": "3fef9924fe0a82bf5e57c2f878c024eae84eb49f2ea2d28002920d6b5f37be09",
+        "timing.xdc": "a948f2103d7abe3f28ff8e828768d4ffaa9ff2ed7f9b894dc9ddbf6c60e6a8d2",
+        "timing_summary.rpt": "b43e32738c9ee7a536bc24c73c3dca0ce844f40da9c2a75df3fd5ab1e56448a3",
+        "internal_setup.rpt": "c566d7edde8bb1ee5ab9037f136ae4a0d53a3cd0957a79b8e28ae9b382a112d4",
+        "internal_hold.rpt": "23dee58818aa7e4c872276c0dc7c58bdc52c214f8a2f22cded8dda505520cb1a",
+        "utilization_routed.rpt": "3d5cfbed5eaf8de14a12cff6f7baf3cb4075d665a528bc6ff5a0217826309799"
+      }
+    },
+    {
+      "clock_mhz": 50,
+      "case": "lowpass",
+      "status": "PASS_INTERNAL_TIMING",
+      "return_code": 0,
+      "rtl_sha256": "313b78192a559862ff78244556c28eff6e21ea4d1da7feccb71194b76e3c3ac9",
+      "fixed": {
+        "coefficientBits": 18,
+        "coefficientFraction": 15,
+        "inputBits": 16,
+        "outputBits": 16,
+        "dataFraction": 14,
+        "sectionBits": 16,
+        "accumulatorBits": 40,
+        "rounding": "nearest"
+      },
+      "sections": [
+        {
+          "b": [
+            6554
+          ],
+          "a": [
+            32768,
+            -26214
+          ],
+          "order": 1,
+          "latency": 1,
+          "inputBits": 16,
+          "outputBits": 16,
+          "requiredAccumulatorBits": 36
+        }
+      ],
+      "latency": 1,
+      "edgeOffset": 0,
+      "timing": {
+        "wns_ns": 5.262,
+        "tns_ns": 0.0,
+        "setup_failing_endpoints": 0,
+        "setup_total_endpoints": 46,
+        "whs_ns": 1.346,
+        "ths_ns": 0.0,
+        "hold_failing_endpoints": 0,
+        "hold_total_endpoints": 46,
+        "wpws_ns": 9.5,
+        "tpws_ns": 0.0,
+        "pulse_failing_endpoints": 0,
+        "pulse_total_endpoints": 16
+      },
+      "resources": {
+        "Total LUTs": 102,
+        "Logic LUTs": 102,
+        "LUTRAMs": 0,
+        "SRLs": 0,
+        "FFs": 16,
+        "RAMB36": 0,
+        "RAMB18": 0,
+        "DSP Blocks": 2
+      },
+      "checks": {
+        "no_clock": 0,
+        "constant_clock": 0,
+        "pulse_width_clock": 0,
+        "unconstrained_internal_endpoints": 0,
+        "no_input_delay": 17,
+        "no_output_delay": 16,
+        "multiple_clock": 0,
+        "generated_clocks": 0,
+        "loops": 0,
+        "partial_input_delay": 0,
+        "partial_output_delay": 0,
+        "latch_loops": 0
+      },
+      "critical_paths": [
+        {
+          "type": "max",
+          "slack_ns": 5.262,
+          "startpoint": "s0/P_A1/CLK",
+          "endpoint": "s0/P_A1/A[9]",
+          "logic_levels": 16,
+          "datapath_delay_ns": 14.092
+        },
+        {
+          "type": "min",
+          "slack_ns": 1.346,
+          "startpoint": "s0/P_A1/CLK",
+          "endpoint": "s0/y1_reg[7]/D",
+          "logic_levels": 3,
+          "datapath_delay_ns": 1.509
+        }
+      ],
+      "critical_delay_breakdown": {
+        "data_ns": 14.092,
+        "logic_ns": 8.023,
+        "route_ns": 6.069
+      },
+      "critical_primitives": "CARRY4=11 LUT2=1 LUT4=2 LUT6=2",
+      "route_errors": 0,
+      "report_hashes": {
+        "run.tcl": "9d31036cd79cb66eefc9500459309e1ff3cfcbde5ac490cc43a2493b689fd357",
+        "timing.xdc": "3d51fdd0589e2908b1aa884eb1fcf5f6db7898bb2937a0c156231b1b5144388e",
+        "timing_summary.rpt": "99d5b145c01b08ca9eacaead93c318f9781e3e0a0c1c1406ddbdd0acfba6191e",
+        "internal_setup.rpt": "43faaa75d462cb0a36f9cf834b56c04e60843d8d181245f69580321c2a868ef2",
+        "internal_hold.rpt": "e1ad072148af79f5dd189e63d096b197e44d25e5b02fdec6619910aa9a3e363e",
+        "utilization_routed.rpt": "882a0df753a81638633edce77c5097f8770245391b9b5e381322fbaff1ef9bcf"
+      }
+    },
+    {
+      "clock_mhz": 50,
+      "case": "notch",
+      "status": "PASS_INTERNAL_TIMING",
+      "return_code": 0,
+      "rtl_sha256": "f732113e48638d126972732415442fcf895861a040ba09017b5a4d1ea11d91eb",
+      "fixed": {
+        "coefficientBits": 18,
+        "coefficientFraction": 15,
+        "inputBits": 16,
+        "outputBits": 16,
+        "dataFraction": 14,
+        "sectionBits": 16,
+        "accumulatorBits": 40,
+        "rounding": "nearest"
+      },
+      "sections": [
+        {
+          "b": [
+            31269,
+            -44222,
+            31269
+          ],
+          "a": [
+            32768,
+            -44024,
+            29573
+          ],
+          "order": 2,
+          "latency": 2,
+          "inputBits": 16,
+          "outputBits": 16,
+          "requiredAccumulatorBits": 38
+        }
+      ],
+      "latency": 2,
+      "edgeOffset": 1,
+      "timing": {
+        "wns_ns": 4.732,
+        "tns_ns": 0.0,
+        "setup_failing_endpoints": 0,
+        "setup_total_endpoints": 92,
+        "whs_ns": 0.139,
+        "ths_ns": 0.0,
+        "hold_failing_endpoints": 0,
+        "hold_total_endpoints": 92,
+        "wpws_ns": 9.5,
+        "tpws_ns": 0.0,
+        "pulse_failing_endpoints": 0,
+        "pulse_total_endpoints": 34
+      },
+      "resources": {
+        "Total LUTs": 233,
+        "Logic LUTs": 233,
+        "LUTRAMs": 0,
+        "SRLs": 0,
+        "FFs": 32,
+        "RAMB36": 0,
+        "RAMB18": 0,
+        "DSP Blocks": 5
+      },
+      "checks": {
+        "no_clock": 0,
+        "constant_clock": 0,
+        "pulse_width_clock": 0,
+        "unconstrained_internal_endpoints": 0,
+        "no_input_delay": 17,
+        "no_output_delay": 16,
+        "multiple_clock": 0,
+        "generated_clocks": 0,
+        "loops": 0,
+        "partial_input_delay": 0,
+        "partial_output_delay": 0,
+        "latch_loops": 0
+      },
+      "critical_paths": [
+        {
+          "type": "max",
+          "slack_ns": 4.732,
+          "startpoint": "s0/P_B2/CLK",
+          "endpoint": "s0/P_A1/A[1]",
+          "logic_levels": 16,
+          "datapath_delay_ns": 14.622
+        },
+        {
+          "type": "min",
+          "slack_ns": 0.139,
+          "startpoint": "s0/y1_reg[15]/C",
+          "endpoint": "s0/y2_reg[15]/D",
+          "logic_levels": 0,
+          "datapath_delay_ns": 0.274
+        }
+      ],
+      "critical_delay_breakdown": {
+        "data_ns": 14.622,
+        "logic_ns": 7.737,
+        "route_ns": 6.885
+      },
+      "critical_primitives": "CARRY4=11 LUT3=1 LUT4=1 LUT5=2 LUT6=1",
+      "route_errors": 0,
+      "report_hashes": {
+        "run.tcl": "9d31036cd79cb66eefc9500459309e1ff3cfcbde5ac490cc43a2493b689fd357",
+        "timing.xdc": "3d51fdd0589e2908b1aa884eb1fcf5f6db7898bb2937a0c156231b1b5144388e",
+        "timing_summary.rpt": "b45331a97f97d9c6a5b4b252dfcd29225b01600cee55d0321f758ee8a540a9a6",
+        "internal_setup.rpt": "ac601e00d86141d0148fec9e0e200fa83c957cde170595759c04414718861b39",
+        "internal_hold.rpt": "58de2a1f2e44c7ffe21ed4ad03100b1354aba3d8c3b60fb4504cd73532e0a6ee",
+        "utilization_routed.rpt": "15f26d9a58652aad99d0b1cd6803a616529cf231b2abf2bc13e6155fb8851a0b"
+      }
+    },
+    {
+      "clock_mhz": 50,
+      "case": "sos8",
+      "status": "PASS_INTERNAL_TIMING",
+      "return_code": 0,
+      "rtl_sha256": "93742f8d468539365051343c53945f0f8db2532338ff05ca0f0193968e31cadb",
+      "fixed": {
+        "coefficientBits": 18,
+        "coefficientFraction": 15,
+        "inputBits": 16,
+        "outputBits": 16,
+        "dataFraction": 14,
+        "sectionBits": 20,
+        "accumulatorBits": 44,
+        "rounding": "nearest"
+      },
+      "sections": [
+        {
+          "b": [
+            15343,
+            5830,
+            1672
+          ],
+          "a": [
+            32768,
+            -13107,
+            1707
+          ],
+          "order": 2,
+          "latency": 2,
+          "inputBits": 16,
+          "outputBits": 20,
+          "requiredAccumulatorBits": 42
+        },
+        {
+          "b": [
+            11193,
+            5596,
+            1241
+          ],
+          "a": [
+            32768,
+            -19661,
+            3757
+          ],
+          "order": 2,
+          "latency": 2,
+          "inputBits": 20,
+          "outputBits": 20,
+          "requiredAccumulatorBits": 42
+        },
+        {
+          "b": [
+            10977,
+            1537,
+            1557
+          ],
+          "a": [
+            32768,
+            -26214,
+            6607
+          ],
+          "order": 2,
+          "latency": 2,
+          "inputBits": 20,
+          "outputBits": 20,
+          "requiredAccumulatorBits": 42
+        },
+        {
+          "b": [
+            7950,
+            2067,
+            948
+          ],
+          "a": [
+            32768,
+            -32768,
+            10256
+          ],
+          "order": 2,
+          "latency": 2,
+          "inputBits": 20,
+          "outputBits": 16,
+          "requiredAccumulatorBits": 42
+        }
+      ],
+      "latency": 8,
+      "edgeOffset": 7,
+      "timing": {
+        "wns_ns": 3.193,
+        "tns_ns": 0.0,
+        "setup_failing_endpoints": 0,
+        "setup_total_endpoints": 662,
+        "whs_ns": 0.063,
+        "ths_ns": 0.0,
+        "hold_failing_endpoints": 0,
+        "hold_total_endpoints": 662,
+        "wpws_ns": 9.5,
+        "tpws_ns": 0.0,
+        "pulse_failing_endpoints": 0,
+        "pulse_total_endpoints": 166
+      },
+      "resources": {
+        "Total LUTs": 981,
+        "Logic LUTs": 981,
+        "LUTRAMs": 0,
+        "SRLs": 0,
+        "FFs": 152,
+        "RAMB36": 0,
+        "RAMB18": 0,
+        "DSP Blocks": 20
+      },
+      "checks": {
+        "no_clock": 0,
+        "constant_clock": 0,
+        "pulse_width_clock": 0,
+        "unconstrained_internal_endpoints": 0,
+        "no_input_delay": 17,
+        "no_output_delay": 16,
+        "multiple_clock": 0,
+        "generated_clocks": 0,
+        "loops": 0,
+        "partial_input_delay": 0,
+        "partial_output_delay": 0,
+        "latch_loops": 0
+      },
+      "critical_paths": [
+        {
+          "type": "max",
+          "slack_ns": 3.193,
+          "startpoint": "s2/P_A2/CLK",
+          "endpoint": "s3/P_B0/A[23]",
+          "logic_levels": 17,
+          "datapath_delay_ns": 16.161
+        },
+        {
+          "type": "min",
+          "slack_ns": 0.063,
+          "startpoint": "s1/y1_reg[7]/C",
+          "endpoint": "s1/y2_reg[7]/D",
+          "logic_levels": 0,
+          "datapath_delay_ns": 0.209
+        }
+      ],
+      "critical_delay_breakdown": {
+        "data_ns": 16.161,
+        "logic_ns": 8.293,
+        "route_ns": 7.868
+      },
+      "critical_primitives": "CARRY4=12 LUT4=1 LUT5=3 LUT6=1",
+      "route_errors": 0,
+      "report_hashes": {
+        "run.tcl": "9d31036cd79cb66eefc9500459309e1ff3cfcbde5ac490cc43a2493b689fd357",
+        "timing.xdc": "3d51fdd0589e2908b1aa884eb1fcf5f6db7898bb2937a0c156231b1b5144388e",
+        "timing_summary.rpt": "a1abb4b0949aaf8a38208d9b2d958c466dc797dfc0cd26ec723b28832c300674",
+        "internal_setup.rpt": "0ab5f06b4f9fcb010fb3b493123fe3b51157ae3abfa2c8701439c13216097242",
+        "internal_hold.rpt": "a515ae5eeaa6256975b35c467337da6b0a2e8d3a476c54404739afb8f86d5484",
+        "utilization_routed.rpt": "ada9c73b2bafc1f74c2df9d63d3fe7824aba18bf83e67b77fa445e1a7481551f"
+      }
+    }
+  ],
+  "behavioral_simulation": [
+    {
+      "case": "lowpass",
+      "tool": "modelsim",
+      "return_code": 0,
+      "passed": true,
+      "rtl_sha256": "313b78192a559862ff78244556c28eff6e21ea4d1da7feccb71194b76e3c3ac9",
+      "testbench_sha256": "0ea0d73c6985a01778ac530851776295cc114569d522eed30d4e079add42f4f2"
+    },
+    {
+      "case": "lowpass",
+      "tool": "xsim",
+      "return_code": 0,
+      "passed": true,
+      "rtl_sha256": "313b78192a559862ff78244556c28eff6e21ea4d1da7feccb71194b76e3c3ac9",
+      "testbench_sha256": "0ea0d73c6985a01778ac530851776295cc114569d522eed30d4e079add42f4f2"
+    },
+    {
+      "case": "saturation",
+      "tool": "modelsim",
+      "return_code": 0,
+      "passed": true,
+      "rtl_sha256": "d64f18d07d6d48ca0bd019f3976edb60ee174d7fbae9c6514a973075ce2b1a82",
+      "testbench_sha256": "d563b3e2c6b693788f80e2aa91c7f36085e451eea757c6ea2d536737c5e69677"
+    },
+    {
+      "case": "saturation",
+      "tool": "xsim",
+      "return_code": 0,
+      "passed": true,
+      "rtl_sha256": "d64f18d07d6d48ca0bd019f3976edb60ee174d7fbae9c6514a973075ce2b1a82",
+      "testbench_sha256": "d563b3e2c6b693788f80e2aa91c7f36085e451eea757c6ea2d536737c5e69677"
+    },
+    {
+      "case": "notch",
+      "tool": "modelsim",
+      "return_code": 0,
+      "passed": true,
+      "rtl_sha256": "f732113e48638d126972732415442fcf895861a040ba09017b5a4d1ea11d91eb",
+      "testbench_sha256": "98917d396d61225d2701a4ab63d3f166920b2d215d5b61c4ee9dd8797833be1a"
+    },
+    {
+      "case": "notch",
+      "tool": "xsim",
+      "return_code": 0,
+      "passed": true,
+      "rtl_sha256": "f732113e48638d126972732415442fcf895861a040ba09017b5a4d1ea11d91eb",
+      "testbench_sha256": "98917d396d61225d2701a4ab63d3f166920b2d215d5b61c4ee9dd8797833be1a"
+    },
+    {
+      "case": "delay",
+      "tool": "modelsim",
+      "return_code": 0,
+      "passed": true,
+      "rtl_sha256": "958912ec58fbd6d2c66722de1a41ea038a554d189389e4a117c997746dd0c86d",
+      "testbench_sha256": "031fdcb2bf6f674fb543d1d83b33a5cb2793f596c27feabf19b1e8f9a6063ea8"
+    },
+    {
+      "case": "delay",
+      "tool": "xsim",
+      "return_code": 0,
+      "passed": true,
+      "rtl_sha256": "958912ec58fbd6d2c66722de1a41ea038a554d189389e4a117c997746dd0c86d",
+      "testbench_sha256": "031fdcb2bf6f674fb543d1d83b33a5cb2793f596c27feabf19b1e8f9a6063ea8"
+    },
+    {
+      "case": "fir",
+      "tool": "modelsim",
+      "return_code": 0,
+      "passed": true,
+      "rtl_sha256": "60640df6bcf8f71b5fce6fa63f2aaf3bd6b11c6feedcddd2d823f221b7c51acc",
+      "testbench_sha256": "09ce6a6a6bf6dd27a6d526637547fb8707d9a9617199de6d4b271315b3f85454"
+    },
+    {
+      "case": "fir",
+      "tool": "xsim",
+      "return_code": 0,
+      "passed": true,
+      "rtl_sha256": "60640df6bcf8f71b5fce6fa63f2aaf3bd6b11c6feedcddd2d823f221b7c51acc",
+      "testbench_sha256": "09ce6a6a6bf6dd27a6d526637547fb8707d9a9617199de6d4b271315b3f85454"
+    },
+    {
+      "case": "floor",
+      "tool": "modelsim",
+      "return_code": 0,
+      "passed": true,
+      "rtl_sha256": "95184a7a088aba5f39ac9cc1e7e3e713c2961179fc26a8fa4f2f2f9b85aaa767",
+      "testbench_sha256": "091000f9fb95e6aa3d58531858704e88f978044e35023a803d7c97f4132870bf"
+    },
+    {
+      "case": "floor",
+      "tool": "xsim",
+      "return_code": 0,
+      "passed": true,
+      "rtl_sha256": "95184a7a088aba5f39ac9cc1e7e3e713c2961179fc26a8fa4f2f2f9b85aaa767",
+      "testbench_sha256": "091000f9fb95e6aa3d58531858704e88f978044e35023a803d7c97f4132870bf"
+    },
+    {
+      "case": "wide",
+      "tool": "modelsim",
+      "return_code": 0,
+      "passed": true,
+      "rtl_sha256": "41961ea38ef2b89467c28d0cba6f26ed4af19f85597578d8a37513570d8d4c55",
+      "testbench_sha256": "f96c10d098a0314751dc2855bc4793005908ce9f0acb2376285cfaaea011a28a"
+    },
+    {
+      "case": "wide",
+      "tool": "xsim",
+      "return_code": 0,
+      "passed": true,
+      "rtl_sha256": "41961ea38ef2b89467c28d0cba6f26ed4af19f85597578d8a37513570d8d4c55",
+      "testbench_sha256": "f96c10d098a0314751dc2855bc4793005908ce9f0acb2376285cfaaea011a28a"
+    },
+    {
+      "case": "edited",
+      "tool": "modelsim",
+      "return_code": 0,
+      "passed": true,
+      "rtl_sha256": "eb47c9ca91789136e0a2c061a2106eb857cbe9529f19dd401d6902d3b789f034",
+      "testbench_sha256": "dbf4f3a9113742e1c089ed5f581301d30c9129a93ed4afe6e724db3d78bfb5ad"
+    },
+    {
+      "case": "edited",
+      "tool": "xsim",
+      "return_code": 0,
+      "passed": true,
+      "rtl_sha256": "eb47c9ca91789136e0a2c061a2106eb857cbe9529f19dd401d6902d3b789f034",
+      "testbench_sha256": "dbf4f3a9113742e1c089ed5f581301d30c9129a93ed4afe6e724db3d78bfb5ad"
+    },
+    {
+      "case": "sos4",
+      "tool": "modelsim",
+      "return_code": 0,
+      "passed": true,
+      "rtl_sha256": "ff3787de07acec48ed8f738b17c91c2d78a8de848f44fe3dae797a477c823bdb",
+      "testbench_sha256": "7b1349edb1fef6479400d4d10299c3337b452a445721789c59e34292be75e869"
+    },
+    {
+      "case": "sos4",
+      "tool": "xsim",
+      "return_code": 0,
+      "passed": true,
+      "rtl_sha256": "ff3787de07acec48ed8f738b17c91c2d78a8de848f44fe3dae797a477c823bdb",
+      "testbench_sha256": "7b1349edb1fef6479400d4d10299c3337b452a445721789c59e34292be75e869"
+    },
+    {
+      "case": "sos6",
+      "tool": "modelsim",
+      "return_code": 0,
+      "passed": true,
+      "rtl_sha256": "c725c2ea5759059443c377e1ed3c40256ea7e4a8e7b0d06d2e6b1abcd64cb15a",
+      "testbench_sha256": "99b267d1ea065b2c3a5e0f825ba78b4095681b1e3609e06e1511f0564a6ac183"
+    },
+    {
+      "case": "sos6",
+      "tool": "xsim",
+      "return_code": 0,
+      "passed": true,
+      "rtl_sha256": "c725c2ea5759059443c377e1ed3c40256ea7e4a8e7b0d06d2e6b1abcd64cb15a",
+      "testbench_sha256": "99b267d1ea065b2c3a5e0f825ba78b4095681b1e3609e06e1511f0564a6ac183"
+    },
+    {
+      "case": "sos8",
+      "tool": "modelsim",
+      "return_code": 0,
+      "passed": true,
+      "rtl_sha256": "93742f8d468539365051343c53945f0f8db2532338ff05ca0f0193968e31cadb",
+      "testbench_sha256": "85c1e9cdf3d77c3beae34bef54b615bd89945640e524a9c9a13d8215f1e5cd5a"
+    },
+    {
+      "case": "sos8",
+      "tool": "xsim",
+      "return_code": 0,
+      "passed": true,
+      "rtl_sha256": "93742f8d468539365051343c53945f0f8db2532338ff05ca0f0193968e31cadb",
+      "testbench_sha256": "85c1e9cdf3d77c3beae34bef54b615bd89945640e524a9c9a13d8215f1e5cd5a"
+    },
+    {
+      "case": "odd5",
+      "tool": "modelsim",
+      "return_code": 0,
+      "passed": true,
+      "rtl_sha256": "c1f162dfb400a020aa8e663786221bbbe191482186b2a5109c7d7e35aa8bfe91",
+      "testbench_sha256": "a130c42d1b07e2839228077ad923f0b49e8c18e1cfb0abc0473852b4f8a369c9"
+    },
+    {
+      "case": "odd5",
+      "tool": "xsim",
+      "return_code": 0,
+      "passed": true,
+      "rtl_sha256": "c1f162dfb400a020aa8e663786221bbbe191482186b2a5109c7d7e35aa8bfe91",
+      "testbench_sha256": "a130c42d1b07e2839228077ad923f0b49e8c18e1cfb0abc0473852b4f8a369c9"
+    },
+    {
+      "case": "delay8",
+      "tool": "modelsim",
+      "return_code": 0,
+      "passed": true,
+      "rtl_sha256": "f734316d5d57b61f8eeb78ae570745977e86339d1643d7d77cb3e11e04b14b04",
+      "testbench_sha256": "8304cb8c3a710a06f421d26e02c901ac5b887a87e794af5f04eb1e0c042cd535"
+    },
+    {
+      "case": "delay8",
+      "tool": "xsim",
+      "return_code": 0,
+      "passed": true,
+      "rtl_sha256": "f734316d5d57b61f8eeb78ae570745977e86339d1643d7d77cb3e11e04b14b04",
+      "testbench_sha256": "8304cb8c3a710a06f421d26e02c901ac5b887a87e794af5f04eb1e0c042cd535"
+    },
+    {
+      "case": "sos_delay",
+      "tool": "modelsim",
+      "return_code": 0,
+      "passed": true,
+      "rtl_sha256": "10c4eec26bb28f0d26f1db9a4bfb4b94ace5baf63830b093c3d56a3cc28bb346",
+      "testbench_sha256": "05350627ac94fe6756b02e4fa587280adcd0452359fd40c405aaa451a356efba"
+    },
+    {
+      "case": "sos_delay",
+      "tool": "xsim",
+      "return_code": 0,
+      "passed": true,
+      "rtl_sha256": "10c4eec26bb28f0d26f1db9a4bfb4b94ace5baf63830b093c3d56a3cc28bb346",
+      "testbench_sha256": "05350627ac94fe6756b02e4fa587280adcd0452359fd40c405aaa451a356efba"
+    },
+    {
+      "case": "repeated8",
+      "tool": "modelsim",
+      "return_code": 0,
+      "passed": true,
+      "rtl_sha256": "3540905088de08e730e67ceaad0b9fb004b8646753362726e868be637ce57b74",
+      "testbench_sha256": "a5243e648f02ffb64b311c0df2e0686c5a750f47b7ce6fdeebbb58c950a95e7d"
+    },
+    {
+      "case": "repeated8",
+      "tool": "xsim",
+      "return_code": 0,
+      "passed": true,
+      "rtl_sha256": "3540905088de08e730e67ceaad0b9fb004b8646753362726e868be637ce57b74",
+      "testbench_sha256": "a5243e648f02ffb64b311c0df2e0686c5a750f47b7ce6fdeebbb58c950a95e7d"
+    },
+    {
+      "case": "sos_clip",
+      "tool": "modelsim",
+      "return_code": 0,
+      "passed": true,
+      "rtl_sha256": "5324ff674082179eead015edb9abf4a1608bf57ab7e79e8d7b996f95f154f664",
+      "testbench_sha256": "d4019116e56e4d7aa4dfb0faecb0311823751989c518bb3bb427ec7e315970c2"
+    },
+    {
+      "case": "sos_clip",
+      "tool": "xsim",
+      "return_code": 0,
+      "passed": true,
+      "rtl_sha256": "5324ff674082179eead015edb9abf4a1608bf57ab7e79e8d7b996f95f154f664",
+      "testbench_sha256": "d4019116e56e4d7aa4dfb0faecb0311823751989c518bb3bb427ec7e315970c2"
+    },
+    {
+      "case": "width18",
+      "tool": "modelsim",
+      "return_code": 0,
+      "passed": true,
+      "rtl_sha256": "c725c2ea5759059443c377e1ed3c40256ea7e4a8e7b0d06d2e6b1abcd64cb15a",
+      "testbench_sha256": "e88070945d5b5ecad70095191ca7b923e491e8d273334002c2b0415835c8bfa1"
+    },
+    {
+      "case": "width18",
+      "tool": "xsim",
+      "return_code": 0,
+      "passed": true,
+      "rtl_sha256": "c725c2ea5759059443c377e1ed3c40256ea7e4a8e7b0d06d2e6b1abcd64cb15a",
+      "testbench_sha256": "e88070945d5b5ecad70095191ca7b923e491e8d273334002c2b0415835c8bfa1"
+    },
+    {
+      "case": "latency_fo",
+      "tool": "modelsim",
+      "return_code": 0,
+      "passed": true,
+      "rtl_sha256": "30b11c285e512833f19ea9815344c9935e733f66f770dac46cd3c49b76917a92",
+      "testbench_sha256": "7350120af000fa6a2fde4c2f6c6037da4fd9607b995c5c95897401d7be786c4a"
+    },
+    {
+      "case": "latency_fo",
+      "tool": "xsim",
+      "return_code": 0,
+      "passed": true,
+      "rtl_sha256": "30b11c285e512833f19ea9815344c9935e733f66f770dac46cd3c49b76917a92",
+      "testbench_sha256": "7350120af000fa6a2fde4c2f6c6037da4fd9607b995c5c95897401d7be786c4a"
+    },
+    {
+      "case": "latency_so",
+      "tool": "modelsim",
+      "return_code": 0,
+      "passed": true,
+      "rtl_sha256": "60e5c0d6f5066c4c10f53b3bcfd979ba5f3784e4bb0620bb9de8faceefe2565c",
+      "testbench_sha256": "a7d332ba4eee7877445c7c5769262112e5fe5dc7008bf46dc30023fb06a2bc86"
+    },
+    {
+      "case": "latency_so",
+      "tool": "xsim",
+      "return_code": 0,
+      "passed": true,
+      "rtl_sha256": "60e5c0d6f5066c4c10f53b3bcfd979ba5f3784e4bb0620bb9de8faceefe2565c",
+      "testbench_sha256": "a7d332ba4eee7877445c7c5769262112e5fe5dc7008bf46dc30023fb06a2bc86"
+    },
+    {
+      "case": "odd3",
+      "tool": "modelsim",
+      "return_code": 0,
+      "passed": true,
+      "rtl_sha256": "bba91e3f9276e66b175bcc45409b74a47ef98146c74edb5284798f4b187b060d",
+      "testbench_sha256": "f50b1f077c5290a175cc835413818b68d6678b30fdb8c2c88f7501b957a4b01c"
+    },
+    {
+      "case": "odd3",
+      "tool": "xsim",
+      "return_code": 0,
+      "passed": true,
+      "rtl_sha256": "bba91e3f9276e66b175bcc45409b74a47ef98146c74edb5284798f4b187b060d",
+      "testbench_sha256": "f50b1f077c5290a175cc835413818b68d6678b30fdb8c2c88f7501b957a4b01c"
+    },
+    {
+      "case": "odd5_fo",
+      "tool": "modelsim",
+      "return_code": 0,
+      "passed": true,
+      "rtl_sha256": "1441b98a06bcf1c8be02484fb2159878faf3a38d55d21c4d7c19316527c413ef",
+      "testbench_sha256": "8b5b210c77e81048818cf68a1461bb1422bf1c2e78154d9bca55faa0752642c7"
+    },
+    {
+      "case": "odd5_fo",
+      "tool": "xsim",
+      "return_code": 0,
+      "passed": true,
+      "rtl_sha256": "1441b98a06bcf1c8be02484fb2159878faf3a38d55d21c4d7c19316527c413ef",
+      "testbench_sha256": "8b5b210c77e81048818cf68a1461bb1422bf1c2e78154d9bca55faa0752642c7"
+    },
+    {
+      "case": "width8",
+      "tool": "modelsim",
+      "return_code": 0,
+      "passed": true,
+      "rtl_sha256": "c2338590f1105c59c8bc2f3dbcae3f2c09f3ad894d0cb0950a9e8ef9ad0646a4",
+      "testbench_sha256": "623194948afb1ecbf1c4b4862156a4efec7f9c1c663d0f5fb659bfcacc6d6eeb"
+    },
+    {
+      "case": "width8",
+      "tool": "xsim",
+      "return_code": 0,
+      "passed": true,
+      "rtl_sha256": "c2338590f1105c59c8bc2f3dbcae3f2c09f3ad894d0cb0950a9e8ef9ad0646a4",
+      "testbench_sha256": "623194948afb1ecbf1c4b4862156a4efec7f9c1c663d0f5fb659bfcacc6d6eeb"
+    },
+    {
+      "case": "width24",
+      "tool": "modelsim",
+      "return_code": 0,
+      "passed": true,
+      "rtl_sha256": "c725c2ea5759059443c377e1ed3c40256ea7e4a8e7b0d06d2e6b1abcd64cb15a",
+      "testbench_sha256": "94353c3b06f21d1cd8df5b04bf3472a34b69a34db5803af02ecba587bf831e23"
+    },
+    {
+      "case": "width24",
+      "tool": "xsim",
+      "return_code": 0,
+      "passed": true,
+      "rtl_sha256": "c725c2ea5759059443c377e1ed3c40256ea7e4a8e7b0d06d2e6b1abcd64cb15a",
+      "testbench_sha256": "94353c3b06f21d1cd8df5b04bf3472a34b69a34db5803af02ecba587bf831e23"
+    },
+    {
+      "case": "zero_gain",
+      "tool": "modelsim",
+      "return_code": 0,
+      "passed": true,
+      "rtl_sha256": "8bc46894d0749275a8caa27f78df5f6ef8604222f4922067eb2338d0070fefb9",
+      "testbench_sha256": "ac367a199a5c30357222111e86e51815af49e797f89949a9362b47fa037ca23b"
+    },
+    {
+      "case": "zero_gain",
+      "tool": "xsim",
+      "return_code": 0,
+      "passed": true,
+      "rtl_sha256": "8bc46894d0749275a8caa27f78df5f6ef8604222f4922067eb2338d0070fefb9",
+      "testbench_sha256": "ac367a199a5c30357222111e86e51815af49e797f89949a9362b47fa037ca23b"
+    }
+  ],
+  "arithmetic_simulation": [
+    {
+      "case": "arithmetic",
+      "tool": "modelsim",
+      "return_code": 0,
+      "passed": true,
+      "rtl_sha256": "bba91e3f9276e66b175bcc45409b74a47ef98146c74edb5284798f4b187b060d",
+      "testbench_sha256": "17ceff13928387528cbecdc9e78ae17df30325aadc7de655c74a27823e8d5d07"
+    },
+    {
+      "case": "arithmetic",
+      "tool": "xsim",
+      "return_code": 0,
+      "passed": true,
+      "rtl_sha256": "bba91e3f9276e66b175bcc45409b74a47ef98146c74edb5284798f4b187b060d",
+      "testbench_sha256": "17ceff13928387528cbecdc9e78ae17df30325aadc7de655c74a27823e8d5d07"
+    }
+  ]
+}

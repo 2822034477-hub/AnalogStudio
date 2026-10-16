@@ -7,7 +7,7 @@ if not exist "digital_filter.v" goto source_missing
 if not exist "digital_filter_tb.sv" goto source_missing
 vsim -c -do "do {run_modelsim.do}" > "modelsim_run.log" 2>&1
 if errorlevel 1 goto failed
-findstr /L /C:"PASS: fixed-point vectors, valid gaps, reset" "modelsim_run.log" >nul
+findstr /L /C:"PASS: four-port SOS, continuous samples, reset, latency" "modelsim_run.log" >nul
 if errorlevel 1 goto failed
 echo PASS: ModelSim / Questa completed the generated self-checking testbench.
 echo See modelsim_run.log for this run.

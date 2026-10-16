@@ -1,0 +1,61 @@
+/* DOM placement and gain behavior; not a native-browser layout check. */
+'use strict';
+const assert=require('node:assert/strict'),fs=require('node:fs'),path=require('node:path');
+const {JSDOM}=require('../testdeps/node_modules/jsdom');
+const dom=new JSDOM('<main></main>',{runScripts:'outside-only',url:'https://example.invalid/'}),w=dom.window;
+try {
+ for(const file of ['digital-sos.js','digital-width.js','digital-response-plot.js','digital-magnitude.js','digital-root-editor.js','digital-design.js'])
+  w.eval(fs.readFileSync(path.join(__dirname,'..',file),'utf8'));
+ const D=w.DigitalDesign,root=w.document.querySelector('main'),downloads=[];
+ let changes=0;
+ const app=D.mount(root,{onChange(){changes++;},onDownload:x=>downloads.push(x)});
+ const $=key=>root.querySelector(`[data-dd="${key}"]`),z=key=>root.querySelector(`[data-z="${key}"]`);
+ const strip=$('gain-controls');
+ assert.equal(strip.previousElementSibling.className,'dd-mag-layout');
+ assert.equal(strip.nextElementSibling,$('magnitude-crossings'));
+ assert.equal(strip.closest('[data-dd="magnitude-body"]'),$('magnitude-body'));
+ assert.equal(z('gain').closest('details'),null);
+ assert.equal(strip.querySelectorAll('[data-z="gain"]').length,1);
+ assert.equal($('roots').querySelector('[data-z="gain"]'),null);
+ assert.equal(root.querySelector('[data-dd="outputGain"]'),null);
+ const copy=value=>JSON.parse(JSON.stringify(value));
+ const model=app.getModel(),initial=D.factorRoots(model),initialView=copy(app.snapshot().editor);
+ const response=[0,1000,6000,20000].map(f=>D.evaluate(model,f));
+ const curve=$('magnitude').innerHTML;
+ const changeGain=value=>{z('gain').value=String(value);z('gain').dispatchEvent(new w.Event('change',{bubbles:true}));};
+ changeGain(initial.gain*2);
+ const after=D.factorRoots(app.getModel());
+ assert.equal(after.gain,initial.gain*2);
+ assert.equal(JSON.stringify(after.poles),JSON.stringify(initial.poles));
+ assert.equal(JSON.stringify(after.zeros),JSON.stringify(initial.zeros));
+ assert.deepEqual(copy(app.snapshot().editor),initialView);
+ assert.equal(after.delaySamples,initial.delaySamples);
+ assert(changes>0);assert.notEqual($('magnitude').innerHTML,curve);
+ [0,1000,6000,20000].forEach((f,i)=>{
+  const next=D.evaluate(app.getModel(),f),prev=response[i];
+  assert(Math.abs(next.re-2*prev.re)<1e-10);assert(Math.abs(next.im-2*prev.im)<1e-10);
+  assert(Math.abs(next.db-prev.db-20*Math.log10(2))<1e-10);
+ });
+ z('gain-plus').click();assert(Math.abs(D.factorRoots(app.getModel()).gain-after.gain-.1)<1e-12);
+ z('gain-minus').click();assert(Math.abs(D.factorRoots(app.getModel()).gain-after.gain)<1e-12);
+ const snapshot=app.snapshot();app.replace(snapshot);assert.deepEqual(copy(app.snapshot()),copy(snapshot));
+ assert.equal(Number(z('gain').value),after.gain);assert.equal(Number($('gain').value),after.gain);
+ changeGain(0);assert.equal(D.evaluate(app.getModel(),1000).magnitude,0);
+ assert.deepEqual(copy(app.snapshot().editor),initialView);
+ changeGain(-initial.gain);assert.equal(D.factorRoots(app.getModel()).gain,-initial.gain);
+ assert.deepEqual(copy(app.snapshot().editor),initialView);
+ $('verilog').click();assert.equal(downloads.at(-1).content,D.generateVerilog(app.getModel()));
+ assert(!/OUTPUT_GAIN|gain_product|outputGain/.test(downloads.at(-1).content));
+ $('magnitude-toggle').click();assert($('magnitude-body').hidden);
+ $('magnitude-toggle').click();assert(!$('magnitude-body').hidden);
+ assert.equal(strip.querySelector('[data-z="gain"]'),z('gain'));
+ $('b').value='unfinished';$('b').dispatchEvent(new w.Event('input',{bubbles:true}));
+ assert(z('gain').disabled);assert(z('gain-plus').disabled);assert(z('gain-minus').disabled);
+ app.replace(D.defaults());assert(!z('gain').disabled);
+ app.destroy();assert.equal(strip.childElementCount,0);assert.equal(root.innerHTML,'');
+ const isolated=w.document.createElement('section');
+ const editor=w.DigitalRootEditor.mount(isolated);
+ assert(isolated.querySelector('.dd-root-coordinate [data-z="gain"]'));
+ editor.destroy();
+ console.log('PASS original K below magnitude: DOM order, visible outside folded settings, existing events, 2x complex response / +6.0206 dB, unchanged roots and view, zero/negative K, JSON restore, export, disabled drafts, hide/show, cleanup and standalone-editor fallback. No post-SOS gain stage.');
+} finally {dom.window.close();}

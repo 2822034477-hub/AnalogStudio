@@ -11,7 +11,7 @@ with zipfile.ZipFile(sys.argv[1]) as z:
  expected={'digital_filter.v','digital_filter_tb.sv','run_modelsim.bat','run_modelsim.do','run_xsim.bat','run_xsim.tcl','SIMULATION_README.txt'}
  assert set(z.namelist())==expected
  assert b'module digital_filter' in z.read('digital_filter.v')
- assert b'PASS: fixed-point vectors, valid gaps, reset' in z.read('digital_filter_tb.sv')
+ assert b'PASS: four-port SOS, continuous samples, reset, latency' in z.read('digital_filter_tb.sv')
  assert '此包只是生成的源码与运行脚本'.encode() in z.read('SIMULATION_README.txt')
  assert all(i.compress_type==zipfile.ZIP_STORED for i in z.infolist())
  print(json.dumps({'files':z.namelist(),'bytes':sum(i.file_size for i in z.infolist())}))`,output],{encoding:'utf8'});console.log(report.trim());

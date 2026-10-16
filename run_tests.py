@@ -16,12 +16,12 @@ def run(path,label):
  if missing_dom and needs_dom:
   result={'test':label,'status':'SKIP','reason':'Existing jsdom dependency not installed; no installation authorized'};print(result,flush=True)
  else:
-  proc=subprocess.run([node,str(path)],cwd=root,stdout=subprocess.PIPE,stderr=subprocess.STDOUT)
+  proc=subprocess.run([node,str(path)],cwd=root,stdout=subprocess.PIPE,stderr=subprocess.STDOUT, timeout=60)
   output=proc.stdout.decode('utf-8','replace');(logdir/(label+'.log')).write_text(output,encoding='utf-8');print(output,flush=True)
   result={'test':label,'status':'PASS' if proc.returncode==0 else 'FAIL','return_code':proc.returncode}
  results.append(result)
  (logdir/'results.json').write_text(json.dumps(results,indent=2),encoding='utf-8')
-tests=['numerical','dom','workspace','network-windows','plot-domains','projects','homepage','project-v2','blackbox-math','blackbox-projects','named-blackbox-save','folder-hierarchy','hierarchy','digital-design','digital-design-dom','digital-root-math','digital-root-events','digital-project-migration','digital-unified-projects','inverse-mixed','inverse-mixed-races','inverse-mixed-drafts','audit-inverse-digital','expanded-projects','branch-races','branch-negative-flows','simulation-runners','build-consistency']
+tests=['numerical','dom','workspace','network-windows','plot-domains','projects','homepage','project-v2','blackbox-math','blackbox-projects','named-blackbox-save','folder-hierarchy','hierarchy','digital-design','digital-design-dom','digital-gain-placement','digital-root-math','digital-root-events','digital-sos','digital-latency','digital-display-timing','digital-magnitude','digital-layout','digital-rtl-arithmetic','digital-width','digital-project-migration','digital-unified-projects','inverse-mixed','inverse-mixed-races','inverse-mixed-drafts','audit-inverse-digital','expanded-projects','branch-races','branch-negative-flows','simulation-runners','build-consistency']
 for name in tests:
  path=root/'tests'/f'{name}.cjs'
  if not path.exists():raise SystemExit('Missing test: '+str(path.name))

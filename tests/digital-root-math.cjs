@@ -13,8 +13,8 @@ m=D.editRoot(m,{action:'delete',kind:'poles',index:0,sourcePair:true});assert.de
 m=D.editRoot(m,{action:'add',kind:'zeros',re:.2,im:0});m=D.editRoot(m,{action:'add',kind:'zeros',re:-.5,im:0});near(m.b[1],.3);near(m.b[2],-.1);
 assert.throws(()=>D.editRoot(m,{action:'add',kind:'zeros',re:0,im:0}));
 const frozen=JSON.stringify(m);for(const o of [{action:'move',kind:'zeros',index:0,re:Infinity},{action:'move',kind:'zeros',index:8,re:0},{action:'add',kind:'poles',re:101},{action:'add',kind:'poles',re:0,im:.2,pair:false},{action:'delete',kind:'bad',index:0}])assert.throws(()=>D.editRoot(m,o));assert.equal(JSON.stringify(m),frozen);
-assert.throws(()=>D.editRoot(D.create({b:[0,0,1],a:[1]}),{action:'add',kind:'zeros',re:.5}));
+assert.throws(()=>D.editRoot(D.create({b:[0,0,0,0,0,0,0,0,1],a:[1]}),{action:'add',kind:'zeros',re:.5}));
 let delay=D.create({b:[0,.2],a:[1,-.8]});delay=D.editRoot(delay,{action:'move',kind:'poles',index:0,re:1,im:0});assert(D.analysis(delay).marginal);assert.equal(delay.b[0],0);near(delay.b[1],.2);
 delay=D.editRoot(delay,{action:'move',kind:'poles',index:0,re:1.2,im:0});assert(!D.analysis(delay).stable);near(delay.a[1],-1.2);
 const pair=D.create({poles:[{re:.6,im:.2}],gain:.1});const real=D.editRoot(pair,{action:'move',kind:'poles',index:0,re:.7,im:0,pair:false});assert.equal(real.a.length,2);
-console.log('PASS digital root math: coefficient/factor round trips, explicit delay, conjugate movement/axis degeneracy/deletion, real roots, atomic bounds, two-order limit, stable/marginal/unstable.');
+console.log('PASS digital root math: coefficient/factor round trips, explicit delay, conjugate movement/axis degeneracy/deletion, real roots, atomic bounds, eight-order limit, stable/marginal/unstable.');

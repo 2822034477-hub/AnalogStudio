@@ -1,5 +1,5 @@
 'use strict';
-// Independent audit. No HDL simulator is available: this does not certify generated HDL.
+// Independent audit. This JavaScript audit does not execute HDL; vendor simulation is a separate check.
 const assert=require('node:assert/strict');
 const D=require('../digital-design.js'), I=require('../inverse-mixed.js');
 let checks=0,seed=8313;
@@ -14,13 +14,13 @@ function zpk(target,w){let v={re:target.gain,im:0};for(const r of I.expanded(tar
 function fixedOracle(m,x){const f=m.fixed,S=2**f.coefficientFraction,round=v=>Math.sign(v)*Math.floor(Math.abs(v)+.5),B=m.b.map(v=>BigInt(round(v*S))),A=m.a.map(v=>BigInt(round(v*S))),s=BigInt(S),lo=-(1n<<BigInt(f.outputBits-1)),hi=-lo-1n,y=[];
 for(let n=0;n<x.length;n++){let acc=0n;for(let k=0;k<B.length;k++)if(n>=k)acc+=B[k]*BigInt(x[n-k]);for(let k=1;k<A.length;k++)if(n>=k)acc-=A[k]*BigInt(y[n-k]);let q=acc/s,r=acc%s;if(f.rounding==='floor'&&r<0n)q--;if(f.rounding==='nearest'&&2n*(r<0n?-r:r)>=s&&r!==0n)q+=r<0n?-1n:1n;y.push(Number(q<lo?lo:q>hi?hi:q));}return y;}
 for(let trial=0;trial<300;trial++){
-const ib=8+trial%17,ob=8+(trial*7)%17,cb=8+(trial*11)%23,cf=trial%(cb-1),m=D.create({b:Array.from({length:1+trial%3},()=>3.8*rand()-1.9),a:[1,-1.2*rand(),.4*rand()],fixed:{inputBits:ib,outputBits:ob,coefficientBits:cb,coefficientFraction:cf,dataFraction:0,accumulatorBits:64,rounding:trial%2?'nearest':'floor'}}),x=[-(2**(ib-1)),2**(ib-1)-1,...Array.from({length:128},()=>Math.floor(rand()*2**ib)-2**(ib-1))];
-eq(D.runFixed(m,x).raw,fixedOracle(m,x));const h=D.generateVerilog(m);eq(h.includes('out_valid <= in_valid;'),true);eq(h.includes('ext = {acc[63], acc};'),true);
+const ib=8+trial%17,ob=ib,cb=8+(trial*11)%23,cf=trial%(cb-1),m=D.create({b:Array.from({length:1+trial%3},()=>3.8*rand()-1.9),a:[1,-1.2*rand(),.4*rand()],fixed:{inputBits:ib,outputBits:ob,coefficientBits:cb,coefficientFraction:cf,dataFraction:0,accumulatorBits:64,rounding:trial%2?'nearest':'floor'}}),x=[-(2**(ib-1)),2**(ib-1)-1,...Array.from({length:128},()=>Math.floor(rand()*2**ib)-2**(ib-1))];
+if(m.b.every(v=>Math.floor(Math.abs(v)*2**cf+.5)===0)){assert.throws(()=>D.quantize(m),/全零/);checks++;continue;}eq(D.runFixed(m,x).raw,fixedOracle(m,x));const h=D.generateVerilog(m);eq(h.includes('if (!rst_n)'),true);eq(h.includes('integral = {acc[AW-1], acc[AW-1:CF]};'),true);
 }
 // Generated-source contract checks, not HDL compilation.
 const fixture=D.create(D.presets.lowpass);
 for(const moduleName of ['module','wire','logic','final','ref','var','timeunit','checker','randcase']){checks++;assert.throws(()=>D.generateVerilog(fixture,{moduleName}));}
-const tb=D.generateTestbench(fixture);eq((tb.match(/Mismatch /g)||[]).length,128);eq(tb.includes('Mismatch post-reset sample 63:'),true);eq(tb.includes('Zero means this filter/vector pair does not test output clipping.'),true);
+const tb=D.generateTestbench(fixture);eq((tb.match(/Mismatch /g)||[]).length,272);eq(tb.includes('Mismatch post-reset sample 63:'),true);eq(tb.includes('Zero means this filter/vector pair does not test output clipping.'),true);
 const collision=D.generateTestbench(fixture,{moduleName:'digital_filter_tb'});eq(collision.includes('module digital_filter_tb_tb;'),true);
 const longName='a'.repeat(64),longTB=D.generateTestbench(fixture,{moduleName:longName}),tbId=/^module (\w+);/m.exec(longTB)[1];eq(tbId!==longName,true);eq(tbId.length<=64,true);
 const clipping=D.create({b:[3],a:[1],fixed:{coefficientBits:8,coefficientFraction:1,inputBits:8,outputBits:8,dataFraction:0,accumulatorBits:20}});eq(/Golden vectors exercise [1-9]\d* saturated outputs/.test(D.generateTestbench(clipping)),true);

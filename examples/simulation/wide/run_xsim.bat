@@ -21,7 +21,7 @@ call xelab "work.digital_filter_tb" -s analogstudio_snapshot >> "xsim_run.log" 2
 if errorlevel 1 goto failed
 call xsim analogstudio_snapshot -tclbatch "../run_xsim.tcl" >> "xsim_run.log" 2>&1
 if errorlevel 1 goto failed
-findstr /L /C:"PASS: fixed-point vectors, valid gaps, reset" "xsim_run.log" >nul
+findstr /L /C:"PASS: four-port SOS, continuous samples, reset, latency" "xsim_run.log" >nul
 if errorlevel 1 goto failed
 echo PASS: Vivado XSim completed the generated self-checking testbench.
 echo See analogstudio_xsim_build\xsim_run.log for this run.

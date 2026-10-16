@@ -1,71 +1,76 @@
 `timescale 1ns/1ps
-// AnalogStudio bounded direct-form-I filter. Generated Verilog-2001.
-// H(z) = B(z^-1)/A(z^-1); coefficient arrays use ascending powers.
-// b = [0.9542677669529664,-1.335974873734153,0.7061581475451951]; a = [1,-1.2,0.4225]; sample rate = 48000 Hz.
-// Quantized b integers = [31269,-43777,23139]; feedback a integers = [-39322,13844].
-// Signed signals have 14 fractional bits; coefficients have 15.
-// y[n] = 0.95426777 x[n] − 1.3359749 x[n-1] + 0.70615815 x[n-2] + 1.2 y[n-1] − 0.4225 y[n-2]
-// Synchronous active-high reset clears every delay and output, including out_valid.
-// Assert reset before sending the first valid input sample.
-// Each rising edge with in_valid accepts one sample; out_valid and y_out update
-// immediately after that edge. A downstream clocked consumer sees it at the next edge.
-// No ready/backpressure. Delays advance only on in_valid; gaps pause sample time.
-// DFI feedback uses the saturated output, so clipping changes filter dynamics.
-// Rounding: nearest, exact ties away from zero. Output saturates to its signed width.
-// Accumulator bound: 38 bits required; 40 provided. No intermediate overflow.
-// No FPGA timing, resource, synthesis, or hardware verification is claimed.
-module digital_filter(
-  input wire clk, input wire rst, input wire in_valid,
-  input wire signed [15:0] x_in,
-  output reg out_valid, output reg signed [15:0] y_out
+module digital_filter #(
+  parameter integer IN_WIDTH = 16
+) (
+  input clk, // Sample clock: 48000 Hz; one input per rising edge.
+  input rst_n,
+  input signed [IN_WIDTH-1:0] data_in,
+  output reg signed [IN_WIDTH-1:0] data_out
 );
-  reg signed [15:0] x1;
-  reg signed [15:0] x2;
-  reg signed [15:0] y1;
-  reg signed [15:0] y2;
-  localparam signed [17:0] C_b0 = 18'sd31269;
-  wire signed [33:0] P_b0 = $signed(x_in) * $signed(C_b0);
-  wire signed [39:0] E_b0 = {{6{P_b0[33]}}, P_b0};
-  localparam signed [17:0] C_b1 = -18'sd43777;
-  wire signed [33:0] P_b1 = $signed(x1) * $signed(C_b1);
-  wire signed [39:0] E_b1 = {{6{P_b1[33]}}, P_b1};
-  localparam signed [17:0] C_b2 = 18'sd23139;
-  wire signed [33:0] P_b2 = $signed(x2) * $signed(C_b2);
-  wire signed [39:0] E_b2 = {{6{P_b2[33]}}, P_b2};
-  localparam signed [17:0] C_a1 = -18'sd39322;
-  wire signed [33:0] P_a1 = $signed(y1) * $signed(C_a1);
-  wire signed [39:0] E_a1 = {{6{P_a1[33]}}, P_a1};
-  localparam signed [17:0] C_a2 = 18'sd13844;
-  wire signed [33:0] P_a2 = $signed(y2) * $signed(C_a2);
-  wire signed [39:0] E_a2 = {{6{P_a2[33]}}, P_a2};
-  reg signed [39:0] acc;
-  reg signed [40:0] ext, rounded;
-  reg signed [15:0] next_y;
-  always @* begin
-    acc = E_b0 + E_b1 + E_b2 - E_a1 - E_a2;
-    ext = {acc[39], acc};
-    if (ext < 0) rounded = -(((-ext) + 41'sd16384) >>> 15);
-    else rounded = (ext + 41'sd16384) >>> 15;
-    if (rounded > 41'sd32767) next_y = 16'sd32767;
-    else if (rounded < -41'sd32768) next_y = -16'sd32768;
-    else next_y = rounded[15:0];
-  end
+  localparam integer COEFF_WIDTH = 18, COEFF_FRAC = 15;
+  localparam integer DATA_FRAC = 14, SECTION_WIDTH = IN_WIDTH + 0;
+  localparam integer ACC_WIDTH = IN_WIDTH + 24;
+  localparam integer FILTER_CYCLES = 2, MODEL_DELAY = 0;
+  localparam integer LATENCY_CYCLES = 2, EDGE_OFFSET = 1;
+  // Capture edge is cycle 1; output follows at capture + EDGE_OFFSET edges.
+  generate if (IN_WIDTH < 8 || IN_WIDTH > 24 || DATA_FRAC > IN_WIDTH-2 || SECTION_WIDTH > 32 || ACC_WIDTH > 64) begin : bad_width
+    INVALID_IN_WIDTH_CONFIGURATION invalid_configuration();
+  end endgenerate
+  wire signed [IN_WIDTH-1:0] s0_out;
+  digital_filter_so #(.IW(IN_WIDTH), .OW(IN_WIDTH), .CW(COEFF_WIDTH), .CF(COEFF_FRAC),
+    .AW(ACC_WIDTH), .NEAREST(1), .B0(18'sd31269), .B1(-18'sd43777), .B2(18'sd23139), .A1(-18'sd39322), .A2(18'sd13844))
+    s0(.clk(clk), .rst_n(rst_n), .data_in(data_in), .data_out(s0_out));
+  always @* data_out = s0_out;
+endmodule
+
+module digital_filter_so #(
+  parameter integer IW=16, OW=16, CW=18, CF=15, AW=40, NEAREST=1,
+  parameter signed [CW-1:0] B0=0, B1=0, B2=0, A1=0, A2=0
+) (input clk, input rst_n, input signed [IW-1:0] data_in, output wire signed [OW-1:0] data_out);
+  reg signed [IW-1:0] x1, x2;
+  reg signed [OW-1:0] y1, y2;
+  wire signed [AW-1:0] acc;
+  localparam integer RW = AW-CF+1;
+  wire signed [RW-1:0] integral = {acc[AW-1], acc[AW-1:CF]};
+  wire increment;
+  generate if (!NEAREST || CF==0) begin : truncation
+    assign increment = 1'b0;
+  end else if (CF==1) begin : one_fraction_bit
+    assign increment = acc[0] & ~acc[AW-1];
+  end else begin : rounding_bits
+    assign increment = acc[CF-1] & (~acc[AW-1] | (|acc[CF-2:0]));
+  end endgenerate
+  (* keep = "true" *) wire signed [RW-1:0] incremented = integral + 1'b1;
+  wire over_floor = (integral[RW-1:OW-1] != {(RW-OW+1){integral[RW-1]}});
+  wire over_ceil = (incremented[RW-1:OW-1] != {(RW-OW+1){incremented[RW-1]}});
+  wire signed [OW-1:0] floor_y = over_floor ? {integral[RW-1], {(OW-1){~integral[RW-1]}}} : integral[OW-1:0];
+  wire signed [OW-1:0] ceil_y = over_ceil ? {incremented[RW-1], {(OW-1){~incremented[RW-1]}}} : incremented[OW-1:0];
+  wire signed [OW-1:0] next_y = increment ? ceil_y : floor_y;
+  (* use_dsp = "yes" *) wire signed [IW+CW-1:0] P_B0 = $signed(data_in) * $signed(B0);
+  wire signed [AW-1:0] E_B0 = {{(AW-(IW+CW)){P_B0[IW+CW-1]}}, P_B0};
+  (* use_dsp = "yes" *) wire signed [IW+CW-1:0] P_B1 = $signed(x1) * $signed(B1);
+  wire signed [AW-1:0] E_B1 = {{(AW-(IW+CW)){P_B1[IW+CW-1]}}, P_B1};
+  (* use_dsp = "yes" *) wire signed [IW+CW-1:0] P_B2 = $signed(x2) * $signed(B2);
+  wire signed [AW-1:0] E_B2 = {{(AW-(IW+CW)){P_B2[IW+CW-1]}}, P_B2};
+  (* use_dsp = "yes" *) wire signed [OW+CW-1:0] P_A1 = $signed(y1) * $signed(A1);
+  wire signed [AW-1:0] E_A1 = {{(AW-(OW+CW)){P_A1[OW+CW-1]}}, P_A1};
+  (* use_dsp = "yes" *) wire signed [OW+CW-1:0] P_A2 = $signed(y2) * $signed(A2);
+  wire signed [AW-1:0] E_A2 = {{(AW-(OW+CW)){P_A2[OW+CW-1]}}, P_A2};
+  wire [AW-1:0] sum0 = (E_B0) ^ (E_B1) ^ (E_B2);
+  wire [AW-1:0] carry0 = (((E_B0) & (E_B1)) | ((E_B0) & (E_B2)) | ((E_B1) & (E_B2))) << 1;
+  wire [AW-1:0] sum1 = (~E_A1) ^ (~E_A2) ^ ({{(AW-2){1'b0}},2'd2});
+  wire [AW-1:0] carry1 = (((~E_A1) & (~E_A2)) | ((~E_A1) & ({{(AW-2){1'b0}},2'd2})) | ((~E_A2) & ({{(AW-2){1'b0}},2'd2}))) << 1;
+  wire [AW-1:0] sum2 = (sum0) ^ (carry0) ^ (sum1);
+  wire [AW-1:0] carry2 = (((sum0) & (carry0)) | ((sum0) & (sum1)) | ((carry0) & (sum1))) << 1;
+  wire [AW-1:0] sum3 = (sum2) ^ (carry2) ^ (carry1);
+  wire [AW-1:0] carry3 = (((sum2) & (carry2)) | ((sum2) & (carry1)) | ((carry2) & (carry1))) << 1;
+  assign acc = $signed(sum3) + $signed(carry3);
   always @(posedge clk) begin
-    if (rst) begin
-      out_valid <= 1'b0; y_out <= 0;
-      x1 <= 0;
-      x2 <= 0;
-      y1 <= 0;
-      y2 <= 0;
+    if (!rst_n) begin
+      x1 <= 0; y1 <= 0; x2 <= 0; y2 <= 0;
     end else begin
-      out_valid <= in_valid;
-      if (in_valid) begin
-        y_out <= next_y;
-        x2 <= x1;
-        x1 <= x_in;
-        y2 <= y1;
-        y1 <= next_y;
-      end
+      x1 <= data_in; y1 <= next_y; x2 <= x1; y2 <= y1;
     end
   end
+  assign data_out = y2; // 2 registered cycles; feedback uses y1/y2 histories.
 endmodule

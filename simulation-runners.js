@@ -1,7 +1,7 @@
 /* AnalogStudio portable simulation export. No simulator is executed in the browser. */
 (function(root){
 'use strict';
-const PASS='PASS: fixed-point vectors, valid gaps, reset';
+const PASS='PASS: four-port SOS, continuous samples, reset, latency';
 const SOURCES=[
 'https://docs.amd.com/r/2025.2-English/ug900-vivado-logic-simulation/xelab-xvhdl-and-xvlog-xsim-Command-Options',
 'https://docs.amd.com/r/2023.2-English/ug900-vivado-logic-simulation/Using-a-tclbatch-File',
@@ -64,10 +64,11 @@ const readme=[
 '', '文件与接口',
 '- RTL：'+rtlFilename+'；顶层模块：'+moduleName,
 '- 自检 testbench：'+testbenchFilename+'；顶层：'+testbenchName,
-'- 时钟 10 ns；同步高有效复位；in_valid=1 的上升沿接收输入。',
-'- 输出在该沿之后更新；无效周期保持数据并拉低 out_valid。',
+'- 仿真激励时钟周期 10 ns；同步低有效 rst_n 复位；每个上升沿接收输入。实际 clk 频率由外部匹配 RTL 注释的 Fs。',
+'- 只有 clk/rst_n/data_in/data_out 四端口；接收沿计第1拍，一阶1拍、二阶2拍，级联相加；顶层不加寄存级。零阶增益1拍；显式延迟另加。',
+'- RTL 的 LATENCY_CYCLES 给出总拍数，EDGE_OFFSET 给出相对接收沿的后续沿数；复位清空所有状态和填充输出。',
 '- TB 在下降沿驱动，在上升沿后 1 ns 检查，避免与非阻塞赋值竞争。',
-'- 黄金输出来自导出模型的定点整数参考：包含满量程输入、符号、有效间隙和复位。',
+'- 黄金输出来自导出模型的定点整数参考：包含满量程输入、符号、连续采样、流水延迟和复位。',
 '- 是否真正发生输出饱和取决于此模型的系数与位宽；不能把满量程输入等同于饱和覆盖。',
 '', 'Windows 运行',
 '1. 完整解压到一个可写目录，保持所有文件在同一级；不要直接在 ZIP 预览窗口中运行。',
