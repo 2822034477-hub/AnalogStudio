@@ -131,3 +131,8 @@
 .dd-magnitude-gain .dd-gain-tools label{flex:0 1 220px;font-weight:700;font-size:14px}
 .dd-magnitude-gain .dd-gain-tools input{font-size:15px}
 .dd-magnitude-gain .dd-gain-tools small{color:#48647f;font-size:12px;line-height:1.5}
+
+.dd-response-toolbar{padding:10px 12px;border:1px solid var(--dd-line);border-radius:8px;background:#eef4fa}
+.dd-response-toolbar label{display:flex;align-items:center;gap:10px;flex-wrap:wrap;font-size:13px;font-weight:700}
+.digital-design .dd-response-toolbar select{flex:1;min-width:180px;max-width:360px;margin:0}
+.dd-response-toolbar p{margin:8px 0 0}

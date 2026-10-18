@@ -1,0 +1,50 @@
+{
+  "name": "fo",
+  "variant": "before",
+  "rtl": "fo-before\\digital_filter.v",
+  "fixed": {
+    "coefficientBits": 18,
+    "coefficientFraction": 15,
+    "inputBits": 16,
+    "outputBits": 16,
+    "dataFraction": 14,
+    "sectionBits": 16,
+    "accumulatorBits": 40,
+    "rounding": "nearest"
+  },
+  "sections": [
+    {
+      "b": [
+        6554,
+        3277
+      ],
+      "a": [
+        32768,
+        -26214
+      ],
+      "order": 1,
+      "latency": 1,
+      "inputBits": 16,
+      "outputBits": 16,
+      "requiredAccumulatorBits": 37
+    }
+  ],
+  "latency": 1,
+  "period_ns": 20.0,
+  "folder": "timing-retiming\\fo-before-20ns",
+  "return_code": 0,
+  "seconds": 60.6,
+  "rtl_sha256": "64849edd4c2b191e84a689766709253bb5a877ac3fb0ccef773fdf66e306178c",
+  "paths": {
+    "setup.SLACK": "5.198",
+    "setup.DATAPATH_DELAY": "14.156",
+    "setup.LOGIC_LEVELS": "16",
+    "setup.STARTPOINT_PIN": "s0/P_A1/CLK",
+    "setup.ENDPOINT_PIN": "s0/P_A1/A[3]",
+    "hold.SLACK": "1.409",
+    "hold.DATAPATH_DELAY": "1.533",
+    "hold.LOGIC_LEVELS": "3",
+    "hold.STARTPOINT_PIN": "s0/P_B1/CLK",
+    "hold.ENDPOINT_PIN": "s0/y1_reg[4]/D"
+  }
+}

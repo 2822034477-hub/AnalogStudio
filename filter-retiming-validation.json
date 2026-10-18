@@ -1,0 +1,1614 @@
+{
+  "date": "2026-10-16",
+  "part": "xc7a50tfgg484-1",
+  "tool": "Vivado 2022.2",
+  "scope": "out_of_context internal timing",
+  "local_only": true,
+  "github_synchronized": false,
+  "fo_latency": 1,
+  "so_latency": 2,
+  "throughput": "one sample per clock",
+  "numeric_contract_changed": false,
+  "cascade_architecture_changed": false,
+  "setup_uncertainty_ns": 0.2,
+  "hold_uncertainty_ns": 0.05,
+  "board_io_constrained": false,
+  "full_board_clock_tree_verified": false,
+  "node_suites_passed": 47,
+  "sequential_simulation": {
+    "filters": 24,
+    "standalone_configurations": 20,
+    "checks": 14316,
+    "simulate_log_sha256": "5b3a638d13b8793e17b268bcdd2f87234f1cc86918074fe6ff8aa16065a1f379"
+  },
+  "arithmetic_simulation": {
+    "configurations": 20,
+    "checks": 6084,
+    "identities": 90112,
+    "simulate_log_sha256": "6e3efa4b1acac263e01fb97c7cf4d13cc77cc3d8ac44a42bbb26c906c22e93f7"
+  },
+  "system_simulation": {
+    "dc_loop_cycles": 4000,
+    "repeated_filter_cycles": 4000,
+    "simulate_log_sha256": "6ed68eec2f65c3b2c49336e0c86817127185a748926314b6cea9def9122c98a5"
+  },
+  "cases": [
+    {
+      "case": "lowpass",
+      "variant": "before",
+      "period_ns": 20,
+      "clock_mhz": 50.0,
+      "label": "默认一阶低通（B1=0）",
+      "metrics": {
+        "wns_ns": 5.262,
+        "tns_ns": 0.0,
+        "setup_failing_endpoints": 0,
+        "setup_total_endpoints": 46,
+        "whs_ns": 1.346,
+        "ths_ns": 0.0,
+        "hold_failing_endpoints": 0,
+        "hold_total_endpoints": 46,
+        "wpws_ns": 9.5,
+        "tpws_ns": 0.0,
+        "pulse_failing_endpoints": 0,
+        "pulse_total_endpoints": 16
+      },
+      "resources": {
+        "lut": 102,
+        "fabric_ff": 16,
+        "dsp": 2
+      },
+      "checks": {
+        "no_clock": 0,
+        "constant_clock": 0,
+        "pulse_width_clock": 0,
+        "unconstrained_internal_endpoints": 0,
+        "no_input_delay": 17,
+        "no_output_delay": 16,
+        "multiple_clock": 0,
+        "generated_clocks": 0,
+        "loops": 0,
+        "partial_input_delay": 0,
+        "partial_output_delay": 0,
+        "latch_loops": 0
+      },
+      "paths": {
+        "setup.SLACK": "5.262",
+        "setup.DATAPATH_DELAY": "14.092",
+        "setup.LOGIC_LEVELS": "16",
+        "setup.STARTPOINT_PIN": "s0/P_A1/CLK",
+        "setup.ENDPOINT_PIN": "s0/P_A1/A[9]",
+        "hold.SLACK": "1.346",
+        "hold.DATAPATH_DELAY": "1.509",
+        "hold.LOGIC_LEVELS": "3",
+        "hold.STARTPOINT_PIN": "s0/P_A1/CLK",
+        "hold.ENDPOINT_PIN": "s0/y1_reg[7]/D"
+      },
+      "fixed": {
+        "coefficientBits": 18,
+        "coefficientFraction": 15,
+        "inputBits": 16,
+        "outputBits": 16,
+        "dataFraction": 14,
+        "sectionBits": 16,
+        "accumulatorBits": 40,
+        "rounding": "nearest"
+      },
+      "sections": [
+        {
+          "b": [
+            6554
+          ],
+          "a": [
+            32768,
+            -26214
+          ],
+          "order": 1,
+          "latency": 1,
+          "inputBits": 16,
+          "outputBits": 16,
+          "requiredAccumulatorBits": 36
+        }
+      ],
+      "latency": 1,
+      "evidence": "timing-evidence/lowpass-before-chosen-20ns",
+      "sha256": {
+        "check_timing.rpt": "461e8d9cdfce1c83ac3cdfc7ca8e53ed972ec0e0e0cd3ce1ec00542d2d4cb888",
+        "digital_filter.v": "313b78192a559862ff78244556c28eff6e21ea4d1da7feccb71194b76e3c3ac9",
+        "internal_hold.rpt": "7206f4ab3f5ad5379f14de573ea718fc43f136fa052d10f62b29351ff3ea2cf9",
+        "internal_setup.rpt": "0e85f13e3c7ca9e917f6f34a0105f85a9a1a8d9192e86db52507459e43c34f1e",
+        "metrics.tsv": "6ee18ed158d081c4f240b47716d1a5d10b0a32303cdc972f2300347358ffb154",
+        "reproduce.tcl": "304a7268b62bbdf7fc537972ffaa451060368640b9b135e2b2519ab7f4e9ec90",
+        "result.json": "b4de846dac4e0099fcc58e1eb29aa9f80169fefad08cc1feae8b60dd96401327",
+        "route_status.rpt": "3bffde482ddd78663e592475c2ae744a959b68cb7156d0fa1af28425a234bfdd",
+        "run.tcl": "701a0a06352afb370e0fc2cdae5c18e4704202a308cd25c86f0fd250a1233d46",
+        "timing.xdc": "32408a2721725359b9c660aae71daaab072a43f484ed66f73f628d10d216ea27",
+        "timing_summary.rpt": "a599c6273ea478851dec9ed62a89063fce54ecc0dbc231337ea7d25cf9f36250",
+        "utilization_routed.rpt": "1c6c381d6127fb32eef0082d2641dacebc7a326f984d19cab7b9dd229331a0c4"
+      },
+      "pass_internal_timing": true
+    },
+    {
+      "case": "lowpass",
+      "variant": "after",
+      "period_ns": 20,
+      "clock_mhz": 50.0,
+      "label": "默认一阶低通（B1=0）",
+      "metrics": {
+        "wns_ns": 5.298,
+        "tns_ns": 0.0,
+        "setup_failing_endpoints": 0,
+        "setup_total_endpoints": 46,
+        "whs_ns": 0.911,
+        "ths_ns": 0.0,
+        "hold_failing_endpoints": 0,
+        "hold_total_endpoints": 46,
+        "wpws_ns": 9.5,
+        "tpws_ns": 0.0,
+        "pulse_failing_endpoints": 0,
+        "pulse_total_endpoints": 17
+      },
+      "resources": {
+        "lut": 73,
+        "fabric_ff": 16,
+        "dsp": 2
+      },
+      "checks": {
+        "no_clock": 0,
+        "constant_clock": 0,
+        "pulse_width_clock": 0,
+        "unconstrained_internal_endpoints": 0,
+        "no_input_delay": 17,
+        "no_output_delay": 16,
+        "multiple_clock": 0,
+        "generated_clocks": 0,
+        "loops": 0,
+        "partial_input_delay": 0,
+        "partial_output_delay": 0,
+        "latch_loops": 0
+      },
+      "paths": {
+        "setup.SLACK": "5.298",
+        "setup.DATAPATH_DELAY": "10.696",
+        "setup.LOGIC_LEVELS": "16",
+        "setup.STARTPOINT_PIN": "s0/P_A1_reg/CLK",
+        "setup.ENDPOINT_PIN": "s0/P_A1_reg/A[5]",
+        "hold.SLACK": "0.911",
+        "hold.DATAPATH_DELAY": "1.042",
+        "hold.LOGIC_LEVELS": "3",
+        "hold.STARTPOINT_PIN": "s0/P_A1_reg/CLK",
+        "hold.ENDPOINT_PIN": "s0/y1_reg[5]/D"
+      },
+      "fixed": {
+        "coefficientBits": 18,
+        "coefficientFraction": 15,
+        "inputBits": 16,
+        "outputBits": 16,
+        "dataFraction": 14,
+        "sectionBits": 16,
+        "accumulatorBits": 40,
+        "rounding": "nearest"
+      },
+      "sections": [
+        {
+          "b": [
+            6554
+          ],
+          "a": [
+            32768,
+            -26214
+          ],
+          "order": 1,
+          "latency": 1,
+          "inputBits": 16,
+          "outputBits": 16,
+          "requiredAccumulatorBits": 36
+        }
+      ],
+      "latency": 1,
+      "evidence": "timing-evidence/lowpass-after-chosen-20ns",
+      "sha256": {
+        "check_timing.rpt": "dcb6ed1f14e102edaf672802a7dfb78a5277b66632464e86eb3864dc680318a4",
+        "digital_filter.v": "6eb875e1302c54dad329f48cbc201787b2746742f432ed9089f47fc29549fca7",
+        "internal_hold.rpt": "5916129efb7d8f8542019828d3294db2a2d2303758a4f8a262af164d1f02bfea",
+        "internal_setup.rpt": "e06e6d5dcd0508c3c69d19983ce6f9f9c86eca3a567033374bcaf735fdc246ba",
+        "metrics.tsv": "ad3c7e0b428a4b603c400d8494481ab26459422eec41f3bafcdd9edde5fd3767",
+        "reproduce.tcl": "304a7268b62bbdf7fc537972ffaa451060368640b9b135e2b2519ab7f4e9ec90",
+        "result.json": "49b1bb92fa5117745f55e18ecfc9a122db2726877be9205dfa59c31d3619c1b5",
+        "route_status.rpt": "a6a3ce33e0a47b5e2c086001fef13db66c112e5cfcc22b19e67f076cbe80270e",
+        "run.tcl": "000bd28607589ae979f0de25df90f6d6bf84437fa6e0c71bc3dbaf38a23c9564",
+        "timing.xdc": "32408a2721725359b9c660aae71daaab072a43f484ed66f73f628d10d216ea27",
+        "timing_summary.rpt": "a1909a7fa9669dc4eb2a04654e85bfc37df1109cd896686333299e319f02c658",
+        "utilization_routed.rpt": "d1d300c8e37fc74ca7bc2ef25ab0696ab397a1b73e5d497f6672aca5c5f3d44b"
+      },
+      "pass_internal_timing": true
+    },
+    {
+      "case": "fo",
+      "variant": "before",
+      "period_ns": 20,
+      "clock_mhz": 50.0,
+      "label": "一阶通用示例（B1≠0）",
+      "metrics": {
+        "wns_ns": 5.198,
+        "tns_ns": 0.0,
+        "setup_failing_endpoints": 0,
+        "setup_total_endpoints": 46,
+        "whs_ns": 1.409,
+        "ths_ns": 0.0,
+        "hold_failing_endpoints": 0,
+        "hold_total_endpoints": 46,
+        "wpws_ns": 9.5,
+        "tpws_ns": 0.0,
+        "pulse_failing_endpoints": 0,
+        "pulse_total_endpoints": 16
+      },
+      "resources": {
+        "lut": 132,
+        "fabric_ff": 16,
+        "dsp": 3
+      },
+      "checks": {
+        "no_clock": 0,
+        "constant_clock": 0,
+        "pulse_width_clock": 0,
+        "unconstrained_internal_endpoints": 0,
+        "no_input_delay": 17,
+        "no_output_delay": 16,
+        "multiple_clock": 0,
+        "generated_clocks": 0,
+        "loops": 0,
+        "partial_input_delay": 0,
+        "partial_output_delay": 0,
+        "latch_loops": 0
+      },
+      "paths": {
+        "setup.SLACK": "5.198",
+        "setup.DATAPATH_DELAY": "14.156",
+        "setup.LOGIC_LEVELS": "16",
+        "setup.STARTPOINT_PIN": "s0/P_A1/CLK",
+        "setup.ENDPOINT_PIN": "s0/P_A1/A[3]",
+        "hold.SLACK": "1.409",
+        "hold.DATAPATH_DELAY": "1.533",
+        "hold.LOGIC_LEVELS": "3",
+        "hold.STARTPOINT_PIN": "s0/P_B1/CLK",
+        "hold.ENDPOINT_PIN": "s0/y1_reg[4]/D"
+      },
+      "fixed": {
+        "coefficientBits": 18,
+        "coefficientFraction": 15,
+        "inputBits": 16,
+        "outputBits": 16,
+        "dataFraction": 14,
+        "sectionBits": 16,
+        "accumulatorBits": 40,
+        "rounding": "nearest"
+      },
+      "sections": [
+        {
+          "b": [
+            6554,
+            3277
+          ],
+          "a": [
+            32768,
+            -26214
+          ],
+          "order": 1,
+          "latency": 1,
+          "inputBits": 16,
+          "outputBits": 16,
+          "requiredAccumulatorBits": 37
+        }
+      ],
+      "latency": 1,
+      "evidence": "timing-evidence/fo-before-20ns",
+      "sha256": {
+        "check_timing.rpt": "48929ef07d7fcecc63fac2c92c395f1ab6676a9518f26c6523f9b1755572add8",
+        "digital_filter.v": "64849edd4c2b191e84a689766709253bb5a877ac3fb0ccef773fdf66e306178c",
+        "internal_hold.rpt": "c80437a7184f3da6c0d14bb46e1de06537c4dc0ea2ace24971e913a10a0c7dc1",
+        "internal_setup.rpt": "2462b9d3c04cb6348937d62284570423d2f10cdba09daebea95fe8c0c7b57365",
+        "metrics.tsv": "9bc48576b2051416b17a16028d1f814fd8316d5daa4b5ba8ed9ef6a00493fa42",
+        "reproduce.tcl": "304a7268b62bbdf7fc537972ffaa451060368640b9b135e2b2519ab7f4e9ec90",
+        "result.json": "64b9eedf2e199aa573ce15b59f746a2056a98338d8eb5a3aef4b75fc385cf569",
+        "route_status.rpt": "936cf4ff1bf1710fcbd9a35fea17b3c8a14bff04dfc5d2ca204c91d22c277cb3",
+        "run.tcl": "9a87adabaeca4af482f695e1f0cb96f2f06a19296f3bdd6408dc2851e6d12d19",
+        "timing.xdc": "32408a2721725359b9c660aae71daaab072a43f484ed66f73f628d10d216ea27",
+        "timing_summary.rpt": "b2b5be36c7e2a778e5e22aa20418a189f1733f4e93a9a64db13e5eb524de3605",
+        "utilization_routed.rpt": "12cc6c924ada4fff59db665f1f1918a0b26a91881c77d7130fc48a1a6c45e7f8"
+      },
+      "pass_internal_timing": true
+    },
+    {
+      "case": "fo",
+      "variant": "after",
+      "period_ns": 20,
+      "clock_mhz": 50.0,
+      "label": "一阶通用示例（B1≠0）",
+      "metrics": {
+        "wns_ns": 5.861,
+        "tns_ns": 0.0,
+        "setup_failing_endpoints": 0,
+        "setup_total_endpoints": 46,
+        "whs_ns": 0.608,
+        "ths_ns": 0.0,
+        "hold_failing_endpoints": 0,
+        "hold_total_endpoints": 46,
+        "wpws_ns": 9.5,
+        "tpws_ns": 0.0,
+        "pulse_failing_endpoints": 0,
+        "pulse_total_endpoints": 18
+      },
+      "resources": {
+        "lut": 102,
+        "fabric_ff": 16,
+        "dsp": 3
+      },
+      "checks": {
+        "no_clock": 0,
+        "constant_clock": 0,
+        "pulse_width_clock": 0,
+        "unconstrained_internal_endpoints": 0,
+        "no_input_delay": 17,
+        "no_output_delay": 16,
+        "multiple_clock": 0,
+        "generated_clocks": 0,
+        "loops": 0,
+        "partial_input_delay": 0,
+        "partial_output_delay": 0,
+        "latch_loops": 0
+      },
+      "paths": {
+        "setup.SLACK": "5.861",
+        "setup.DATAPATH_DELAY": "10.133",
+        "setup.LOGIC_LEVELS": "17",
+        "setup.STARTPOINT_PIN": "s0/history_reg/CLK",
+        "setup.ENDPOINT_PIN": "s0/P_A1_reg/A[2]",
+        "hold.SLACK": "0.608",
+        "hold.DATAPATH_DELAY": "0.800",
+        "hold.LOGIC_LEVELS": "3",
+        "hold.STARTPOINT_PIN": "s0/history_reg/CLK",
+        "hold.ENDPOINT_PIN": "s0/y1_reg[5]/D"
+      },
+      "fixed": {
+        "coefficientBits": 18,
+        "coefficientFraction": 15,
+        "inputBits": 16,
+        "outputBits": 16,
+        "dataFraction": 14,
+        "sectionBits": 16,
+        "accumulatorBits": 40,
+        "rounding": "nearest"
+      },
+      "sections": [
+        {
+          "b": [
+            6554,
+            3277
+          ],
+          "a": [
+            32768,
+            -26214
+          ],
+          "order": 1,
+          "latency": 1,
+          "inputBits": 16,
+          "outputBits": 16,
+          "requiredAccumulatorBits": 37
+        }
+      ],
+      "latency": 1,
+      "evidence": "timing-evidence/fo-after-chosen-20ns",
+      "sha256": {
+        "check_timing.rpt": "b1d2ad90c2179992e8e02caf56b989e78425fc1b1cd2daa54acd35d0ac7ad333",
+        "digital_filter.v": "18236f98725084379a44970dcc4bf8196f30ddc6adbee6583d32e981b0184ca0",
+        "internal_hold.rpt": "c27d95e69c8636bcff8b27b6e00f0bc284a4fd5386b48acd63533a503d07beaf",
+        "internal_setup.rpt": "9721c4801c9bc29b05ce139c631e7641e461e039d55f59ac3b5a508cb87c7832",
+        "metrics.tsv": "e7db8104b6c52da8dc1c83dac998b116e866b1fdb8eda84a71b9c9c55d451262",
+        "reproduce.tcl": "304a7268b62bbdf7fc537972ffaa451060368640b9b135e2b2519ab7f4e9ec90",
+        "result.json": "3d400e7bd7eb52644c5e4f3faefe86e899109d30c1e62715488471243aaa96ea",
+        "route_status.rpt": "8b359e98ba753e7db239fa6a38033144f6eec152e94a706cf896bfaef0064b50",
+        "run.tcl": "085ce9455f875a4da309355d26fd3863f03f6d71dd867416041ccd330100cb4a",
+        "timing.xdc": "32408a2721725359b9c660aae71daaab072a43f484ed66f73f628d10d216ea27",
+        "timing_summary.rpt": "53f6d6d901768c25364418812b018ea27a4a8da5109dcf0510b28511b68a43e3",
+        "utilization_routed.rpt": "6085caa396c86cf97688a48445ef460b75eaacbaa2cb303c92fb4dad20ac7abc"
+      },
+      "pass_internal_timing": true
+    },
+    {
+      "case": "so",
+      "variant": "before",
+      "period_ns": 20,
+      "clock_mhz": 50.0,
+      "label": "二阶陷波示例",
+      "metrics": {
+        "wns_ns": 4.732,
+        "tns_ns": 0.0,
+        "setup_failing_endpoints": 0,
+        "setup_total_endpoints": 92,
+        "whs_ns": 0.139,
+        "ths_ns": 0.0,
+        "hold_failing_endpoints": 0,
+        "hold_total_endpoints": 92,
+        "wpws_ns": 9.5,
+        "tpws_ns": 0.0,
+        "pulse_failing_endpoints": 0,
+        "pulse_total_endpoints": 34
+      },
+      "resources": {
+        "lut": 233,
+        "fabric_ff": 32,
+        "dsp": 5
+      },
+      "checks": {
+        "no_clock": 0,
+        "constant_clock": 0,
+        "pulse_width_clock": 0,
+        "unconstrained_internal_endpoints": 0,
+        "no_input_delay": 17,
+        "no_output_delay": 16,
+        "multiple_clock": 0,
+        "generated_clocks": 0,
+        "loops": 0,
+        "partial_input_delay": 0,
+        "partial_output_delay": 0,
+        "latch_loops": 0
+      },
+      "paths": {
+        "setup.SLACK": "4.732",
+        "setup.DATAPATH_DELAY": "14.622",
+        "setup.LOGIC_LEVELS": "16",
+        "setup.STARTPOINT_PIN": "s0/P_B2/CLK",
+        "setup.ENDPOINT_PIN": "s0/P_A1/A[1]",
+        "hold.SLACK": "0.139",
+        "hold.DATAPATH_DELAY": "0.274",
+        "hold.LOGIC_LEVELS": "0",
+        "hold.STARTPOINT_PIN": "s0/y1_reg[15]/C",
+        "hold.ENDPOINT_PIN": "s0/y2_reg[15]/D"
+      },
+      "fixed": {
+        "coefficientBits": 18,
+        "coefficientFraction": 15,
+        "inputBits": 16,
+        "outputBits": 16,
+        "dataFraction": 14,
+        "sectionBits": 16,
+        "accumulatorBits": 40,
+        "rounding": "nearest"
+      },
+      "sections": [
+        {
+          "b": [
+            31269,
+            -44222,
+            31269
+          ],
+          "a": [
+            32768,
+            -44024,
+            29573
+          ],
+          "order": 2,
+          "latency": 2,
+          "inputBits": 16,
+          "outputBits": 16,
+          "requiredAccumulatorBits": 38
+        }
+      ],
+      "latency": 2,
+      "evidence": "timing-evidence/so-before-20ns",
+      "sha256": {
+        "check_timing.rpt": "0b97d470d04d25cda258d690d4188cf53807b34134a7ec8074bbd04caa658c28",
+        "digital_filter.v": "f732113e48638d126972732415442fcf895861a040ba09017b5a4d1ea11d91eb",
+        "internal_hold.rpt": "4a7bc551889a4576a9b319175a90bb2959a28268c4c50b56be5b5754a591afcf",
+        "internal_setup.rpt": "30741e5676f1593cbf1d2b243f837e0d5ad53b502123f1b70426aaacbf713a7f",
+        "metrics.tsv": "c46cedb309d4b7bb916fd377d4a2f991e36b9af1a4b4705a2ca19d157267b7a4",
+        "reproduce.tcl": "304a7268b62bbdf7fc537972ffaa451060368640b9b135e2b2519ab7f4e9ec90",
+        "result.json": "68c2d90c19b011712a708845fe4dac48e619c6dd8fcc1ac4662acd13a8ea5ea2",
+        "route_status.rpt": "6e2f82b01271d118366016f90e2ee80cf899df3b5102da2f94808833cf934682",
+        "run.tcl": "ba7a4fa6d82373970a5fa8a81ffb7d513fd5b4dbb5ca6f86043547c7aae04ec4",
+        "timing.xdc": "32408a2721725359b9c660aae71daaab072a43f484ed66f73f628d10d216ea27",
+        "timing_summary.rpt": "f3ae6fe24a954cf02efd70d0d18d4f9a45f10b35a054595accc87b9b0bee3a79",
+        "utilization_routed.rpt": "485427ce9cc4caba83cda3162bc80e4cdff5c402848e738519cfbaac9178b4c6"
+      },
+      "pass_internal_timing": true
+    },
+    {
+      "case": "so",
+      "variant": "after",
+      "period_ns": 20,
+      "clock_mhz": 50.0,
+      "label": "二阶陷波示例",
+      "metrics": {
+        "wns_ns": 4.994,
+        "tns_ns": 0.0,
+        "setup_failing_endpoints": 0,
+        "setup_total_endpoints": 132,
+        "whs_ns": 0.084,
+        "ths_ns": 0.0,
+        "hold_failing_endpoints": 0,
+        "hold_total_endpoints": 132,
+        "wpws_ns": 9.5,
+        "tpws_ns": 0.0,
+        "pulse_failing_endpoints": 0,
+        "pulse_total_endpoints": 72
+      },
+      "resources": {
+        "lut": 177,
+        "fabric_ff": 72,
+        "dsp": 5
+      },
+      "checks": {
+        "no_clock": 0,
+        "constant_clock": 0,
+        "pulse_width_clock": 0,
+        "unconstrained_internal_endpoints": 0,
+        "no_input_delay": 17,
+        "no_output_delay": 16,
+        "multiple_clock": 0,
+        "generated_clocks": 0,
+        "loops": 0,
+        "partial_input_delay": 0,
+        "partial_output_delay": 0,
+        "latch_loops": 0
+      },
+      "paths": {
+        "setup.SLACK": "4.994",
+        "setup.DATAPATH_DELAY": "14.360",
+        "setup.LOGIC_LEVELS": "17",
+        "setup.STARTPOINT_PIN": "s0/P_A1/CLK",
+        "setup.ENDPOINT_PIN": "s0/P_A2/A[14]",
+        "hold.SLACK": "0.084",
+        "hold.DATAPATH_DELAY": "0.220",
+        "hold.LOGIC_LEVELS": "0",
+        "hold.STARTPOINT_PIN": "s0/y1_reg[5]/C",
+        "hold.ENDPOINT_PIN": "s0/y2_reg[5]/D"
+      },
+      "fixed": {
+        "coefficientBits": 18,
+        "coefficientFraction": 15,
+        "inputBits": 16,
+        "outputBits": 16,
+        "dataFraction": 14,
+        "sectionBits": 16,
+        "accumulatorBits": 40,
+        "rounding": "nearest"
+      },
+      "sections": [
+        {
+          "b": [
+            31269,
+            -44222,
+            31269
+          ],
+          "a": [
+            32768,
+            -44024,
+            29573
+          ],
+          "order": 2,
+          "latency": 2,
+          "inputBits": 16,
+          "outputBits": 16,
+          "requiredAccumulatorBits": 38
+        }
+      ],
+      "latency": 2,
+      "evidence": "timing-evidence/so-after-chosen-20ns",
+      "sha256": {
+        "check_timing.rpt": "d37d02e198782e103768563111fa68352d51c94241efca49cdb14560c9a082b0",
+        "digital_filter.v": "b5d1ec11fc684865b49289311716f8f7568923f3775ce4cab65ab0dfadc59f98",
+        "internal_hold.rpt": "94419ebc657a2a57ffc14cb28202516dac5c538dc237abd696ef1e370d73167c",
+        "internal_setup.rpt": "2b0bb9cd81d9c5e05b483077e695d2eb1743a291a0a3243c7d60041e956fb527",
+        "metrics.tsv": "58313f1d6745208f73322b4fe1fe0a348fc867cfb5d2ad416e412c63ffe6fa19",
+        "reproduce.tcl": "304a7268b62bbdf7fc537972ffaa451060368640b9b135e2b2519ab7f4e9ec90",
+        "result.json": "08c891321d954ad366a85f2d07493824ebf9fac7a1958cc60e5b5af332fed7ab",
+        "route_status.rpt": "c32d5645833e4eaf18fc22556fcbb0919f148f75d54acf720f69302cc7a599d2",
+        "run.tcl": "77a27e05b32caf822fc174b8f725bf862503ae1c8aa9cdd39790d40812d3ef9e",
+        "timing.xdc": "32408a2721725359b9c660aae71daaab072a43f484ed66f73f628d10d216ea27",
+        "timing_summary.rpt": "9dc00158b22e8445e6d7ed87a3fe305af859fc6fc5074d22a09723b042ade6f8",
+        "utilization_routed.rpt": "f152bc37517d9e06c730de0aad9aab087eb82a2d44fe9b59fef35439042217e0"
+      },
+      "pass_internal_timing": true
+    },
+    {
+      "case": "sos8",
+      "variant": "before",
+      "period_ns": 20,
+      "clock_mhz": 50.0,
+      "label": "八阶：四个二阶节级联",
+      "metrics": {
+        "wns_ns": 3.193,
+        "tns_ns": 0.0,
+        "setup_failing_endpoints": 0,
+        "setup_total_endpoints": 662,
+        "whs_ns": 0.063,
+        "ths_ns": 0.0,
+        "hold_failing_endpoints": 0,
+        "hold_total_endpoints": 662,
+        "wpws_ns": 9.5,
+        "tpws_ns": 0.0,
+        "pulse_failing_endpoints": 0,
+        "pulse_total_endpoints": 166
+      },
+      "resources": {
+        "lut": 981,
+        "fabric_ff": 152,
+        "dsp": 20
+      },
+      "checks": {
+        "no_clock": 0,
+        "constant_clock": 0,
+        "pulse_width_clock": 0,
+        "unconstrained_internal_endpoints": 0,
+        "no_input_delay": 17,
+        "no_output_delay": 16,
+        "multiple_clock": 0,
+        "generated_clocks": 0,
+        "loops": 0,
+        "partial_input_delay": 0,
+        "partial_output_delay": 0,
+        "latch_loops": 0
+      },
+      "paths": {
+        "setup.SLACK": "3.193",
+        "setup.DATAPATH_DELAY": "16.161",
+        "setup.LOGIC_LEVELS": "17",
+        "setup.STARTPOINT_PIN": "s2/P_A2/CLK",
+        "setup.ENDPOINT_PIN": "s3/P_B0/A[23]",
+        "hold.SLACK": "0.063",
+        "hold.DATAPATH_DELAY": "0.209",
+        "hold.LOGIC_LEVELS": "0",
+        "hold.STARTPOINT_PIN": "s1/y1_reg[7]/C",
+        "hold.ENDPOINT_PIN": "s1/y2_reg[7]/D"
+      },
+      "fixed": {
+        "coefficientBits": 18,
+        "coefficientFraction": 15,
+        "inputBits": 16,
+        "outputBits": 16,
+        "dataFraction": 14,
+        "sectionBits": 20,
+        "accumulatorBits": 44,
+        "rounding": "nearest"
+      },
+      "sections": [
+        {
+          "b": [
+            15343,
+            5830,
+            1672
+          ],
+          "a": [
+            32768,
+            -13107,
+            1707
+          ],
+          "order": 2,
+          "latency": 2,
+          "inputBits": 16,
+          "outputBits": 20,
+          "requiredAccumulatorBits": 42
+        },
+        {
+          "b": [
+            11193,
+            5596,
+            1241
+          ],
+          "a": [
+            32768,
+            -19661,
+            3757
+          ],
+          "order": 2,
+          "latency": 2,
+          "inputBits": 20,
+          "outputBits": 20,
+          "requiredAccumulatorBits": 42
+        },
+        {
+          "b": [
+            10977,
+            1537,
+            1557
+          ],
+          "a": [
+            32768,
+            -26214,
+            6607
+          ],
+          "order": 2,
+          "latency": 2,
+          "inputBits": 20,
+          "outputBits": 20,
+          "requiredAccumulatorBits": 42
+        },
+        {
+          "b": [
+            7950,
+            2067,
+            948
+          ],
+          "a": [
+            32768,
+            -32768,
+            10256
+          ],
+          "order": 2,
+          "latency": 2,
+          "inputBits": 20,
+          "outputBits": 16,
+          "requiredAccumulatorBits": 42
+        }
+      ],
+      "latency": 8,
+      "evidence": "timing-evidence/sos8-before-20ns",
+      "sha256": {
+        "check_timing.rpt": "11617e561b5fe9045b0380b5a489b52214072f7d3867fdd4a863673714c209da",
+        "digital_filter.v": "93742f8d468539365051343c53945f0f8db2532338ff05ca0f0193968e31cadb",
+        "internal_hold.rpt": "4d249cfa7745f7f336e65c7d5ea1db15e937f2ba4628f4b66ce6ce632173f520",
+        "internal_setup.rpt": "8cfd8239b1efb37dd6db36c9d675539a4e18dbc50f15bffea36534d838d39f20",
+        "metrics.tsv": "b1811c045b809b7cb3a07270fe8c94de27aab87fe6582985c04646f1a1472fa4",
+        "reproduce.tcl": "304a7268b62bbdf7fc537972ffaa451060368640b9b135e2b2519ab7f4e9ec90",
+        "result.json": "6b6a83d97161c3b8fffceba996a1e30c2f755355f11938c1b2a50898248d74a4",
+        "route_status.rpt": "1684dd3ec042bcf0c107ff1fb73584a108a6a44f6c1bb872866aaefd3f8c6689",
+        "run.tcl": "8540304d6c700e90b4a14583907f209f0d0f591cd2cdf4ef8e526c2d816f8c14",
+        "timing.xdc": "32408a2721725359b9c660aae71daaab072a43f484ed66f73f628d10d216ea27",
+        "timing_summary.rpt": "cd34a0d19adee83c6312f70eae71fecef683c3ecd0f9d5577f4bf53e877c0220",
+        "utilization_routed.rpt": "274f66250fdbc3416d4054607c26c4c6ef7b4ddca61563c93df5d4e39845f40e"
+      },
+      "pass_internal_timing": true
+    },
+    {
+      "case": "sos8",
+      "variant": "after",
+      "period_ns": 20,
+      "clock_mhz": 50.0,
+      "label": "八阶：四个二阶节级联",
+      "metrics": {
+        "wns_ns": 3.639,
+        "tns_ns": 0.0,
+        "setup_failing_endpoints": 0,
+        "setup_total_endpoints": 778,
+        "whs_ns": 0.133,
+        "ths_ns": 0.0,
+        "hold_failing_endpoints": 0,
+        "hold_total_endpoints": 778,
+        "wpws_ns": 9.5,
+        "tpws_ns": 0.0,
+        "pulse_failing_endpoints": 0,
+        "pulse_total_endpoints": 277
+      },
+      "resources": {
+        "lut": 756,
+        "fabric_ff": 268,
+        "dsp": 20
+      },
+      "checks": {
+        "no_clock": 0,
+        "constant_clock": 0,
+        "pulse_width_clock": 0,
+        "unconstrained_internal_endpoints": 0,
+        "no_input_delay": 17,
+        "no_output_delay": 16,
+        "multiple_clock": 0,
+        "generated_clocks": 0,
+        "loops": 0,
+        "partial_input_delay": 0,
+        "partial_output_delay": 0,
+        "latch_loops": 0
+      },
+      "paths": {
+        "setup.SLACK": "3.639",
+        "setup.DATAPATH_DELAY": "15.715",
+        "setup.LOGIC_LEVELS": "17",
+        "setup.STARTPOINT_PIN": "s2/P_A1/CLK",
+        "setup.ENDPOINT_PIN": "s3/P_B0/A[28]",
+        "hold.SLACK": "0.133",
+        "hold.DATAPATH_DELAY": "0.280",
+        "hold.LOGIC_LEVELS": "0",
+        "hold.STARTPOINT_PIN": "s3/y1_reg[0]/C",
+        "hold.ENDPOINT_PIN": "s3/y2_reg[0]/D"
+      },
+      "fixed": {
+        "coefficientBits": 18,
+        "coefficientFraction": 15,
+        "inputBits": 16,
+        "outputBits": 16,
+        "dataFraction": 14,
+        "sectionBits": 20,
+        "accumulatorBits": 44,
+        "rounding": "nearest"
+      },
+      "sections": [
+        {
+          "b": [
+            15343,
+            5830,
+            1672
+          ],
+          "a": [
+            32768,
+            -13107,
+            1707
+          ],
+          "order": 2,
+          "latency": 2,
+          "inputBits": 16,
+          "outputBits": 20,
+          "requiredAccumulatorBits": 42
+        },
+        {
+          "b": [
+            11193,
+            5596,
+            1241
+          ],
+          "a": [
+            32768,
+            -19661,
+            3757
+          ],
+          "order": 2,
+          "latency": 2,
+          "inputBits": 20,
+          "outputBits": 20,
+          "requiredAccumulatorBits": 42
+        },
+        {
+          "b": [
+            10977,
+            1537,
+            1557
+          ],
+          "a": [
+            32768,
+            -26214,
+            6607
+          ],
+          "order": 2,
+          "latency": 2,
+          "inputBits": 20,
+          "outputBits": 20,
+          "requiredAccumulatorBits": 42
+        },
+        {
+          "b": [
+            7950,
+            2067,
+            948
+          ],
+          "a": [
+            32768,
+            -32768,
+            10256
+          ],
+          "order": 2,
+          "latency": 2,
+          "inputBits": 20,
+          "outputBits": 16,
+          "requiredAccumulatorBits": 42
+        }
+      ],
+      "latency": 8,
+      "evidence": "timing-evidence/sos8-after-chosen-20ns",
+      "sha256": {
+        "check_timing.rpt": "f22c53ae604b5d5ee3838626750bb458fb44a323f903660840e4eb054ac87a9d",
+        "digital_filter.v": "ac20b34014b0ce5f44901f304e14d094dd108aef15ba0b43d73e40b69f9ca69f",
+        "internal_hold.rpt": "369b0c10b002f75615d078f4ee79203922122d51a278d3d777396be120164eb1",
+        "internal_setup.rpt": "5f007e9e1515de08c3d30d11b8d765f857b75c0f00b118d6467933a5449df128",
+        "metrics.tsv": "2a8a481214b15a4f1e4441afe6d7f7254cf1a18fe90896963c51bbae44f1a6dc",
+        "reproduce.tcl": "304a7268b62bbdf7fc537972ffaa451060368640b9b135e2b2519ab7f4e9ec90",
+        "result.json": "dfaadcba16c6fb1d8802df4517ccec6e64b9081605563fe40a943506b369d57b",
+        "route_status.rpt": "eaa43ad552e387302837b9692327c359b6f87ce4ca53a004534d4cee228553d4",
+        "run.tcl": "6c1131992153049a03ae167b04061ffc8d6ce8fcbde345ce86d9656b13b081c1",
+        "timing.xdc": "32408a2721725359b9c660aae71daaab072a43f484ed66f73f628d10d216ea27",
+        "timing_summary.rpt": "3caf720d9bc02ba8a10609060b905a191c9d2dddcc09573c33a5d2e52f038690",
+        "utilization_routed.rpt": "a7853bbaa3ea5bfb8acadd6ec880d772732812077d2905bd3a5f9a9231afb3e1"
+      },
+      "pass_internal_timing": true
+    },
+    {
+      "case": "fo",
+      "variant": "before",
+      "period_ns": 10,
+      "clock_mhz": 100.0,
+      "label": "一阶通用示例（B1≠0）",
+      "metrics": {
+        "wns_ns": -3.261,
+        "tns_ns": -121.819,
+        "setup_failing_endpoints": 46,
+        "setup_total_endpoints": 46,
+        "whs_ns": 1.37,
+        "ths_ns": 0.0,
+        "hold_failing_endpoints": 0,
+        "hold_total_endpoints": 46,
+        "wpws_ns": 4.5,
+        "tpws_ns": 0.0,
+        "pulse_failing_endpoints": 0,
+        "pulse_total_endpoints": 16
+      },
+      "resources": {
+        "lut": 135,
+        "fabric_ff": 16,
+        "dsp": 3
+      },
+      "checks": {
+        "no_clock": 0,
+        "constant_clock": 0,
+        "pulse_width_clock": 0,
+        "unconstrained_internal_endpoints": 0,
+        "no_input_delay": 17,
+        "no_output_delay": 16,
+        "multiple_clock": 0,
+        "generated_clocks": 0,
+        "loops": 0,
+        "partial_input_delay": 0,
+        "partial_output_delay": 0,
+        "latch_loops": 0
+      },
+      "paths": {
+        "setup.SLACK": "-3.261",
+        "setup.DATAPATH_DELAY": "12.615",
+        "setup.LOGIC_LEVELS": "16",
+        "setup.STARTPOINT_PIN": "s0/P_A1/CLK",
+        "setup.ENDPOINT_PIN": "s0/P_A1/A[2]",
+        "hold.SLACK": "1.370",
+        "hold.DATAPATH_DELAY": "1.562",
+        "hold.LOGIC_LEVELS": "3",
+        "hold.STARTPOINT_PIN": "s0/P_B1/CLK",
+        "hold.ENDPOINT_PIN": "s0/y1_reg[7]/D"
+      },
+      "fixed": {
+        "coefficientBits": 18,
+        "coefficientFraction": 15,
+        "inputBits": 16,
+        "outputBits": 16,
+        "dataFraction": 14,
+        "sectionBits": 16,
+        "accumulatorBits": 40,
+        "rounding": "nearest"
+      },
+      "sections": [
+        {
+          "b": [
+            6554,
+            3277
+          ],
+          "a": [
+            32768,
+            -26214
+          ],
+          "order": 1,
+          "latency": 1,
+          "inputBits": 16,
+          "outputBits": 16,
+          "requiredAccumulatorBits": 37
+        }
+      ],
+      "latency": 1,
+      "evidence": "timing-evidence/fo-before-chosen-10ns",
+      "sha256": {
+        "check_timing.rpt": "1b070d67cad373eb7e332f19f55f4b5045b6844d77e122fc4516b066aab66c0e",
+        "digital_filter.v": "64849edd4c2b191e84a689766709253bb5a877ac3fb0ccef773fdf66e306178c",
+        "internal_hold.rpt": "4d71848a8ea1a18cd87e20fc229d47b43d9ccda9538614b71ded680397b0f204",
+        "internal_setup.rpt": "671be5d9cd9f39c04a4247ead6dfb7643a09364442882a705186301d62321b7b",
+        "metrics.tsv": "57f00ee4f1b5b90d9fa8779c7507e8d0852f12e4b766778cd92897dd30039689",
+        "reproduce.tcl": "304a7268b62bbdf7fc537972ffaa451060368640b9b135e2b2519ab7f4e9ec90",
+        "result.json": "1cd18ea0059c0afbc4c0acc7f77a73457058d3e32a26d90201034fc7d40a0f54",
+        "route_status.rpt": "936cf4ff1bf1710fcbd9a35fea17b3c8a14bff04dfc5d2ca204c91d22c277cb3",
+        "run.tcl": "24a48d92e64971001889700fa443a22ed05240f24e3c1ab9e44367a6d41b65d3",
+        "timing.xdc": "a1c8ed8583f6afe2bd45086dde57f0dfe3eb98ae2c27830acdd4f12bbf878355",
+        "timing_summary.rpt": "1fec0886f228364bf71fe581529f7db9a7f6cce8c641dba788a2c9544c322d4a",
+        "utilization_routed.rpt": "3d09df0aea070466edd89bfb537e9dcb4763bdfcda9e9df5dd8bf1bded592cec"
+      },
+      "pass_internal_timing": false
+    },
+    {
+      "case": "fo",
+      "variant": "after",
+      "period_ns": 10,
+      "clock_mhz": 100.0,
+      "label": "一阶通用示例（B1≠0）",
+      "metrics": {
+        "wns_ns": -3.322,
+        "tns_ns": -108.179,
+        "setup_failing_endpoints": 46,
+        "setup_total_endpoints": 46,
+        "whs_ns": 0.741,
+        "ths_ns": 0.0,
+        "hold_failing_endpoints": 0,
+        "hold_total_endpoints": 46,
+        "wpws_ns": 4.5,
+        "tpws_ns": 0.0,
+        "pulse_failing_endpoints": 0,
+        "pulse_total_endpoints": 45
+      },
+      "resources": {
+        "lut": 106,
+        "fabric_ff": 45,
+        "dsp": 3
+      },
+      "checks": {
+        "no_clock": 0,
+        "constant_clock": 0,
+        "pulse_width_clock": 0,
+        "unconstrained_internal_endpoints": 0,
+        "no_input_delay": 17,
+        "no_output_delay": 16,
+        "multiple_clock": 0,
+        "generated_clocks": 0,
+        "loops": 0,
+        "partial_input_delay": 0,
+        "partial_output_delay": 0,
+        "latch_loops": 0
+      },
+      "paths": {
+        "setup.SLACK": "-3.322",
+        "setup.DATAPATH_DELAY": "11.110",
+        "setup.LOGIC_LEVELS": "16",
+        "setup.STARTPOINT_PIN": "s0/P_A1_reg/CLK",
+        "setup.ENDPOINT_PIN": "s0/P_A1_reg/A[23]",
+        "hold.SLACK": "0.741",
+        "hold.DATAPATH_DELAY": "0.932",
+        "hold.LOGIC_LEVELS": "3",
+        "hold.STARTPOINT_PIN": "s0/acc_carry__2_i_1_psdsp/C",
+        "hold.ENDPOINT_PIN": "s0/y1_reg[3]/D"
+      },
+      "fixed": {
+        "coefficientBits": 18,
+        "coefficientFraction": 15,
+        "inputBits": 16,
+        "outputBits": 16,
+        "dataFraction": 14,
+        "sectionBits": 16,
+        "accumulatorBits": 40,
+        "rounding": "nearest"
+      },
+      "sections": [
+        {
+          "b": [
+            6554,
+            3277
+          ],
+          "a": [
+            32768,
+            -26214
+          ],
+          "order": 1,
+          "latency": 1,
+          "inputBits": 16,
+          "outputBits": 16,
+          "requiredAccumulatorBits": 37
+        }
+      ],
+      "latency": 1,
+      "evidence": "timing-evidence/fo-after-chosen-10ns",
+      "sha256": {
+        "check_timing.rpt": "e61984f9ef644805f59dfe7cf214c0dc2b29aa46c81a2191615c5739bbd02dbf",
+        "digital_filter.v": "18236f98725084379a44970dcc4bf8196f30ddc6adbee6583d32e981b0184ca0",
+        "internal_hold.rpt": "54c8ebfa703fb6c73b0cf05ca7e07dac90e0104946bf415c86e96d296b886c55",
+        "internal_setup.rpt": "cd4449c5ff562f3e8699c2a67b9eab356b9af81902f2bf24dd2a5e5b59c05cc8",
+        "metrics.tsv": "d04e509fc9134a9cd4dc30d8b90fc08b1f5d9dac2a7124302bce4511cf2f9936",
+        "reproduce.tcl": "304a7268b62bbdf7fc537972ffaa451060368640b9b135e2b2519ab7f4e9ec90",
+        "result.json": "c29d026c9723cf765ab36015210e075c388597909f17588c57dfd44f1024cb2b",
+        "route_status.rpt": "f5e6b472f78716093214d69fe118e648811a5d2ca7b3f285d9c4b185a7f23909",
+        "run.tcl": "5cf3b2171e207e46f15e62298be52e76b560add8516b867954a10fe791cc50e2",
+        "timing.xdc": "a1c8ed8583f6afe2bd45086dde57f0dfe3eb98ae2c27830acdd4f12bbf878355",
+        "timing_summary.rpt": "ad0519ae3d6721b594dcadd05dad20bf66fe3d64f0581698aca31223a191f4f7",
+        "utilization_routed.rpt": "adb38c903ae8cdecaeba9bb98a1c779fbc9751bdb1dd50abfb1ef7f99a764805"
+      },
+      "pass_internal_timing": false
+    },
+    {
+      "case": "so",
+      "variant": "before",
+      "period_ns": 10,
+      "clock_mhz": 100.0,
+      "label": "二阶陷波示例",
+      "metrics": {
+        "wns_ns": -4.267,
+        "tns_ns": -232.696,
+        "setup_failing_endpoints": 62,
+        "setup_total_endpoints": 108,
+        "whs_ns": 0.146,
+        "ths_ns": 0.0,
+        "hold_failing_endpoints": 0,
+        "hold_total_endpoints": 108,
+        "wpws_ns": 4.5,
+        "tpws_ns": 0.0,
+        "pulse_failing_endpoints": 0,
+        "pulse_total_endpoints": 49
+      },
+      "resources": {
+        "lut": 276,
+        "fabric_ff": 48,
+        "dsp": 5
+      },
+      "checks": {
+        "no_clock": 0,
+        "constant_clock": 0,
+        "pulse_width_clock": 0,
+        "unconstrained_internal_endpoints": 0,
+        "no_input_delay": 17,
+        "no_output_delay": 16,
+        "multiple_clock": 0,
+        "generated_clocks": 0,
+        "loops": 0,
+        "partial_input_delay": 0,
+        "partial_output_delay": 0,
+        "latch_loops": 0
+      },
+      "paths": {
+        "setup.SLACK": "-4.267",
+        "setup.DATAPATH_DELAY": "13.621",
+        "setup.LOGIC_LEVELS": "17",
+        "setup.STARTPOINT_PIN": "s0/P_B2/CLK",
+        "setup.ENDPOINT_PIN": "s0/P_A1/A[24]",
+        "hold.SLACK": "0.146",
+        "hold.DATAPATH_DELAY": "0.280",
+        "hold.LOGIC_LEVELS": "0",
+        "hold.STARTPOINT_PIN": "s0/y1_reg[12]/C",
+        "hold.ENDPOINT_PIN": "s0/y2_reg[12]/D"
+      },
+      "fixed": {
+        "coefficientBits": 18,
+        "coefficientFraction": 15,
+        "inputBits": 16,
+        "outputBits": 16,
+        "dataFraction": 14,
+        "sectionBits": 16,
+        "accumulatorBits": 40,
+        "rounding": "nearest"
+      },
+      "sections": [
+        {
+          "b": [
+            31269,
+            -44222,
+            31269
+          ],
+          "a": [
+            32768,
+            -44024,
+            29573
+          ],
+          "order": 2,
+          "latency": 2,
+          "inputBits": 16,
+          "outputBits": 16,
+          "requiredAccumulatorBits": 38
+        }
+      ],
+      "latency": 2,
+      "evidence": "timing-evidence/so-before-chosen-10ns",
+      "sha256": {
+        "check_timing.rpt": "710da1e4e9cbd7b8fdf95f812f44a9e46717f21e02b75e51019acb4ed37cdf5c",
+        "digital_filter.v": "f732113e48638d126972732415442fcf895861a040ba09017b5a4d1ea11d91eb",
+        "internal_hold.rpt": "ad3bfb24478c92244020e5a4f01cb23f2e2b50e8f2a23d2910af050fcd24237f",
+        "internal_setup.rpt": "df6274ed5691ed2b6204d7ab8556cf73f4157f5920791f5930bbd420f5be1e76",
+        "metrics.tsv": "864af818daadce3f5c5a5c80518f4a86cb763b4f6e251a837e638426a910241d",
+        "reproduce.tcl": "304a7268b62bbdf7fc537972ffaa451060368640b9b135e2b2519ab7f4e9ec90",
+        "result.json": "b7bd304df6c63b63f7e8b251af1f63b524181ae1ea6883466dfc9cc70f5c6c34",
+        "route_status.rpt": "0cdf3af58da02f5c66f61c21090075a6f52f5e5bd12c4fb00d699c40fd60987c",
+        "run.tcl": "da95139a8f25673d2a96b0b9aa28c8ba2877517b7e5e3717b95f1fef1e2fea15",
+        "timing.xdc": "a1c8ed8583f6afe2bd45086dde57f0dfe3eb98ae2c27830acdd4f12bbf878355",
+        "timing_summary.rpt": "e33086268b254b65fa6665f972337c37642db4bf7d66d0d4f8519943564092a5",
+        "utilization_routed.rpt": "8a78bdd0ef05787439f0b5e0afa1031083d06ccbc1eebca098a1592da30d48ed"
+      },
+      "pass_internal_timing": false
+    },
+    {
+      "case": "so",
+      "variant": "after",
+      "period_ns": 10,
+      "clock_mhz": 100.0,
+      "label": "二阶陷波示例",
+      "metrics": {
+        "wns_ns": -3.753,
+        "tns_ns": -193.631,
+        "setup_failing_endpoints": 62,
+        "setup_total_endpoints": 118,
+        "whs_ns": 0.107,
+        "ths_ns": 0.0,
+        "hold_failing_endpoints": 0,
+        "hold_total_endpoints": 118,
+        "wpws_ns": 4.5,
+        "tpws_ns": 0.0,
+        "pulse_failing_endpoints": 0,
+        "pulse_total_endpoints": 88
+      },
+      "resources": {
+        "lut": 181,
+        "fabric_ff": 88,
+        "dsp": 5
+      },
+      "checks": {
+        "no_clock": 0,
+        "constant_clock": 0,
+        "pulse_width_clock": 0,
+        "unconstrained_internal_endpoints": 0,
+        "no_input_delay": 17,
+        "no_output_delay": 16,
+        "multiple_clock": 0,
+        "generated_clocks": 0,
+        "loops": 0,
+        "partial_input_delay": 0,
+        "partial_output_delay": 0,
+        "latch_loops": 0
+      },
+      "paths": {
+        "setup.SLACK": "-3.753",
+        "setup.DATAPATH_DELAY": "13.107",
+        "setup.LOGIC_LEVELS": "17",
+        "setup.STARTPOINT_PIN": "s0/P_A1/CLK",
+        "setup.ENDPOINT_PIN": "s0/P_A1/A[0]",
+        "hold.SLACK": "0.107",
+        "hold.DATAPATH_DELAY": "0.242",
+        "hold.LOGIC_LEVELS": "0",
+        "hold.STARTPOINT_PIN": "s0/y1_reg[7]/C",
+        "hold.ENDPOINT_PIN": "s0/y2_reg[7]/D"
+      },
+      "fixed": {
+        "coefficientBits": 18,
+        "coefficientFraction": 15,
+        "inputBits": 16,
+        "outputBits": 16,
+        "dataFraction": 14,
+        "sectionBits": 16,
+        "accumulatorBits": 40,
+        "rounding": "nearest"
+      },
+      "sections": [
+        {
+          "b": [
+            31269,
+            -44222,
+            31269
+          ],
+          "a": [
+            32768,
+            -44024,
+            29573
+          ],
+          "order": 2,
+          "latency": 2,
+          "inputBits": 16,
+          "outputBits": 16,
+          "requiredAccumulatorBits": 38
+        }
+      ],
+      "latency": 2,
+      "evidence": "timing-evidence/so-after-chosen-10ns",
+      "sha256": {
+        "check_timing.rpt": "e2ad7fa5d351cdd9e5d00f551b7da6d350e3e38e89ee776d1c973ac5bfe45970",
+        "digital_filter.v": "b5d1ec11fc684865b49289311716f8f7568923f3775ce4cab65ab0dfadc59f98",
+        "internal_hold.rpt": "00f1cf11e648c6398577372d4ed0211eee15d1e5d448106521faa145ab0cc782",
+        "internal_setup.rpt": "4d668313b10e461f7f14e8ac73f9dfbe00b3e5c711febbc4a1c6540f01d9bd45",
+        "metrics.tsv": "d90a0210780d13604fa56c6b0bc9b789d19084f423251a5b4d72cc5097b9e9d8",
+        "reproduce.tcl": "304a7268b62bbdf7fc537972ffaa451060368640b9b135e2b2519ab7f4e9ec90",
+        "result.json": "7cd8e5ce77bbbe5ff4800be315a8f530a3e3311aaf08fa0ae242f90dfde4d055",
+        "route_status.rpt": "d81c1274320ae17e1e01972b2c1e044e520e14a08dca7a0ffbcea87897a6ec31",
+        "run.tcl": "f60959b0ca967b0d0b4a38aced29631db717468075e17d24ac516e1e4727f510",
+        "timing.xdc": "a1c8ed8583f6afe2bd45086dde57f0dfe3eb98ae2c27830acdd4f12bbf878355",
+        "timing_summary.rpt": "3f84df84457bacc76b6d74d8a9db1da15a0f47089df4589295a4530d9a2f01e8",
+        "utilization_routed.rpt": "9f8ea05e5c4c1db58ba197c0de2def8b026cdf3c508c237d73c462947f037b95"
+      },
+      "pass_internal_timing": false
+    },
+    {
+      "case": "sos8",
+      "variant": "before",
+      "period_ns": 10,
+      "clock_mhz": 100.0,
+      "label": "八阶：四个二阶节级联",
+      "metrics": {
+        "wns_ns": -5.179,
+        "tns_ns": -1410.351,
+        "setup_failing_endpoints": 332,
+        "setup_total_endpoints": 798,
+        "whs_ns": 0.107,
+        "ths_ns": 0.0,
+        "hold_failing_endpoints": 0,
+        "hold_total_endpoints": 798,
+        "wpws_ns": 4.5,
+        "tpws_ns": 0.0,
+        "pulse_failing_endpoints": 0,
+        "pulse_total_endpoints": 295
+      },
+      "resources": {
+        "lut": 1156,
+        "fabric_ff": 288,
+        "dsp": 20
+      },
+      "checks": {
+        "no_clock": 0,
+        "constant_clock": 0,
+        "pulse_width_clock": 0,
+        "unconstrained_internal_endpoints": 0,
+        "no_input_delay": 17,
+        "no_output_delay": 16,
+        "multiple_clock": 0,
+        "generated_clocks": 0,
+        "loops": 0,
+        "partial_input_delay": 0,
+        "partial_output_delay": 0,
+        "latch_loops": 0
+      },
+      "paths": {
+        "setup.SLACK": "-5.179",
+        "setup.DATAPATH_DELAY": "14.533",
+        "setup.LOGIC_LEVELS": "17",
+        "setup.STARTPOINT_PIN": "s2/P_A1/CLK",
+        "setup.ENDPOINT_PIN": "s2/P_A1/A[12]",
+        "hold.SLACK": "0.107",
+        "hold.DATAPATH_DELAY": "0.251",
+        "hold.LOGIC_LEVELS": "0",
+        "hold.STARTPOINT_PIN": "s3/y1_reg[14]/C",
+        "hold.ENDPOINT_PIN": "s3/y2_reg[14]/D"
+      },
+      "fixed": {
+        "coefficientBits": 18,
+        "coefficientFraction": 15,
+        "inputBits": 16,
+        "outputBits": 16,
+        "dataFraction": 14,
+        "sectionBits": 20,
+        "accumulatorBits": 44,
+        "rounding": "nearest"
+      },
+      "sections": [
+        {
+          "b": [
+            15343,
+            5830,
+            1672
+          ],
+          "a": [
+            32768,
+            -13107,
+            1707
+          ],
+          "order": 2,
+          "latency": 2,
+          "inputBits": 16,
+          "outputBits": 20,
+          "requiredAccumulatorBits": 42
+        },
+        {
+          "b": [
+            11193,
+            5596,
+            1241
+          ],
+          "a": [
+            32768,
+            -19661,
+            3757
+          ],
+          "order": 2,
+          "latency": 2,
+          "inputBits": 20,
+          "outputBits": 20,
+          "requiredAccumulatorBits": 42
+        },
+        {
+          "b": [
+            10977,
+            1537,
+            1557
+          ],
+          "a": [
+            32768,
+            -26214,
+            6607
+          ],
+          "order": 2,
+          "latency": 2,
+          "inputBits": 20,
+          "outputBits": 20,
+          "requiredAccumulatorBits": 42
+        },
+        {
+          "b": [
+            7950,
+            2067,
+            948
+          ],
+          "a": [
+            32768,
+            -32768,
+            10256
+          ],
+          "order": 2,
+          "latency": 2,
+          "inputBits": 20,
+          "outputBits": 16,
+          "requiredAccumulatorBits": 42
+        }
+      ],
+      "latency": 8,
+      "evidence": "timing-evidence/sos8-before-chosen-10ns",
+      "sha256": {
+        "check_timing.rpt": "b6c37bc4554b71c3bc4742f36651c92a4a702302a454f714fbc4a4c26be5b639",
+        "digital_filter.v": "93742f8d468539365051343c53945f0f8db2532338ff05ca0f0193968e31cadb",
+        "internal_hold.rpt": "cf9acf69551b0ffbd2bb308cd76df6c318fbf11bded8a83b33b5e83fe477b216",
+        "internal_setup.rpt": "590f2a39547d664d958b6b229892d2039ff946cdba44b7d90fc9cfa30f3ba321",
+        "metrics.tsv": "0b9bf396eaccd7823d107de5e4e816956f51308cb93ec9b8daed8b961b5a68f2",
+        "reproduce.tcl": "304a7268b62bbdf7fc537972ffaa451060368640b9b135e2b2519ab7f4e9ec90",
+        "result.json": "85104c27238ebd552976b2626e8ab3361f05a89c7958e64364fab626399d2c51",
+        "route_status.rpt": "04554b4dabc17cfdf4daebfcf88a2d83967c088b73d11f031e207111ddbaf043",
+        "run.tcl": "54f500a7e71f6760bbc8ac3ba62759c975616828b75ae54b77f6d20afb8e889b",
+        "timing.xdc": "a1c8ed8583f6afe2bd45086dde57f0dfe3eb98ae2c27830acdd4f12bbf878355",
+        "timing_summary.rpt": "f231c61a6b2365774c02a12f7ced7ba4f2cc7fad67d88577abd547f6081ca553",
+        "utilization_routed.rpt": "7255afe2fb08619831f0914e7970b3541cbc94b905eaf0038e71525475bda542"
+      },
+      "pass_internal_timing": false
+    },
+    {
+      "case": "sos8",
+      "variant": "after",
+      "period_ns": 10,
+      "clock_mhz": 100.0,
+      "label": "八阶：四个二阶节级联",
+      "metrics": {
+        "wns_ns": -4.51,
+        "tns_ns": -1516.311,
+        "setup_failing_endpoints": 402,
+        "setup_total_endpoints": 854,
+        "whs_ns": 0.139,
+        "ths_ns": 0.0,
+        "hold_failing_endpoints": 0,
+        "hold_total_endpoints": 854,
+        "wpws_ns": 4.5,
+        "tpws_ns": 0.0,
+        "pulse_failing_endpoints": 0,
+        "pulse_total_endpoints": 467
+      },
+      "resources": {
+        "lut": 826,
+        "fabric_ff": 464,
+        "dsp": 20
+      },
+      "checks": {
+        "no_clock": 0,
+        "constant_clock": 0,
+        "pulse_width_clock": 0,
+        "unconstrained_internal_endpoints": 0,
+        "no_input_delay": 17,
+        "no_output_delay": 16,
+        "multiple_clock": 0,
+        "generated_clocks": 0,
+        "loops": 0,
+        "partial_input_delay": 0,
+        "partial_output_delay": 0,
+        "latch_loops": 0
+      },
+      "paths": {
+        "setup.SLACK": "-4.510",
+        "setup.DATAPATH_DELAY": "13.864",
+        "setup.LOGIC_LEVELS": "16",
+        "setup.STARTPOINT_PIN": "s1/P_A1/CLK",
+        "setup.ENDPOINT_PIN": "s1/P_A1/A[14]",
+        "hold.SLACK": "0.139",
+        "hold.DATAPATH_DELAY": "0.274",
+        "hold.LOGIC_LEVELS": "0",
+        "hold.STARTPOINT_PIN": "s3/y1_reg[6]/C",
+        "hold.ENDPOINT_PIN": "s3/y2_reg[6]/D"
+      },
+      "fixed": {
+        "coefficientBits": 18,
+        "coefficientFraction": 15,
+        "inputBits": 16,
+        "outputBits": 16,
+        "dataFraction": 14,
+        "sectionBits": 20,
+        "accumulatorBits": 44,
+        "rounding": "nearest"
+      },
+      "sections": [
+        {
+          "b": [
+            15343,
+            5830,
+            1672
+          ],
+          "a": [
+            32768,
+            -13107,
+            1707
+          ],
+          "order": 2,
+          "latency": 2,
+          "inputBits": 16,
+          "outputBits": 20,
+          "requiredAccumulatorBits": 42
+        },
+        {
+          "b": [
+            11193,
+            5596,
+            1241
+          ],
+          "a": [
+            32768,
+            -19661,
+            3757
+          ],
+          "order": 2,
+          "latency": 2,
+          "inputBits": 20,
+          "outputBits": 20,
+          "requiredAccumulatorBits": 42
+        },
+        {
+          "b": [
+            10977,
+            1537,
+            1557
+          ],
+          "a": [
+            32768,
+            -26214,
+            6607
+          ],
+          "order": 2,
+          "latency": 2,
+          "inputBits": 20,
+          "outputBits": 20,
+          "requiredAccumulatorBits": 42
+        },
+        {
+          "b": [
+            7950,
+            2067,
+            948
+          ],
+          "a": [
+            32768,
+            -32768,
+            10256
+          ],
+          "order": 2,
+          "latency": 2,
+          "inputBits": 20,
+          "outputBits": 16,
+          "requiredAccumulatorBits": 42
+        }
+      ],
+      "latency": 8,
+      "evidence": "timing-evidence/sos8-after-chosen-10ns",
+      "sha256": {
+        "check_timing.rpt": "56296ff9ebb246fedbb03452f12ab81165563f626133d736e9c343a1faee3ec6",
+        "digital_filter.v": "ac20b34014b0ce5f44901f304e14d094dd108aef15ba0b43d73e40b69f9ca69f",
+        "internal_hold.rpt": "25bcf11e2fc8dfca80f05bcf8feef7d5414bf792074fdd46b0f1ab700a22e801",
+        "internal_setup.rpt": "44cff40bcd28b6cffd1c6b3b24702160ff0ab1a080ee658e28a97d180bbc7888",
+        "metrics.tsv": "70ffe966f4f8e2a2e7326b77c901005235836726355bcbdff89bacbeef910ba7",
+        "reproduce.tcl": "304a7268b62bbdf7fc537972ffaa451060368640b9b135e2b2519ab7f4e9ec90",
+        "result.json": "968104afd17bb151320e6442d96dc6678c22f71173d17d6268ca4c73e79765b3",
+        "route_status.rpt": "c4db6857328bbf50f203d7379ead92250fa3cbe029a5c5758d68174748e3e8e5",
+        "run.tcl": "be9385bfe2b9409ac1709d41b89ebca437cbd9171927086afa018b8d069f18a3",
+        "timing.xdc": "a1c8ed8583f6afe2bd45086dde57f0dfe3eb98ae2c27830acdd4f12bbf878355",
+        "timing_summary.rpt": "ed2f651c6f21a1a1e8168b7b38de8a960a6e3ff45eab5434dee9c52435ba66e2",
+        "utilization_routed.rpt": "30ee3ced2d53edd87c051ef43dc1862066a4ddf2bbcc3798719093482c5f0eb9"
+      },
+      "pass_internal_timing": false
+    }
+  ],
+  "rejected_so_feedback_product_variant": {
+    "single_so_wns_50mhz": 5.242,
+    "sos8_wns_50mhz": 1.505,
+    "reason": "Cascade timing worse than baseline"
+  },
+  "limits": [
+    "No board I/O or full clock-tree signoff.",
+    "No gate-level/SDF or hardware run.",
+    "No all-input/configuration formal proof.",
+    "No native file:// browser QA."
+  ],
+  "status": "withdrawn",
+  "adopted": false,
+  "withdrawn_at_user_request": true,
+  "current_generator_sha256": "28e91494c12dead1bf89c3923b14fd9bc8006b8b1bc233349449bb4e0a440b7f"
+}

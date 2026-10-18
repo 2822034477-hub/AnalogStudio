@@ -1,0 +1,54 @@
+{
+  "date": "2026-10-16",
+  "feature": "Concise Verilog for all seven basic digital module kinds",
+  "local_only": true,
+  "github_synchronized": false,
+  "regression_suites": {
+    "pass": 46,
+    "fail": 0,
+    "skip": 0
+  },
+  "vendor_simulation": {
+    "tool": "Vivado XSim 2022.2",
+    "compile": "PASS",
+    "elaborate": "PASS",
+    "simulate": "PASS",
+    "arithmetic_configurations": 240,
+    "mathematical_checks": 11520,
+    "legacy_equivalence_on_tested_vectors": true,
+    "additional_checks": [
+      "4000-cycle DC-removal feedback loop",
+      "4000-cycle two instances of the same saved filter",
+      "registered latency",
+      "synchronous reset"
+    ],
+    "coverage": [
+      "every basic kind",
+      "combinational and registered outputs",
+      "signed/unsigned and mixed operands",
+      "1/2/8/16/32/128-bit boundaries",
+      "fractional alignment and 127-bit fractional formats",
+      "floor and nearest ties away from zero",
+      "wrap and saturation",
+      "zero/unit/power-of-two/negative/32-bit boundary gains",
+      "absolute most-negative value",
+      "legal user port names matching temporary names"
+    ],
+    "compile_log_sha256": "c3a34c3c9b8b781c54782e45176c8d77584863572cd5344b39d76488893af6e9",
+    "elaborate_log_sha256": "18415cb2ec8cf3464bbcb43d60e327eb7312795e037d4b935c768758cc29f262",
+    "simulate_log_sha256": "e65b4db2c78069d902756a16317194d7c30f7a29f3e6b6ee884676b62ab71cb7"
+  },
+  "compatibility": {
+    "legacy_design_packages_checked": 240,
+    "old_saved_hdl_preserved": true,
+    "tampered_source_rejected": true,
+    "explicit_resave_generates_concise_hdl": true,
+    "filter_fixture_pairs_unchanged": 24
+  },
+  "ui_checks": "jsdom checks concise previews for every basic kind, old package import with original source retained, and explicit resave into the new implementation.",
+  "limits": [
+    "Sampled arithmetic equivalence, not a formal proof for all inputs/configurations.",
+    "No native file:// browser/picker verification, new synthesis, timing or hardware run."
+  ],
+  "html_sha256": "6baebaa4f0de8b879a1110f3aa227814a727bcb592644852d24320c3ac39958c"
+}

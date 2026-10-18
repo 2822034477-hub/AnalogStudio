@@ -172,8 +172,9 @@ input('marginDb','-1');assert($('width-advice').textContent.includes('0–60'));
 // This is still the minimal DOM stub, not browser rendering or layout evidence.
 const responsePaths=id=>[...$(id).innerHTML.matchAll(/<path d="([^"]*)" stroke="(#2569a7|#c16d24)"[^>]*>/g)].map(m=>({d:m[1],color:m[2],tag:m[0]}));
 app.replace(D.serialize(D.create({b:[0,0,.5],a:[1,-.5,.125]})));
+assert.equal($('responseMode').value,'model');$('responseMode').value='implementation';$('responseMode').emit('change');
 for(const id of ['magnitude','phase','step']){const paths=responsePaths(id);assert.equal(paths.length,2,id);assert.equal(paths[0].color,'#2569a7');assert.equal(paths[1].color,'#c16d24');assert(paths[1].tag.includes('stroke-dasharray="7 4"'));assert(!$(id).innerHTML.includes('#26815e'));}
-assert(root.innerHTML.includes('浮点＋实现延迟'));assert(root.innerHTML.includes('定点＋实现延迟'));assert(!root.innerHTML.includes('绿色曲线'));
+assert($('response-legend').innerHTML.includes('浮点＋实现延迟'));assert($('response-legend').innerHTML.includes('定点＋实现延迟'));assert($('response-note').textContent.includes('附加 1 拍'));assert(!root.innerHTML.includes('绿色曲线'));
 assert.equal(responsePaths('phase')[0].d,responsePaths('phase')[1].d); // exactly representable coefficients
 for(const path of responsePaths('step')){const xy=[...path.d.matchAll(/[ML]([-\d.]+) ([-\d.]+)/g)];assert.equal(xy.length,128);for(let n=1;n<3;n++)assert.equal(xy[n][2],xy[0][2]);assert.notEqual(xy[3][2],xy[0][2]);} // explicit 2 + SO extra 1, not 2 + total edgeOffset
 app.replace(D.serialize(D.create({gain:0,poles:[{re:.4,im:.2}],delaySamples:2})));

@@ -1,0 +1,976 @@
+Copyright 1986-2022 Xilinx, Inc. All Rights Reserved.
+--------------------------------------------------------------------------------------------------------------------------------
+| Tool Version : Vivado v.2022.2 (win64) Build 3671981 Fri Oct 14 05:00:03 MDT 2022
+| Date         : Fri Oct 16 15:58:02 2026
+| Host         : RZY running 64-bit major release  (build 9200)
+| Command      : report_timing -delay_type max -from [all_registers] -to [all_registers] -max_paths 10 -file internal_setup.rpt
+| Design       : digital_filter
+| Device       : 7a50t-fgg484
+| Speed File   : -1  PRODUCTION 1.23 2018-06-13
+--------------------------------------------------------------------------------------------------------------------------------
+
+Timing Report
+
+Slack (MET) :             3.639ns  (required time - arrival time)
+  Source:                 s2/P_A1/CLK
+                            (rising edge-triggered cell DSP48E1 clocked by sample_clk  {rise@0.000ns fall@10.000ns period=20.000ns})
+  Destination:            s3/P_B0/A[28]
+                            (rising edge-triggered cell DSP48E1 clocked by sample_clk  {rise@0.000ns fall@10.000ns period=20.000ns})
+  Path Group:             sample_clk
+  Path Type:              Setup (Max at Slow Process Corner)
+  Requirement:            20.000ns  (sample_clk rise@20.000ns - sample_clk rise@0.000ns)
+  Data Path Delay:        15.715ns  (logic 8.263ns (52.581%)  route 7.452ns (47.419%))
+  Logic Levels:           17  (CARRY4=12 LUT2=1 LUT4=1 LUT6=3)
+  Clock Path Skew:        -0.049ns (DCD - SCD + CPR)
+    Destination Clock Delay (DCD):    0.924ns = ( 20.924 - 20.000 ) 
+    Source Clock Delay      (SCD):    0.973ns
+    Clock Pessimism Removal (CPR):    0.000ns
+  Clock Uncertainty:      0.235ns  ((TSJ^2 + TIJ^2)^1/2 + DJ) / 2 + PE + UU
+    Total System Jitter     (TSJ):    0.071ns
+    Total Input Jitter      (TIJ):    0.000ns
+    Discrete Jitter          (DJ):    0.000ns
+    Phase Error              (PE):    0.000ns
+    User Uncertainty         (UU):    0.200ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock sample_clk rise edge)
+                                                      0.000     0.000 r  
+                                                      0.000     0.000 r  clk (IN)
+                         net (fo=285, unset)          0.973     0.973    s2/clk
+    DSP48_X1Y21          DSP48E1                                      r  s2/P_A1/CLK
+  -------------------------------------------------------------------    -------------------
+    DSP48_X1Y21          DSP48E1 (Prop_dsp48e1_CLK_P[1])
+                                                      4.009     4.982 r  s2/P_A1/P[1]
+                         net (fo=3, routed)           1.262     6.244    s2/P_A1_n_104
+    SLICE_X56Y47         LUT6 (Prop_lut6_I0_O)        0.124     6.368 r  s2/acc_carry_i_9__1/O
+                         net (fo=1, routed)           0.579     6.947    s2/acc_carry_i_9__1_n_0
+    SLICE_X54Y47         CARRY4 (Prop_carry4_S[0]_CO[3])
+                                                      0.637     7.584 r  s2/acc_carry/CO[3]
+                         net (fo=1, routed)           0.000     7.584    s2/acc_carry_n_0
+    SLICE_X54Y48         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117     7.701 r  s2/acc_carry__0/CO[3]
+                         net (fo=1, routed)           0.000     7.701    s2/acc_carry__0_n_0
+    SLICE_X54Y49         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117     7.818 r  s2/acc_carry__1/CO[3]
+                         net (fo=1, routed)           0.001     7.819    s2/acc_carry__1_n_0
+    SLICE_X54Y50         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117     7.936 r  s2/acc_carry__2/CO[3]
+                         net (fo=1, routed)           0.000     7.936    s2/acc_carry__2_n_0
+    SLICE_X54Y51         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117     8.053 r  s2/acc_carry__3/CO[3]
+                         net (fo=1, routed)           0.000     8.053    s2/acc_carry__3_n_0
+    SLICE_X54Y52         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117     8.170 r  s2/acc_carry__4/CO[3]
+                         net (fo=1, routed)           0.000     8.170    s2/acc_carry__4_n_0
+    SLICE_X54Y53         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117     8.287 r  s2/acc_carry__5/CO[3]
+                         net (fo=1, routed)           0.000     8.287    s2/acc_carry__5_n_0
+    SLICE_X54Y54         CARRY4 (Prop_carry4_CI_O[3])
+                                                      0.315     8.602 r  s2/acc_carry__6/O[3]
+                         net (fo=2, routed)           0.658     9.260    s2/acc_carry__6_n_4
+    SLICE_X51Y54         CARRY4 (Prop_carry4_S[0]_CO[3])
+                                                      0.839    10.099 r  s2/in00_carry__3/CO[3]
+                         net (fo=1, routed)           0.000    10.099    s2/in00_carry__3_n_0
+    SLICE_X51Y55         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114    10.213 r  s2/in00_carry__4/CO[3]
+                         net (fo=1, routed)           0.000    10.213    s2/in00_carry__4_n_0
+    SLICE_X51Y56         CARRY4 (Prop_carry4_CI_O[2])
+                                                      0.239    10.452 r  s2/in00_carry__5/O[2]
+                         net (fo=1, routed)           0.815    11.266    s2/incremented[27]
+    SLICE_X50Y55         LUT4 (Prop_lut4_I0_O)        0.302    11.568 r  s2/over_ceil_carry_i_2__1/O
+                         net (fo=1, routed)           0.000    11.568    s2/over_ceil_carry_i_2__1_n_0
+    SLICE_X50Y55         CARRY4 (Prop_carry4_S[2]_CO[3])
+                                                      0.380    11.948 r  s2/over_ceil_carry/CO[3]
+                         net (fo=3, routed)           1.073    13.021    s2/over_ceil
+    SLICE_X50Y51         LUT2 (Prop_lut2_I0_O)        0.150    13.171 r  s2/P_A1_i_32__1/O
+                         net (fo=1, routed)           0.476    13.647    s2/P_A1_i_32__1_n_0
+    SLICE_X49Y51         LUT6 (Prop_lut6_I1_O)        0.328    13.975 r  s2/P_A1_i_23__1/O
+                         net (fo=1, routed)           0.311    14.286    s2/P_A1_i_23__1_n_0
+    SLICE_X50Y51         LUT6 (Prop_lut6_I2_O)        0.124    14.410 r  s2/P_A1_i_1__1/O
+                         net (fo=45, routed)          2.277    16.688    s3/A[19]
+    DSP48_X0Y22          DSP48E1                                      r  s3/P_B0/A[28]
+  -------------------------------------------------------------------    -------------------
+
+                         (clock sample_clk rise edge)
+                                                     20.000    20.000 r  
+                                                      0.000    20.000 r  clk (IN)
+                         net (fo=285, unset)          0.924    20.924    s3/clk
+    DSP48_X0Y22          DSP48E1                                      r  s3/P_B0/CLK
+                         clock pessimism              0.000    20.924    
+                         clock uncertainty           -0.235    20.689    
+    DSP48_X0Y22          DSP48E1 (Setup_dsp48e1_CLK_A[28])
+                                                     -0.362    20.327    s3/P_B0
+  -------------------------------------------------------------------
+                         required time                         20.327    
+                         arrival time                         -16.688    
+  -------------------------------------------------------------------
+                         slack                                  3.639    
+
+Slack (MET) :             3.649ns  (required time - arrival time)
+  Source:                 s2/P_A1/CLK
+                            (rising edge-triggered cell DSP48E1 clocked by sample_clk  {rise@0.000ns fall@10.000ns period=20.000ns})
+  Destination:            s3/P_B0/A[19]
+                            (rising edge-triggered cell DSP48E1 clocked by sample_clk  {rise@0.000ns fall@10.000ns period=20.000ns})
+  Path Group:             sample_clk
+  Path Type:              Setup (Max at Slow Process Corner)
+  Requirement:            20.000ns  (sample_clk rise@20.000ns - sample_clk rise@0.000ns)
+  Data Path Delay:        15.705ns  (logic 8.263ns (52.613%)  route 7.442ns (47.387%))
+  Logic Levels:           17  (CARRY4=12 LUT2=1 LUT4=1 LUT6=3)
+  Clock Path Skew:        -0.049ns (DCD - SCD + CPR)
+    Destination Clock Delay (DCD):    0.924ns = ( 20.924 - 20.000 ) 
+    Source Clock Delay      (SCD):    0.973ns
+    Clock Pessimism Removal (CPR):    0.000ns
+  Clock Uncertainty:      0.235ns  ((TSJ^2 + TIJ^2)^1/2 + DJ) / 2 + PE + UU
+    Total System Jitter     (TSJ):    0.071ns
+    Total Input Jitter      (TIJ):    0.000ns
+    Discrete Jitter          (DJ):    0.000ns
+    Phase Error              (PE):    0.000ns
+    User Uncertainty         (UU):    0.200ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock sample_clk rise edge)
+                                                      0.000     0.000 r  
+                                                      0.000     0.000 r  clk (IN)
+                         net (fo=285, unset)          0.973     0.973    s2/clk
+    DSP48_X1Y21          DSP48E1                                      r  s2/P_A1/CLK
+  -------------------------------------------------------------------    -------------------
+    DSP48_X1Y21          DSP48E1 (Prop_dsp48e1_CLK_P[1])
+                                                      4.009     4.982 r  s2/P_A1/P[1]
+                         net (fo=3, routed)           1.262     6.244    s2/P_A1_n_104
+    SLICE_X56Y47         LUT6 (Prop_lut6_I0_O)        0.124     6.368 r  s2/acc_carry_i_9__1/O
+                         net (fo=1, routed)           0.579     6.947    s2/acc_carry_i_9__1_n_0
+    SLICE_X54Y47         CARRY4 (Prop_carry4_S[0]_CO[3])
+                                                      0.637     7.584 r  s2/acc_carry/CO[3]
+                         net (fo=1, routed)           0.000     7.584    s2/acc_carry_n_0
+    SLICE_X54Y48         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117     7.701 r  s2/acc_carry__0/CO[3]
+                         net (fo=1, routed)           0.000     7.701    s2/acc_carry__0_n_0
+    SLICE_X54Y49         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117     7.818 r  s2/acc_carry__1/CO[3]
+                         net (fo=1, routed)           0.001     7.819    s2/acc_carry__1_n_0
+    SLICE_X54Y50         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117     7.936 r  s2/acc_carry__2/CO[3]
+                         net (fo=1, routed)           0.000     7.936    s2/acc_carry__2_n_0
+    SLICE_X54Y51         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117     8.053 r  s2/acc_carry__3/CO[3]
+                         net (fo=1, routed)           0.000     8.053    s2/acc_carry__3_n_0
+    SLICE_X54Y52         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117     8.170 r  s2/acc_carry__4/CO[3]
+                         net (fo=1, routed)           0.000     8.170    s2/acc_carry__4_n_0
+    SLICE_X54Y53         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117     8.287 r  s2/acc_carry__5/CO[3]
+                         net (fo=1, routed)           0.000     8.287    s2/acc_carry__5_n_0
+    SLICE_X54Y54         CARRY4 (Prop_carry4_CI_O[3])
+                                                      0.315     8.602 r  s2/acc_carry__6/O[3]
+                         net (fo=2, routed)           0.658     9.260    s2/acc_carry__6_n_4
+    SLICE_X51Y54         CARRY4 (Prop_carry4_S[0]_CO[3])
+                                                      0.839    10.099 r  s2/in00_carry__3/CO[3]
+                         net (fo=1, routed)           0.000    10.099    s2/in00_carry__3_n_0
+    SLICE_X51Y55         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114    10.213 r  s2/in00_carry__4/CO[3]
+                         net (fo=1, routed)           0.000    10.213    s2/in00_carry__4_n_0
+    SLICE_X51Y56         CARRY4 (Prop_carry4_CI_O[2])
+                                                      0.239    10.452 r  s2/in00_carry__5/O[2]
+                         net (fo=1, routed)           0.815    11.266    s2/incremented[27]
+    SLICE_X50Y55         LUT4 (Prop_lut4_I0_O)        0.302    11.568 r  s2/over_ceil_carry_i_2__1/O
+                         net (fo=1, routed)           0.000    11.568    s2/over_ceil_carry_i_2__1_n_0
+    SLICE_X50Y55         CARRY4 (Prop_carry4_S[2]_CO[3])
+                                                      0.380    11.948 r  s2/over_ceil_carry/CO[3]
+                         net (fo=3, routed)           1.073    13.021    s2/over_ceil
+    SLICE_X50Y51         LUT2 (Prop_lut2_I0_O)        0.150    13.171 r  s2/P_A1_i_32__1/O
+                         net (fo=1, routed)           0.476    13.647    s2/P_A1_i_32__1_n_0
+    SLICE_X49Y51         LUT6 (Prop_lut6_I1_O)        0.328    13.975 r  s2/P_A1_i_23__1/O
+                         net (fo=1, routed)           0.311    14.286    s2/P_A1_i_23__1_n_0
+    SLICE_X50Y51         LUT6 (Prop_lut6_I2_O)        0.124    14.410 r  s2/P_A1_i_1__1/O
+                         net (fo=45, routed)          2.268    16.678    s3/A[19]
+    DSP48_X0Y22          DSP48E1                                      r  s3/P_B0/A[19]
+  -------------------------------------------------------------------    -------------------
+
+                         (clock sample_clk rise edge)
+                                                     20.000    20.000 r  
+                                                      0.000    20.000 r  clk (IN)
+                         net (fo=285, unset)          0.924    20.924    s3/clk
+    DSP48_X0Y22          DSP48E1                                      r  s3/P_B0/CLK
+                         clock pessimism              0.000    20.924    
+                         clock uncertainty           -0.235    20.689    
+    DSP48_X0Y22          DSP48E1 (Setup_dsp48e1_CLK_A[19])
+                                                     -0.362    20.327    s3/P_B0
+  -------------------------------------------------------------------
+                         required time                         20.327    
+                         arrival time                         -16.678    
+  -------------------------------------------------------------------
+                         slack                                  3.649    
+
+Slack (MET) :             3.779ns  (required time - arrival time)
+  Source:                 s2/P_A1/CLK
+                            (rising edge-triggered cell DSP48E1 clocked by sample_clk  {rise@0.000ns fall@10.000ns period=20.000ns})
+  Destination:            s3/P_B0/A[24]
+                            (rising edge-triggered cell DSP48E1 clocked by sample_clk  {rise@0.000ns fall@10.000ns period=20.000ns})
+  Path Group:             sample_clk
+  Path Type:              Setup (Max at Slow Process Corner)
+  Requirement:            20.000ns  (sample_clk rise@20.000ns - sample_clk rise@0.000ns)
+  Data Path Delay:        15.575ns  (logic 8.263ns (53.054%)  route 7.312ns (46.946%))
+  Logic Levels:           17  (CARRY4=12 LUT2=1 LUT4=1 LUT6=3)
+  Clock Path Skew:        -0.049ns (DCD - SCD + CPR)
+    Destination Clock Delay (DCD):    0.924ns = ( 20.924 - 20.000 ) 
+    Source Clock Delay      (SCD):    0.973ns
+    Clock Pessimism Removal (CPR):    0.000ns
+  Clock Uncertainty:      0.235ns  ((TSJ^2 + TIJ^2)^1/2 + DJ) / 2 + PE + UU
+    Total System Jitter     (TSJ):    0.071ns
+    Total Input Jitter      (TIJ):    0.000ns
+    Discrete Jitter          (DJ):    0.000ns
+    Phase Error              (PE):    0.000ns
+    User Uncertainty         (UU):    0.200ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock sample_clk rise edge)
+                                                      0.000     0.000 r  
+                                                      0.000     0.000 r  clk (IN)
+                         net (fo=285, unset)          0.973     0.973    s2/clk
+    DSP48_X1Y21          DSP48E1                                      r  s2/P_A1/CLK
+  -------------------------------------------------------------------    -------------------
+    DSP48_X1Y21          DSP48E1 (Prop_dsp48e1_CLK_P[1])
+                                                      4.009     4.982 r  s2/P_A1/P[1]
+                         net (fo=3, routed)           1.262     6.244    s2/P_A1_n_104
+    SLICE_X56Y47         LUT6 (Prop_lut6_I0_O)        0.124     6.368 r  s2/acc_carry_i_9__1/O
+                         net (fo=1, routed)           0.579     6.947    s2/acc_carry_i_9__1_n_0
+    SLICE_X54Y47         CARRY4 (Prop_carry4_S[0]_CO[3])
+                                                      0.637     7.584 r  s2/acc_carry/CO[3]
+                         net (fo=1, routed)           0.000     7.584    s2/acc_carry_n_0
+    SLICE_X54Y48         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117     7.701 r  s2/acc_carry__0/CO[3]
+                         net (fo=1, routed)           0.000     7.701    s2/acc_carry__0_n_0
+    SLICE_X54Y49         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117     7.818 r  s2/acc_carry__1/CO[3]
+                         net (fo=1, routed)           0.001     7.819    s2/acc_carry__1_n_0
+    SLICE_X54Y50         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117     7.936 r  s2/acc_carry__2/CO[3]
+                         net (fo=1, routed)           0.000     7.936    s2/acc_carry__2_n_0
+    SLICE_X54Y51         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117     8.053 r  s2/acc_carry__3/CO[3]
+                         net (fo=1, routed)           0.000     8.053    s2/acc_carry__3_n_0
+    SLICE_X54Y52         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117     8.170 r  s2/acc_carry__4/CO[3]
+                         net (fo=1, routed)           0.000     8.170    s2/acc_carry__4_n_0
+    SLICE_X54Y53         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117     8.287 r  s2/acc_carry__5/CO[3]
+                         net (fo=1, routed)           0.000     8.287    s2/acc_carry__5_n_0
+    SLICE_X54Y54         CARRY4 (Prop_carry4_CI_O[3])
+                                                      0.315     8.602 r  s2/acc_carry__6/O[3]
+                         net (fo=2, routed)           0.658     9.260    s2/acc_carry__6_n_4
+    SLICE_X51Y54         CARRY4 (Prop_carry4_S[0]_CO[3])
+                                                      0.839    10.099 r  s2/in00_carry__3/CO[3]
+                         net (fo=1, routed)           0.000    10.099    s2/in00_carry__3_n_0
+    SLICE_X51Y55         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114    10.213 r  s2/in00_carry__4/CO[3]
+                         net (fo=1, routed)           0.000    10.213    s2/in00_carry__4_n_0
+    SLICE_X51Y56         CARRY4 (Prop_carry4_CI_O[2])
+                                                      0.239    10.452 r  s2/in00_carry__5/O[2]
+                         net (fo=1, routed)           0.815    11.266    s2/incremented[27]
+    SLICE_X50Y55         LUT4 (Prop_lut4_I0_O)        0.302    11.568 r  s2/over_ceil_carry_i_2__1/O
+                         net (fo=1, routed)           0.000    11.568    s2/over_ceil_carry_i_2__1_n_0
+    SLICE_X50Y55         CARRY4 (Prop_carry4_S[2]_CO[3])
+                                                      0.380    11.948 r  s2/over_ceil_carry/CO[3]
+                         net (fo=3, routed)           1.073    13.021    s2/over_ceil
+    SLICE_X50Y51         LUT2 (Prop_lut2_I0_O)        0.150    13.171 r  s2/P_A1_i_32__1/O
+                         net (fo=1, routed)           0.476    13.647    s2/P_A1_i_32__1_n_0
+    SLICE_X49Y51         LUT6 (Prop_lut6_I1_O)        0.328    13.975 r  s2/P_A1_i_23__1/O
+                         net (fo=1, routed)           0.311    14.286    s2/P_A1_i_23__1_n_0
+    SLICE_X50Y51         LUT6 (Prop_lut6_I2_O)        0.124    14.410 r  s2/P_A1_i_1__1/O
+                         net (fo=45, routed)          2.137    16.548    s3/A[19]
+    DSP48_X0Y22          DSP48E1                                      r  s3/P_B0/A[24]
+  -------------------------------------------------------------------    -------------------
+
+                         (clock sample_clk rise edge)
+                                                     20.000    20.000 r  
+                                                      0.000    20.000 r  clk (IN)
+                         net (fo=285, unset)          0.924    20.924    s3/clk
+    DSP48_X0Y22          DSP48E1                                      r  s3/P_B0/CLK
+                         clock pessimism              0.000    20.924    
+                         clock uncertainty           -0.235    20.689    
+    DSP48_X0Y22          DSP48E1 (Setup_dsp48e1_CLK_A[24])
+                                                     -0.362    20.327    s3/P_B0
+  -------------------------------------------------------------------
+                         required time                         20.327    
+                         arrival time                         -16.548    
+  -------------------------------------------------------------------
+                         slack                                  3.779    
+
+Slack (MET) :             3.779ns  (required time - arrival time)
+  Source:                 s2/P_A1/CLK
+                            (rising edge-triggered cell DSP48E1 clocked by sample_clk  {rise@0.000ns fall@10.000ns period=20.000ns})
+  Destination:            s3/P_B0/A[25]
+                            (rising edge-triggered cell DSP48E1 clocked by sample_clk  {rise@0.000ns fall@10.000ns period=20.000ns})
+  Path Group:             sample_clk
+  Path Type:              Setup (Max at Slow Process Corner)
+  Requirement:            20.000ns  (sample_clk rise@20.000ns - sample_clk rise@0.000ns)
+  Data Path Delay:        15.575ns  (logic 8.263ns (53.054%)  route 7.312ns (46.946%))
+  Logic Levels:           17  (CARRY4=12 LUT2=1 LUT4=1 LUT6=3)
+  Clock Path Skew:        -0.049ns (DCD - SCD + CPR)
+    Destination Clock Delay (DCD):    0.924ns = ( 20.924 - 20.000 ) 
+    Source Clock Delay      (SCD):    0.973ns
+    Clock Pessimism Removal (CPR):    0.000ns
+  Clock Uncertainty:      0.235ns  ((TSJ^2 + TIJ^2)^1/2 + DJ) / 2 + PE + UU
+    Total System Jitter     (TSJ):    0.071ns
+    Total Input Jitter      (TIJ):    0.000ns
+    Discrete Jitter          (DJ):    0.000ns
+    Phase Error              (PE):    0.000ns
+    User Uncertainty         (UU):    0.200ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock sample_clk rise edge)
+                                                      0.000     0.000 r  
+                                                      0.000     0.000 r  clk (IN)
+                         net (fo=285, unset)          0.973     0.973    s2/clk
+    DSP48_X1Y21          DSP48E1                                      r  s2/P_A1/CLK
+  -------------------------------------------------------------------    -------------------
+    DSP48_X1Y21          DSP48E1 (Prop_dsp48e1_CLK_P[1])
+                                                      4.009     4.982 r  s2/P_A1/P[1]
+                         net (fo=3, routed)           1.262     6.244    s2/P_A1_n_104
+    SLICE_X56Y47         LUT6 (Prop_lut6_I0_O)        0.124     6.368 r  s2/acc_carry_i_9__1/O
+                         net (fo=1, routed)           0.579     6.947    s2/acc_carry_i_9__1_n_0
+    SLICE_X54Y47         CARRY4 (Prop_carry4_S[0]_CO[3])
+                                                      0.637     7.584 r  s2/acc_carry/CO[3]
+                         net (fo=1, routed)           0.000     7.584    s2/acc_carry_n_0
+    SLICE_X54Y48         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117     7.701 r  s2/acc_carry__0/CO[3]
+                         net (fo=1, routed)           0.000     7.701    s2/acc_carry__0_n_0
+    SLICE_X54Y49         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117     7.818 r  s2/acc_carry__1/CO[3]
+                         net (fo=1, routed)           0.001     7.819    s2/acc_carry__1_n_0
+    SLICE_X54Y50         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117     7.936 r  s2/acc_carry__2/CO[3]
+                         net (fo=1, routed)           0.000     7.936    s2/acc_carry__2_n_0
+    SLICE_X54Y51         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117     8.053 r  s2/acc_carry__3/CO[3]
+                         net (fo=1, routed)           0.000     8.053    s2/acc_carry__3_n_0
+    SLICE_X54Y52         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117     8.170 r  s2/acc_carry__4/CO[3]
+                         net (fo=1, routed)           0.000     8.170    s2/acc_carry__4_n_0
+    SLICE_X54Y53         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117     8.287 r  s2/acc_carry__5/CO[3]
+                         net (fo=1, routed)           0.000     8.287    s2/acc_carry__5_n_0
+    SLICE_X54Y54         CARRY4 (Prop_carry4_CI_O[3])
+                                                      0.315     8.602 r  s2/acc_carry__6/O[3]
+                         net (fo=2, routed)           0.658     9.260    s2/acc_carry__6_n_4
+    SLICE_X51Y54         CARRY4 (Prop_carry4_S[0]_CO[3])
+                                                      0.839    10.099 r  s2/in00_carry__3/CO[3]
+                         net (fo=1, routed)           0.000    10.099    s2/in00_carry__3_n_0
+    SLICE_X51Y55         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114    10.213 r  s2/in00_carry__4/CO[3]
+                         net (fo=1, routed)           0.000    10.213    s2/in00_carry__4_n_0
+    SLICE_X51Y56         CARRY4 (Prop_carry4_CI_O[2])
+                                                      0.239    10.452 r  s2/in00_carry__5/O[2]
+                         net (fo=1, routed)           0.815    11.266    s2/incremented[27]
+    SLICE_X50Y55         LUT4 (Prop_lut4_I0_O)        0.302    11.568 r  s2/over_ceil_carry_i_2__1/O
+                         net (fo=1, routed)           0.000    11.568    s2/over_ceil_carry_i_2__1_n_0
+    SLICE_X50Y55         CARRY4 (Prop_carry4_S[2]_CO[3])
+                                                      0.380    11.948 r  s2/over_ceil_carry/CO[3]
+                         net (fo=3, routed)           1.073    13.021    s2/over_ceil
+    SLICE_X50Y51         LUT2 (Prop_lut2_I0_O)        0.150    13.171 r  s2/P_A1_i_32__1/O
+                         net (fo=1, routed)           0.476    13.647    s2/P_A1_i_32__1_n_0
+    SLICE_X49Y51         LUT6 (Prop_lut6_I1_O)        0.328    13.975 r  s2/P_A1_i_23__1/O
+                         net (fo=1, routed)           0.311    14.286    s2/P_A1_i_23__1_n_0
+    SLICE_X50Y51         LUT6 (Prop_lut6_I2_O)        0.124    14.410 r  s2/P_A1_i_1__1/O
+                         net (fo=45, routed)          2.137    16.548    s3/A[19]
+    DSP48_X0Y22          DSP48E1                                      r  s3/P_B0/A[25]
+  -------------------------------------------------------------------    -------------------
+
+                         (clock sample_clk rise edge)
+                                                     20.000    20.000 r  
+                                                      0.000    20.000 r  clk (IN)
+                         net (fo=285, unset)          0.924    20.924    s3/clk
+    DSP48_X0Y22          DSP48E1                                      r  s3/P_B0/CLK
+                         clock pessimism              0.000    20.924    
+                         clock uncertainty           -0.235    20.689    
+    DSP48_X0Y22          DSP48E1 (Setup_dsp48e1_CLK_A[25])
+                                                     -0.362    20.327    s3/P_B0
+  -------------------------------------------------------------------
+                         required time                         20.327    
+                         arrival time                         -16.548    
+  -------------------------------------------------------------------
+                         slack                                  3.779    
+
+Slack (MET) :             3.779ns  (required time - arrival time)
+  Source:                 s2/P_A1/CLK
+                            (rising edge-triggered cell DSP48E1 clocked by sample_clk  {rise@0.000ns fall@10.000ns period=20.000ns})
+  Destination:            s3/P_B0/A[26]
+                            (rising edge-triggered cell DSP48E1 clocked by sample_clk  {rise@0.000ns fall@10.000ns period=20.000ns})
+  Path Group:             sample_clk
+  Path Type:              Setup (Max at Slow Process Corner)
+  Requirement:            20.000ns  (sample_clk rise@20.000ns - sample_clk rise@0.000ns)
+  Data Path Delay:        15.575ns  (logic 8.263ns (53.054%)  route 7.312ns (46.946%))
+  Logic Levels:           17  (CARRY4=12 LUT2=1 LUT4=1 LUT6=3)
+  Clock Path Skew:        -0.049ns (DCD - SCD + CPR)
+    Destination Clock Delay (DCD):    0.924ns = ( 20.924 - 20.000 ) 
+    Source Clock Delay      (SCD):    0.973ns
+    Clock Pessimism Removal (CPR):    0.000ns
+  Clock Uncertainty:      0.235ns  ((TSJ^2 + TIJ^2)^1/2 + DJ) / 2 + PE + UU
+    Total System Jitter     (TSJ):    0.071ns
+    Total Input Jitter      (TIJ):    0.000ns
+    Discrete Jitter          (DJ):    0.000ns
+    Phase Error              (PE):    0.000ns
+    User Uncertainty         (UU):    0.200ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock sample_clk rise edge)
+                                                      0.000     0.000 r  
+                                                      0.000     0.000 r  clk (IN)
+                         net (fo=285, unset)          0.973     0.973    s2/clk
+    DSP48_X1Y21          DSP48E1                                      r  s2/P_A1/CLK
+  -------------------------------------------------------------------    -------------------
+    DSP48_X1Y21          DSP48E1 (Prop_dsp48e1_CLK_P[1])
+                                                      4.009     4.982 r  s2/P_A1/P[1]
+                         net (fo=3, routed)           1.262     6.244    s2/P_A1_n_104
+    SLICE_X56Y47         LUT6 (Prop_lut6_I0_O)        0.124     6.368 r  s2/acc_carry_i_9__1/O
+                         net (fo=1, routed)           0.579     6.947    s2/acc_carry_i_9__1_n_0
+    SLICE_X54Y47         CARRY4 (Prop_carry4_S[0]_CO[3])
+                                                      0.637     7.584 r  s2/acc_carry/CO[3]
+                         net (fo=1, routed)           0.000     7.584    s2/acc_carry_n_0
+    SLICE_X54Y48         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117     7.701 r  s2/acc_carry__0/CO[3]
+                         net (fo=1, routed)           0.000     7.701    s2/acc_carry__0_n_0
+    SLICE_X54Y49         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117     7.818 r  s2/acc_carry__1/CO[3]
+                         net (fo=1, routed)           0.001     7.819    s2/acc_carry__1_n_0
+    SLICE_X54Y50         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117     7.936 r  s2/acc_carry__2/CO[3]
+                         net (fo=1, routed)           0.000     7.936    s2/acc_carry__2_n_0
+    SLICE_X54Y51         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117     8.053 r  s2/acc_carry__3/CO[3]
+                         net (fo=1, routed)           0.000     8.053    s2/acc_carry__3_n_0
+    SLICE_X54Y52         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117     8.170 r  s2/acc_carry__4/CO[3]
+                         net (fo=1, routed)           0.000     8.170    s2/acc_carry__4_n_0
+    SLICE_X54Y53         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117     8.287 r  s2/acc_carry__5/CO[3]
+                         net (fo=1, routed)           0.000     8.287    s2/acc_carry__5_n_0
+    SLICE_X54Y54         CARRY4 (Prop_carry4_CI_O[3])
+                                                      0.315     8.602 r  s2/acc_carry__6/O[3]
+                         net (fo=2, routed)           0.658     9.260    s2/acc_carry__6_n_4
+    SLICE_X51Y54         CARRY4 (Prop_carry4_S[0]_CO[3])
+                                                      0.839    10.099 r  s2/in00_carry__3/CO[3]
+                         net (fo=1, routed)           0.000    10.099    s2/in00_carry__3_n_0
+    SLICE_X51Y55         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114    10.213 r  s2/in00_carry__4/CO[3]
+                         net (fo=1, routed)           0.000    10.213    s2/in00_carry__4_n_0
+    SLICE_X51Y56         CARRY4 (Prop_carry4_CI_O[2])
+                                                      0.239    10.452 r  s2/in00_carry__5/O[2]
+                         net (fo=1, routed)           0.815    11.266    s2/incremented[27]
+    SLICE_X50Y55         LUT4 (Prop_lut4_I0_O)        0.302    11.568 r  s2/over_ceil_carry_i_2__1/O
+                         net (fo=1, routed)           0.000    11.568    s2/over_ceil_carry_i_2__1_n_0
+    SLICE_X50Y55         CARRY4 (Prop_carry4_S[2]_CO[3])
+                                                      0.380    11.948 r  s2/over_ceil_carry/CO[3]
+                         net (fo=3, routed)           1.073    13.021    s2/over_ceil
+    SLICE_X50Y51         LUT2 (Prop_lut2_I0_O)        0.150    13.171 r  s2/P_A1_i_32__1/O
+                         net (fo=1, routed)           0.476    13.647    s2/P_A1_i_32__1_n_0
+    SLICE_X49Y51         LUT6 (Prop_lut6_I1_O)        0.328    13.975 r  s2/P_A1_i_23__1/O
+                         net (fo=1, routed)           0.311    14.286    s2/P_A1_i_23__1_n_0
+    SLICE_X50Y51         LUT6 (Prop_lut6_I2_O)        0.124    14.410 r  s2/P_A1_i_1__1/O
+                         net (fo=45, routed)          2.137    16.548    s3/A[19]
+    DSP48_X0Y22          DSP48E1                                      r  s3/P_B0/A[26]
+  -------------------------------------------------------------------    -------------------
+
+                         (clock sample_clk rise edge)
+                                                     20.000    20.000 r  
+                                                      0.000    20.000 r  clk (IN)
+                         net (fo=285, unset)          0.924    20.924    s3/clk
+    DSP48_X0Y22          DSP48E1                                      r  s3/P_B0/CLK
+                         clock pessimism              0.000    20.924    
+                         clock uncertainty           -0.235    20.689    
+    DSP48_X0Y22          DSP48E1 (Setup_dsp48e1_CLK_A[26])
+                                                     -0.362    20.327    s3/P_B0
+  -------------------------------------------------------------------
+                         required time                         20.327    
+                         arrival time                         -16.548    
+  -------------------------------------------------------------------
+                         slack                                  3.779    
+
+Slack (MET) :             3.779ns  (required time - arrival time)
+  Source:                 s2/P_A1/CLK
+                            (rising edge-triggered cell DSP48E1 clocked by sample_clk  {rise@0.000ns fall@10.000ns period=20.000ns})
+  Destination:            s3/P_B0/A[27]
+                            (rising edge-triggered cell DSP48E1 clocked by sample_clk  {rise@0.000ns fall@10.000ns period=20.000ns})
+  Path Group:             sample_clk
+  Path Type:              Setup (Max at Slow Process Corner)
+  Requirement:            20.000ns  (sample_clk rise@20.000ns - sample_clk rise@0.000ns)
+  Data Path Delay:        15.575ns  (logic 8.263ns (53.054%)  route 7.312ns (46.946%))
+  Logic Levels:           17  (CARRY4=12 LUT2=1 LUT4=1 LUT6=3)
+  Clock Path Skew:        -0.049ns (DCD - SCD + CPR)
+    Destination Clock Delay (DCD):    0.924ns = ( 20.924 - 20.000 ) 
+    Source Clock Delay      (SCD):    0.973ns
+    Clock Pessimism Removal (CPR):    0.000ns
+  Clock Uncertainty:      0.235ns  ((TSJ^2 + TIJ^2)^1/2 + DJ) / 2 + PE + UU
+    Total System Jitter     (TSJ):    0.071ns
+    Total Input Jitter      (TIJ):    0.000ns
+    Discrete Jitter          (DJ):    0.000ns
+    Phase Error              (PE):    0.000ns
+    User Uncertainty         (UU):    0.200ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock sample_clk rise edge)
+                                                      0.000     0.000 r  
+                                                      0.000     0.000 r  clk (IN)
+                         net (fo=285, unset)          0.973     0.973    s2/clk
+    DSP48_X1Y21          DSP48E1                                      r  s2/P_A1/CLK
+  -------------------------------------------------------------------    -------------------
+    DSP48_X1Y21          DSP48E1 (Prop_dsp48e1_CLK_P[1])
+                                                      4.009     4.982 r  s2/P_A1/P[1]
+                         net (fo=3, routed)           1.262     6.244    s2/P_A1_n_104
+    SLICE_X56Y47         LUT6 (Prop_lut6_I0_O)        0.124     6.368 r  s2/acc_carry_i_9__1/O
+                         net (fo=1, routed)           0.579     6.947    s2/acc_carry_i_9__1_n_0
+    SLICE_X54Y47         CARRY4 (Prop_carry4_S[0]_CO[3])
+                                                      0.637     7.584 r  s2/acc_carry/CO[3]
+                         net (fo=1, routed)           0.000     7.584    s2/acc_carry_n_0
+    SLICE_X54Y48         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117     7.701 r  s2/acc_carry__0/CO[3]
+                         net (fo=1, routed)           0.000     7.701    s2/acc_carry__0_n_0
+    SLICE_X54Y49         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117     7.818 r  s2/acc_carry__1/CO[3]
+                         net (fo=1, routed)           0.001     7.819    s2/acc_carry__1_n_0
+    SLICE_X54Y50         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117     7.936 r  s2/acc_carry__2/CO[3]
+                         net (fo=1, routed)           0.000     7.936    s2/acc_carry__2_n_0
+    SLICE_X54Y51         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117     8.053 r  s2/acc_carry__3/CO[3]
+                         net (fo=1, routed)           0.000     8.053    s2/acc_carry__3_n_0
+    SLICE_X54Y52         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117     8.170 r  s2/acc_carry__4/CO[3]
+                         net (fo=1, routed)           0.000     8.170    s2/acc_carry__4_n_0
+    SLICE_X54Y53         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117     8.287 r  s2/acc_carry__5/CO[3]
+                         net (fo=1, routed)           0.000     8.287    s2/acc_carry__5_n_0
+    SLICE_X54Y54         CARRY4 (Prop_carry4_CI_O[3])
+                                                      0.315     8.602 r  s2/acc_carry__6/O[3]
+                         net (fo=2, routed)           0.658     9.260    s2/acc_carry__6_n_4
+    SLICE_X51Y54         CARRY4 (Prop_carry4_S[0]_CO[3])
+                                                      0.839    10.099 r  s2/in00_carry__3/CO[3]
+                         net (fo=1, routed)           0.000    10.099    s2/in00_carry__3_n_0
+    SLICE_X51Y55         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114    10.213 r  s2/in00_carry__4/CO[3]
+                         net (fo=1, routed)           0.000    10.213    s2/in00_carry__4_n_0
+    SLICE_X51Y56         CARRY4 (Prop_carry4_CI_O[2])
+                                                      0.239    10.452 r  s2/in00_carry__5/O[2]
+                         net (fo=1, routed)           0.815    11.266    s2/incremented[27]
+    SLICE_X50Y55         LUT4 (Prop_lut4_I0_O)        0.302    11.568 r  s2/over_ceil_carry_i_2__1/O
+                         net (fo=1, routed)           0.000    11.568    s2/over_ceil_carry_i_2__1_n_0
+    SLICE_X50Y55         CARRY4 (Prop_carry4_S[2]_CO[3])
+                                                      0.380    11.948 r  s2/over_ceil_carry/CO[3]
+                         net (fo=3, routed)           1.073    13.021    s2/over_ceil
+    SLICE_X50Y51         LUT2 (Prop_lut2_I0_O)        0.150    13.171 r  s2/P_A1_i_32__1/O
+                         net (fo=1, routed)           0.476    13.647    s2/P_A1_i_32__1_n_0
+    SLICE_X49Y51         LUT6 (Prop_lut6_I1_O)        0.328    13.975 r  s2/P_A1_i_23__1/O
+                         net (fo=1, routed)           0.311    14.286    s2/P_A1_i_23__1_n_0
+    SLICE_X50Y51         LUT6 (Prop_lut6_I2_O)        0.124    14.410 r  s2/P_A1_i_1__1/O
+                         net (fo=45, routed)          2.137    16.548    s3/A[19]
+    DSP48_X0Y22          DSP48E1                                      r  s3/P_B0/A[27]
+  -------------------------------------------------------------------    -------------------
+
+                         (clock sample_clk rise edge)
+                                                     20.000    20.000 r  
+                                                      0.000    20.000 r  clk (IN)
+                         net (fo=285, unset)          0.924    20.924    s3/clk
+    DSP48_X0Y22          DSP48E1                                      r  s3/P_B0/CLK
+                         clock pessimism              0.000    20.924    
+                         clock uncertainty           -0.235    20.689    
+    DSP48_X0Y22          DSP48E1 (Setup_dsp48e1_CLK_A[27])
+                                                     -0.362    20.327    s3/P_B0
+  -------------------------------------------------------------------
+                         required time                         20.327    
+                         arrival time                         -16.548    
+  -------------------------------------------------------------------
+                         slack                                  3.779    
+
+Slack (MET) :             3.814ns  (required time - arrival time)
+  Source:                 s2/P_A1/CLK
+                            (rising edge-triggered cell DSP48E1 clocked by sample_clk  {rise@0.000ns fall@10.000ns period=20.000ns})
+  Destination:            s3/P_B0/A[29]
+                            (rising edge-triggered cell DSP48E1 clocked by sample_clk  {rise@0.000ns fall@10.000ns period=20.000ns})
+  Path Group:             sample_clk
+  Path Type:              Setup (Max at Slow Process Corner)
+  Requirement:            20.000ns  (sample_clk rise@20.000ns - sample_clk rise@0.000ns)
+  Data Path Delay:        15.540ns  (logic 8.263ns (53.173%)  route 7.277ns (46.827%))
+  Logic Levels:           17  (CARRY4=12 LUT2=1 LUT4=1 LUT6=3)
+  Clock Path Skew:        -0.049ns (DCD - SCD + CPR)
+    Destination Clock Delay (DCD):    0.924ns = ( 20.924 - 20.000 ) 
+    Source Clock Delay      (SCD):    0.973ns
+    Clock Pessimism Removal (CPR):    0.000ns
+  Clock Uncertainty:      0.235ns  ((TSJ^2 + TIJ^2)^1/2 + DJ) / 2 + PE + UU
+    Total System Jitter     (TSJ):    0.071ns
+    Total Input Jitter      (TIJ):    0.000ns
+    Discrete Jitter          (DJ):    0.000ns
+    Phase Error              (PE):    0.000ns
+    User Uncertainty         (UU):    0.200ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock sample_clk rise edge)
+                                                      0.000     0.000 r  
+                                                      0.000     0.000 r  clk (IN)
+                         net (fo=285, unset)          0.973     0.973    s2/clk
+    DSP48_X1Y21          DSP48E1                                      r  s2/P_A1/CLK
+  -------------------------------------------------------------------    -------------------
+    DSP48_X1Y21          DSP48E1 (Prop_dsp48e1_CLK_P[1])
+                                                      4.009     4.982 r  s2/P_A1/P[1]
+                         net (fo=3, routed)           1.262     6.244    s2/P_A1_n_104
+    SLICE_X56Y47         LUT6 (Prop_lut6_I0_O)        0.124     6.368 r  s2/acc_carry_i_9__1/O
+                         net (fo=1, routed)           0.579     6.947    s2/acc_carry_i_9__1_n_0
+    SLICE_X54Y47         CARRY4 (Prop_carry4_S[0]_CO[3])
+                                                      0.637     7.584 r  s2/acc_carry/CO[3]
+                         net (fo=1, routed)           0.000     7.584    s2/acc_carry_n_0
+    SLICE_X54Y48         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117     7.701 r  s2/acc_carry__0/CO[3]
+                         net (fo=1, routed)           0.000     7.701    s2/acc_carry__0_n_0
+    SLICE_X54Y49         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117     7.818 r  s2/acc_carry__1/CO[3]
+                         net (fo=1, routed)           0.001     7.819    s2/acc_carry__1_n_0
+    SLICE_X54Y50         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117     7.936 r  s2/acc_carry__2/CO[3]
+                         net (fo=1, routed)           0.000     7.936    s2/acc_carry__2_n_0
+    SLICE_X54Y51         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117     8.053 r  s2/acc_carry__3/CO[3]
+                         net (fo=1, routed)           0.000     8.053    s2/acc_carry__3_n_0
+    SLICE_X54Y52         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117     8.170 r  s2/acc_carry__4/CO[3]
+                         net (fo=1, routed)           0.000     8.170    s2/acc_carry__4_n_0
+    SLICE_X54Y53         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117     8.287 r  s2/acc_carry__5/CO[3]
+                         net (fo=1, routed)           0.000     8.287    s2/acc_carry__5_n_0
+    SLICE_X54Y54         CARRY4 (Prop_carry4_CI_O[3])
+                                                      0.315     8.602 r  s2/acc_carry__6/O[3]
+                         net (fo=2, routed)           0.658     9.260    s2/acc_carry__6_n_4
+    SLICE_X51Y54         CARRY4 (Prop_carry4_S[0]_CO[3])
+                                                      0.839    10.099 r  s2/in00_carry__3/CO[3]
+                         net (fo=1, routed)           0.000    10.099    s2/in00_carry__3_n_0
+    SLICE_X51Y55         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114    10.213 r  s2/in00_carry__4/CO[3]
+                         net (fo=1, routed)           0.000    10.213    s2/in00_carry__4_n_0
+    SLICE_X51Y56         CARRY4 (Prop_carry4_CI_O[2])
+                                                      0.239    10.452 r  s2/in00_carry__5/O[2]
+                         net (fo=1, routed)           0.815    11.266    s2/incremented[27]
+    SLICE_X50Y55         LUT4 (Prop_lut4_I0_O)        0.302    11.568 r  s2/over_ceil_carry_i_2__1/O
+                         net (fo=1, routed)           0.000    11.568    s2/over_ceil_carry_i_2__1_n_0
+    SLICE_X50Y55         CARRY4 (Prop_carry4_S[2]_CO[3])
+                                                      0.380    11.948 r  s2/over_ceil_carry/CO[3]
+                         net (fo=3, routed)           1.073    13.021    s2/over_ceil
+    SLICE_X50Y51         LUT2 (Prop_lut2_I0_O)        0.150    13.171 r  s2/P_A1_i_32__1/O
+                         net (fo=1, routed)           0.476    13.647    s2/P_A1_i_32__1_n_0
+    SLICE_X49Y51         LUT6 (Prop_lut6_I1_O)        0.328    13.975 r  s2/P_A1_i_23__1/O
+                         net (fo=1, routed)           0.311    14.286    s2/P_A1_i_23__1_n_0
+    SLICE_X50Y51         LUT6 (Prop_lut6_I2_O)        0.124    14.410 r  s2/P_A1_i_1__1/O
+                         net (fo=45, routed)          2.102    16.513    s3/A[19]
+    DSP48_X0Y22          DSP48E1                                      r  s3/P_B0/A[29]
+  -------------------------------------------------------------------    -------------------
+
+                         (clock sample_clk rise edge)
+                                                     20.000    20.000 r  
+                                                      0.000    20.000 r  clk (IN)
+                         net (fo=285, unset)          0.924    20.924    s3/clk
+    DSP48_X0Y22          DSP48E1                                      r  s3/P_B0/CLK
+                         clock pessimism              0.000    20.924    
+                         clock uncertainty           -0.235    20.689    
+    DSP48_X0Y22          DSP48E1 (Setup_dsp48e1_CLK_A[29])
+                                                     -0.362    20.327    s3/P_B0
+  -------------------------------------------------------------------
+                         required time                         20.327    
+                         arrival time                         -16.513    
+  -------------------------------------------------------------------
+                         slack                                  3.814    
+
+Slack (MET) :             3.871ns  (required time - arrival time)
+  Source:                 s2/P_A1/CLK
+                            (rising edge-triggered cell DSP48E1 clocked by sample_clk  {rise@0.000ns fall@10.000ns period=20.000ns})
+  Destination:            s3/P_B0/A[15]
+                            (rising edge-triggered cell DSP48E1 clocked by sample_clk  {rise@0.000ns fall@10.000ns period=20.000ns})
+  Path Group:             sample_clk
+  Path Type:              Setup (Max at Slow Process Corner)
+  Requirement:            20.000ns  (sample_clk rise@20.000ns - sample_clk rise@0.000ns)
+  Data Path Delay:        15.483ns  (logic 8.033ns (51.884%)  route 7.450ns (48.116%))
+  Logic Levels:           17  (CARRY4=12 LUT3=1 LUT4=1 LUT5=1 LUT6=2)
+  Clock Path Skew:        -0.049ns (DCD - SCD + CPR)
+    Destination Clock Delay (DCD):    0.924ns = ( 20.924 - 20.000 ) 
+    Source Clock Delay      (SCD):    0.973ns
+    Clock Pessimism Removal (CPR):    0.000ns
+  Clock Uncertainty:      0.235ns  ((TSJ^2 + TIJ^2)^1/2 + DJ) / 2 + PE + UU
+    Total System Jitter     (TSJ):    0.071ns
+    Total Input Jitter      (TIJ):    0.000ns
+    Discrete Jitter          (DJ):    0.000ns
+    Phase Error              (PE):    0.000ns
+    User Uncertainty         (UU):    0.200ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock sample_clk rise edge)
+                                                      0.000     0.000 r  
+                                                      0.000     0.000 r  clk (IN)
+                         net (fo=285, unset)          0.973     0.973    s2/clk
+    DSP48_X1Y21          DSP48E1                                      r  s2/P_A1/CLK
+  -------------------------------------------------------------------    -------------------
+    DSP48_X1Y21          DSP48E1 (Prop_dsp48e1_CLK_P[1])
+                                                      4.009     4.982 r  s2/P_A1/P[1]
+                         net (fo=3, routed)           1.262     6.244    s2/P_A1_n_104
+    SLICE_X56Y47         LUT6 (Prop_lut6_I0_O)        0.124     6.368 r  s2/acc_carry_i_9__1/O
+                         net (fo=1, routed)           0.579     6.947    s2/acc_carry_i_9__1_n_0
+    SLICE_X54Y47         CARRY4 (Prop_carry4_S[0]_CO[3])
+                                                      0.637     7.584 r  s2/acc_carry/CO[3]
+                         net (fo=1, routed)           0.000     7.584    s2/acc_carry_n_0
+    SLICE_X54Y48         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117     7.701 r  s2/acc_carry__0/CO[3]
+                         net (fo=1, routed)           0.000     7.701    s2/acc_carry__0_n_0
+    SLICE_X54Y49         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117     7.818 r  s2/acc_carry__1/CO[3]
+                         net (fo=1, routed)           0.001     7.819    s2/acc_carry__1_n_0
+    SLICE_X54Y50         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117     7.936 r  s2/acc_carry__2/CO[3]
+                         net (fo=1, routed)           0.000     7.936    s2/acc_carry__2_n_0
+    SLICE_X54Y51         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117     8.053 r  s2/acc_carry__3/CO[3]
+                         net (fo=1, routed)           0.000     8.053    s2/acc_carry__3_n_0
+    SLICE_X54Y52         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117     8.170 r  s2/acc_carry__4/CO[3]
+                         net (fo=1, routed)           0.000     8.170    s2/acc_carry__4_n_0
+    SLICE_X54Y53         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117     8.287 r  s2/acc_carry__5/CO[3]
+                         net (fo=1, routed)           0.000     8.287    s2/acc_carry__5_n_0
+    SLICE_X54Y54         CARRY4 (Prop_carry4_CI_O[3])
+                                                      0.315     8.602 r  s2/acc_carry__6/O[3]
+                         net (fo=2, routed)           0.658     9.260    s2/acc_carry__6_n_4
+    SLICE_X51Y54         CARRY4 (Prop_carry4_S[0]_CO[3])
+                                                      0.839    10.099 r  s2/in00_carry__3/CO[3]
+                         net (fo=1, routed)           0.000    10.099    s2/in00_carry__3_n_0
+    SLICE_X51Y55         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114    10.213 r  s2/in00_carry__4/CO[3]
+                         net (fo=1, routed)           0.000    10.213    s2/in00_carry__4_n_0
+    SLICE_X51Y56         CARRY4 (Prop_carry4_CI_O[2])
+                                                      0.239    10.452 r  s2/in00_carry__5/O[2]
+                         net (fo=1, routed)           0.815    11.266    s2/incremented[27]
+    SLICE_X50Y55         LUT4 (Prop_lut4_I0_O)        0.302    11.568 r  s2/over_ceil_carry_i_2__1/O
+                         net (fo=1, routed)           0.000    11.568    s2/over_ceil_carry_i_2__1_n_0
+    SLICE_X50Y55         CARRY4 (Prop_carry4_S[2]_CO[3])
+                                                      0.380    11.948 r  s2/over_ceil_carry/CO[3]
+                         net (fo=3, routed)           0.932    12.880    s2/over_ceil
+    SLICE_X49Y51         LUT3 (Prop_lut3_I1_O)        0.124    13.004 r  s2/P_A1_i_33__1/O
+                         net (fo=1, routed)           0.263    13.267    s2/P_A1_i_33__1_n_0
+    SLICE_X49Y51         LUT6 (Prop_lut6_I0_O)        0.124    13.391 r  s2/P_A1_i_26__1/O
+                         net (fo=19, routed)          0.576    13.967    s2/P_A1_i_26__1_n_0
+    SLICE_X50Y53         LUT5 (Prop_lut5_I0_O)        0.124    14.091 r  s2/P_A1_i_5__1/O
+                         net (fo=5, routed)           2.364    16.456    s3/A[15]
+    DSP48_X0Y22          DSP48E1                                      r  s3/P_B0/A[15]
+  -------------------------------------------------------------------    -------------------
+
+                         (clock sample_clk rise edge)
+                                                     20.000    20.000 r  
+                                                      0.000    20.000 r  clk (IN)
+                         net (fo=285, unset)          0.924    20.924    s3/clk
+    DSP48_X0Y22          DSP48E1                                      r  s3/P_B0/CLK
+                         clock pessimism              0.000    20.924    
+                         clock uncertainty           -0.235    20.689    
+    DSP48_X0Y22          DSP48E1 (Setup_dsp48e1_CLK_A[15])
+                                                     -0.362    20.327    s3/P_B0
+  -------------------------------------------------------------------
+                         required time                         20.327    
+                         arrival time                         -16.456    
+  -------------------------------------------------------------------
+                         slack                                  3.871    
+
+Slack (MET) :             3.911ns  (required time - arrival time)
+  Source:                 s2/P_A1/CLK
+                            (rising edge-triggered cell DSP48E1 clocked by sample_clk  {rise@0.000ns fall@10.000ns period=20.000ns})
+  Destination:            s3/P_B0/A[6]
+                            (rising edge-triggered cell DSP48E1 clocked by sample_clk  {rise@0.000ns fall@10.000ns period=20.000ns})
+  Path Group:             sample_clk
+  Path Type:              Setup (Max at Slow Process Corner)
+  Requirement:            20.000ns  (sample_clk rise@20.000ns - sample_clk rise@0.000ns)
+  Data Path Delay:        15.443ns  (logic 8.033ns (52.016%)  route 7.410ns (47.984%))
+  Logic Levels:           17  (CARRY4=12 LUT3=1 LUT4=1 LUT5=1 LUT6=2)
+  Clock Path Skew:        -0.049ns (DCD - SCD + CPR)
+    Destination Clock Delay (DCD):    0.924ns = ( 20.924 - 20.000 ) 
+    Source Clock Delay      (SCD):    0.973ns
+    Clock Pessimism Removal (CPR):    0.000ns
+  Clock Uncertainty:      0.235ns  ((TSJ^2 + TIJ^2)^1/2 + DJ) / 2 + PE + UU
+    Total System Jitter     (TSJ):    0.071ns
+    Total Input Jitter      (TIJ):    0.000ns
+    Discrete Jitter          (DJ):    0.000ns
+    Phase Error              (PE):    0.000ns
+    User Uncertainty         (UU):    0.200ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock sample_clk rise edge)
+                                                      0.000     0.000 r  
+                                                      0.000     0.000 r  clk (IN)
+                         net (fo=285, unset)          0.973     0.973    s2/clk
+    DSP48_X1Y21          DSP48E1                                      r  s2/P_A1/CLK
+  -------------------------------------------------------------------    -------------------
+    DSP48_X1Y21          DSP48E1 (Prop_dsp48e1_CLK_P[1])
+                                                      4.009     4.982 r  s2/P_A1/P[1]
+                         net (fo=3, routed)           1.262     6.244    s2/P_A1_n_104
+    SLICE_X56Y47         LUT6 (Prop_lut6_I0_O)        0.124     6.368 r  s2/acc_carry_i_9__1/O
+                         net (fo=1, routed)           0.579     6.947    s2/acc_carry_i_9__1_n_0
+    SLICE_X54Y47         CARRY4 (Prop_carry4_S[0]_CO[3])
+                                                      0.637     7.584 r  s2/acc_carry/CO[3]
+                         net (fo=1, routed)           0.000     7.584    s2/acc_carry_n_0
+    SLICE_X54Y48         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117     7.701 r  s2/acc_carry__0/CO[3]
+                         net (fo=1, routed)           0.000     7.701    s2/acc_carry__0_n_0
+    SLICE_X54Y49         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117     7.818 r  s2/acc_carry__1/CO[3]
+                         net (fo=1, routed)           0.001     7.819    s2/acc_carry__1_n_0
+    SLICE_X54Y50         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117     7.936 r  s2/acc_carry__2/CO[3]
+                         net (fo=1, routed)           0.000     7.936    s2/acc_carry__2_n_0
+    SLICE_X54Y51         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117     8.053 r  s2/acc_carry__3/CO[3]
+                         net (fo=1, routed)           0.000     8.053    s2/acc_carry__3_n_0
+    SLICE_X54Y52         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117     8.170 r  s2/acc_carry__4/CO[3]
+                         net (fo=1, routed)           0.000     8.170    s2/acc_carry__4_n_0
+    SLICE_X54Y53         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117     8.287 r  s2/acc_carry__5/CO[3]
+                         net (fo=1, routed)           0.000     8.287    s2/acc_carry__5_n_0
+    SLICE_X54Y54         CARRY4 (Prop_carry4_CI_O[3])
+                                                      0.315     8.602 r  s2/acc_carry__6/O[3]
+                         net (fo=2, routed)           0.658     9.260    s2/acc_carry__6_n_4
+    SLICE_X51Y54         CARRY4 (Prop_carry4_S[0]_CO[3])
+                                                      0.839    10.099 r  s2/in00_carry__3/CO[3]
+                         net (fo=1, routed)           0.000    10.099    s2/in00_carry__3_n_0
+    SLICE_X51Y55         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114    10.213 r  s2/in00_carry__4/CO[3]
+                         net (fo=1, routed)           0.000    10.213    s2/in00_carry__4_n_0
+    SLICE_X51Y56         CARRY4 (Prop_carry4_CI_O[2])
+                                                      0.239    10.452 r  s2/in00_carry__5/O[2]
+                         net (fo=1, routed)           0.815    11.266    s2/incremented[27]
+    SLICE_X50Y55         LUT4 (Prop_lut4_I0_O)        0.302    11.568 r  s2/over_ceil_carry_i_2__1/O
+                         net (fo=1, routed)           0.000    11.568    s2/over_ceil_carry_i_2__1_n_0
+    SLICE_X50Y55         CARRY4 (Prop_carry4_S[2]_CO[3])
+                                                      0.380    11.948 r  s2/over_ceil_carry/CO[3]
+                         net (fo=3, routed)           0.932    12.880    s2/over_ceil
+    SLICE_X49Y51         LUT3 (Prop_lut3_I1_O)        0.124    13.004 r  s2/P_A1_i_33__1/O
+                         net (fo=1, routed)           0.263    13.267    s2/P_A1_i_33__1_n_0
+    SLICE_X49Y51         LUT6 (Prop_lut6_I0_O)        0.124    13.391 r  s2/P_A1_i_26__1/O
+                         net (fo=19, routed)          0.686    14.078    s2/P_A1_i_26__1_n_0
+    SLICE_X52Y51         LUT5 (Prop_lut5_I0_O)        0.124    14.202 r  s2/P_A1_i_14__1/O
+                         net (fo=5, routed)           2.215    16.416    s3/A[6]
+    DSP48_X0Y22          DSP48E1                                      r  s3/P_B0/A[6]
+  -------------------------------------------------------------------    -------------------
+
+                         (clock sample_clk rise edge)
+                                                     20.000    20.000 r  
+                                                      0.000    20.000 r  clk (IN)
+                         net (fo=285, unset)          0.924    20.924    s3/clk
+    DSP48_X0Y22          DSP48E1                                      r  s3/P_B0/CLK
+                         clock pessimism              0.000    20.924    
+                         clock uncertainty           -0.235    20.689    
+    DSP48_X0Y22          DSP48E1 (Setup_dsp48e1_CLK_A[6])
+                                                     -0.362    20.327    s3/P_B0
+  -------------------------------------------------------------------
+                         required time                         20.327    
+                         arrival time                         -16.416    
+  -------------------------------------------------------------------
+                         slack                                  3.911    
+
+Slack (MET) :             3.956ns  (required time - arrival time)
+  Source:                 s2/P_A1/CLK
+                            (rising edge-triggered cell DSP48E1 clocked by sample_clk  {rise@0.000ns fall@10.000ns period=20.000ns})
+  Destination:            s3/P_B0/A[20]
+                            (rising edge-triggered cell DSP48E1 clocked by sample_clk  {rise@0.000ns fall@10.000ns period=20.000ns})
+  Path Group:             sample_clk
+  Path Type:              Setup (Max at Slow Process Corner)
+  Requirement:            20.000ns  (sample_clk rise@20.000ns - sample_clk rise@0.000ns)
+  Data Path Delay:        15.398ns  (logic 8.263ns (53.664%)  route 7.135ns (46.336%))
+  Logic Levels:           17  (CARRY4=12 LUT2=1 LUT4=1 LUT6=3)
+  Clock Path Skew:        -0.049ns (DCD - SCD + CPR)
+    Destination Clock Delay (DCD):    0.924ns = ( 20.924 - 20.000 ) 
+    Source Clock Delay      (SCD):    0.973ns
+    Clock Pessimism Removal (CPR):    0.000ns
+  Clock Uncertainty:      0.235ns  ((TSJ^2 + TIJ^2)^1/2 + DJ) / 2 + PE + UU
+    Total System Jitter     (TSJ):    0.071ns
+    Total Input Jitter      (TIJ):    0.000ns
+    Discrete Jitter          (DJ):    0.000ns
+    Phase Error              (PE):    0.000ns
+    User Uncertainty         (UU):    0.200ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock sample_clk rise edge)
+                                                      0.000     0.000 r  
+                                                      0.000     0.000 r  clk (IN)
+                         net (fo=285, unset)          0.973     0.973    s2/clk
+    DSP48_X1Y21          DSP48E1                                      r  s2/P_A1/CLK
+  -------------------------------------------------------------------    -------------------
+    DSP48_X1Y21          DSP48E1 (Prop_dsp48e1_CLK_P[1])
+                                                      4.009     4.982 r  s2/P_A1/P[1]
+                         net (fo=3, routed)           1.262     6.244    s2/P_A1_n_104
+    SLICE_X56Y47         LUT6 (Prop_lut6_I0_O)        0.124     6.368 r  s2/acc_carry_i_9__1/O
+                         net (fo=1, routed)           0.579     6.947    s2/acc_carry_i_9__1_n_0
+    SLICE_X54Y47         CARRY4 (Prop_carry4_S[0]_CO[3])
+                                                      0.637     7.584 r  s2/acc_carry/CO[3]
+                         net (fo=1, routed)           0.000     7.584    s2/acc_carry_n_0
+    SLICE_X54Y48         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117     7.701 r  s2/acc_carry__0/CO[3]
+                         net (fo=1, routed)           0.000     7.701    s2/acc_carry__0_n_0
+    SLICE_X54Y49         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117     7.818 r  s2/acc_carry__1/CO[3]
+                         net (fo=1, routed)           0.001     7.819    s2/acc_carry__1_n_0
+    SLICE_X54Y50         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117     7.936 r  s2/acc_carry__2/CO[3]
+                         net (fo=1, routed)           0.000     7.936    s2/acc_carry__2_n_0
+    SLICE_X54Y51         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117     8.053 r  s2/acc_carry__3/CO[3]
+                         net (fo=1, routed)           0.000     8.053    s2/acc_carry__3_n_0
+    SLICE_X54Y52         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117     8.170 r  s2/acc_carry__4/CO[3]
+                         net (fo=1, routed)           0.000     8.170    s2/acc_carry__4_n_0
+    SLICE_X54Y53         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117     8.287 r  s2/acc_carry__5/CO[3]
+                         net (fo=1, routed)           0.000     8.287    s2/acc_carry__5_n_0
+    SLICE_X54Y54         CARRY4 (Prop_carry4_CI_O[3])
+                                                      0.315     8.602 r  s2/acc_carry__6/O[3]
+                         net (fo=2, routed)           0.658     9.260    s2/acc_carry__6_n_4
+    SLICE_X51Y54         CARRY4 (Prop_carry4_S[0]_CO[3])
+                                                      0.839    10.099 r  s2/in00_carry__3/CO[3]
+                         net (fo=1, routed)           0.000    10.099    s2/in00_carry__3_n_0
+    SLICE_X51Y55         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114    10.213 r  s2/in00_carry__4/CO[3]
+                         net (fo=1, routed)           0.000    10.213    s2/in00_carry__4_n_0
+    SLICE_X51Y56         CARRY4 (Prop_carry4_CI_O[2])
+                                                      0.239    10.452 r  s2/in00_carry__5/O[2]
+                         net (fo=1, routed)           0.815    11.266    s2/incremented[27]
+    SLICE_X50Y55         LUT4 (Prop_lut4_I0_O)        0.302    11.568 r  s2/over_ceil_carry_i_2__1/O
+                         net (fo=1, routed)           0.000    11.568    s2/over_ceil_carry_i_2__1_n_0
+    SLICE_X50Y55         CARRY4 (Prop_carry4_S[2]_CO[3])
+                                                      0.380    11.948 r  s2/over_ceil_carry/CO[3]
+                         net (fo=3, routed)           1.073    13.021    s2/over_ceil
+    SLICE_X50Y51         LUT2 (Prop_lut2_I0_O)        0.150    13.171 r  s2/P_A1_i_32__1/O
+                         net (fo=1, routed)           0.476    13.647    s2/P_A1_i_32__1_n_0
+    SLICE_X49Y51         LUT6 (Prop_lut6_I1_O)        0.328    13.975 r  s2/P_A1_i_23__1/O
+                         net (fo=1, routed)           0.311    14.286    s2/P_A1_i_23__1_n_0
+    SLICE_X50Y51         LUT6 (Prop_lut6_I2_O)        0.124    14.410 r  s2/P_A1_i_1__1/O
+                         net (fo=45, routed)          1.960    16.371    s3/A[19]
+    DSP48_X0Y22          DSP48E1                                      r  s3/P_B0/A[20]
+  -------------------------------------------------------------------    -------------------
+
+                         (clock sample_clk rise edge)
+                                                     20.000    20.000 r  
+                                                      0.000    20.000 r  clk (IN)
+                         net (fo=285, unset)          0.924    20.924    s3/clk
+    DSP48_X0Y22          DSP48E1                                      r  s3/P_B0/CLK
+                         clock pessimism              0.000    20.924    
+                         clock uncertainty           -0.235    20.689    
+    DSP48_X0Y22          DSP48E1 (Setup_dsp48e1_CLK_A[20])
+                                                     -0.362    20.327    s3/P_B0
+  -------------------------------------------------------------------
+                         required time                         20.327    
+                         arrival time                         -16.371    
+  -------------------------------------------------------------------
+                         slack                                  3.956    
+
+
+
+

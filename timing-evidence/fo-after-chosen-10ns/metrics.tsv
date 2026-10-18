@@ -1,0 +1,10 @@
+setup.SLACK	-3.322
+setup.DATAPATH_DELAY	11.110
+setup.LOGIC_LEVELS	16
+setup.STARTPOINT_PIN	s0/P_A1_reg/CLK
+setup.ENDPOINT_PIN	s0/P_A1_reg/A[23]
+hold.SLACK	0.741
+hold.DATAPATH_DELAY	0.932
+hold.LOGIC_LEVELS	3
+hold.STARTPOINT_PIN	s0/acc_carry__2_i_1_psdsp/C
+hold.ENDPOINT_PIN	s0/y1_reg[3]/D

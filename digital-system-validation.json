@@ -1,0 +1,42 @@
+{
+  "date": "2026-10-16",
+  "release": "digital-modules-local",
+  "github_synchronized": false,
+  "regression_pass": 43,
+  "regression_fail": 0,
+  "regression_skip": 0,
+  "features": [
+    "Configuration and matching Verilog in saved module packages",
+    "Saved filter reuse",
+    "Strict width/sign/fraction connection matching",
+    "Saved designs only in system workbench",
+    "Combinational or one-clock primitive implementation",
+    "Stable module names and independent instance names",
+    "Configuration and system JSON/Verilog ZIP exports",
+    "Embedded system and module persistence in engineering projects"
+  ],
+  "xsim": {
+    "version": "2022.2",
+    "passed": true,
+    "coverage": [
+      "signed subtraction",
+      "unsigned multiplication",
+      "absolute value of minimum negative input",
+      "fractional negative gain",
+      "nearest and floor rounding",
+      "saturation and wrap",
+      "registered output and repeated synchronous reset",
+      "4000-clock DC-removal feedback loop",
+      "4000-clock repeated saved-filter chain"
+    ],
+    "rtl_sha256": "44217c40f404ecab36289530874c8cd046a790d25d38141d4e866f9c706af1d6",
+    "testbench_sha256": "d13ae6fc5c03375b4aab9dd62a01b84c612778acc9a4989ca67bdcb93edc5f24"
+  },
+  "existing_filter_fixture_pairs_unchanged": 24,
+  "browser_qa": "jsdom application and DOM interaction tests passed; native file:// observation is blocked by protocol policy, so native layout and file picker verification is not claimed.",
+  "limitations": [
+    "No automatic parallel-path latency alignment",
+    "Conflicting implementations with the same HDL module name cannot coexist",
+    "No new synthesis, timing closure or hardware run"
+  ]
+}

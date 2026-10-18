@@ -1,0 +1,73 @@
+{
+  "date": "2026-10-16",
+  "local_only": true,
+  "github_synchronized": false,
+  "features": [
+    "filter save-and-import action",
+    "raw filter model JSON import with explicit HDL name",
+    "saved-design card import",
+    "delete saved designs and current-system uses",
+    "instance/port/wire deletion",
+    "wire selection and Delete/Backspace",
+    "right-click module copy/delete and blank-canvas paste",
+    "instance suffix _2/_3 and legal identifier lengths",
+    "undo/redo for system edits and library changes",
+    "drag/resize undo",
+    "native text-edit shortcut guards"
+  ],
+  "history": {
+    "max_commands": 50,
+    "max_memory_bytes": 8000000,
+    "per_project_session": true,
+    "serialized": false,
+    "cleared_on_project_replace": true,
+    "unrelated_library_changes_preserved": true
+  },
+  "node_regression": {
+    "pass": 49,
+    "fail": 0,
+    "skip": 0
+  },
+  "dom_checks": [
+    "one-click filter save before instance creation",
+    "exact signed/width/fraction interfaces",
+    "filter JSON import",
+    "wire hit target and selected state",
+    "delete/undo/redo restores graph/layout and HDL",
+    "instance/port deletion cleans related wires and layout",
+    "saved-design deletion removes exactly its current-system uses",
+    "quota failure leaves graph unchanged",
+    "failed connections/imports do not create undo entries",
+    "late file reads ignored after edits",
+    "project history reset",
+    "scoped library replay",
+    "module/wire/blank context menus",
+    "copy does not change design",
+    "point-positioned paste and duplicate identifiers",
+    "cross-project clipboard packages",
+    "atomic conflicting-module-name rejection",
+    "drag and resize undo",
+    "text input key guards"
+  ],
+  "filter_optimization": {
+    "status": "withdrawn",
+    "new_generation": "original FO/SO architecture",
+    "generator_sha256": "28e91494c12dead1bf89c3923b14fd9bc8006b8b1bc233349449bb4e0a440b7f",
+    "restored_fixture_pairs": 24,
+    "saved_withdrawn_hdl": "validated and retained until explicitly resaved"
+  },
+  "xsim": {
+    "tool": "Vivado XSim 2022.2",
+    "pass": true,
+    "basic_configurations": 240,
+    "basic_math_checks": 11520,
+    "dc_feedback_cycles": 4000,
+    "repeated_filter_cycles": 4000,
+    "simulate_log_sha256": "d2b25b44ee958487a2c310dafa4cd56e720fa7e7f3ceed8f3325327b4b254dab"
+  },
+  "limits": [
+    "jsdom interaction checks; no native file:// browser/picker observation.",
+    "No new synthesis/timing run; restored filter generator and fixtures match the original byte for byte."
+  ],
+  "html_sha256": "42c12a1c51f68244ee7479ab74d23d11172b069d475d5e77a22b8505095d1dc2"
+}

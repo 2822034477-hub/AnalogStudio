@@ -1,0 +1,103 @@
+{
+  "name": "sos8",
+  "variant": "after",
+  "rtl": "sos8-after-chosen\\digital_filter.v",
+  "fixed": {
+    "coefficientBits": 18,
+    "coefficientFraction": 15,
+    "inputBits": 16,
+    "outputBits": 16,
+    "dataFraction": 14,
+    "sectionBits": 20,
+    "accumulatorBits": 44,
+    "rounding": "nearest"
+  },
+  "sections": [
+    {
+      "b": [
+        15343,
+        5830,
+        1672
+      ],
+      "a": [
+        32768,
+        -13107,
+        1707
+      ],
+      "order": 2,
+      "latency": 2,
+      "inputBits": 16,
+      "outputBits": 20,
+      "requiredAccumulatorBits": 42
+    },
+    {
+      "b": [
+        11193,
+        5596,
+        1241
+      ],
+      "a": [
+        32768,
+        -19661,
+        3757
+      ],
+      "order": 2,
+      "latency": 2,
+      "inputBits": 20,
+      "outputBits": 20,
+      "requiredAccumulatorBits": 42
+    },
+    {
+      "b": [
+        10977,
+        1537,
+        1557
+      ],
+      "a": [
+        32768,
+        -26214,
+        6607
+      ],
+      "order": 2,
+      "latency": 2,
+      "inputBits": 20,
+      "outputBits": 20,
+      "requiredAccumulatorBits": 42
+    },
+    {
+      "b": [
+        7950,
+        2067,
+        948
+      ],
+      "a": [
+        32768,
+        -32768,
+        10256
+      ],
+      "order": 2,
+      "latency": 2,
+      "inputBits": 20,
+      "outputBits": 16,
+      "requiredAccumulatorBits": 42
+    }
+  ],
+  "latency": 8,
+  "period_ns": 20.0,
+  "folder": "timing-retiming\\sos8-after-chosen-20ns",
+  "return_code": 0,
+  "seconds": 53.2,
+  "rtl_sha256": "ac20b34014b0ce5f44901f304e14d094dd108aef15ba0b43d73e40b69f9ca69f",
+  "paths": {
+    "setup.SLACK": "3.639",
+    "setup.DATAPATH_DELAY": "15.715",
+    "setup.LOGIC_LEVELS": "17",
+    "setup.STARTPOINT_PIN": "s2/P_A1/CLK",
+    "setup.ENDPOINT_PIN": "s3/P_B0/A[28]",
+    "hold.SLACK": "0.133",
+    "hold.DATAPATH_DELAY": "0.280",
+    "hold.LOGIC_LEVELS": "0",
+    "hold.STARTPOINT_PIN": "s3/y1_reg[0]/C",
+    "hold.ENDPOINT_PIN": "s3/y2_reg[0]/D"
+  }
+}

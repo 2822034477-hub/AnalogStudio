@@ -1,0 +1,36 @@
+{
+  "date": "2026-10-16",
+  "feature": "Draggable/resizable system blocks with obstacle-routed wires",
+  "local_only": true,
+  "github_synchronized": false,
+  "regression_suites_passed": 45,
+  "regression_failed": 0,
+  "regression_skipped": 0,
+  "routing_cases": {
+    "routes": 568,
+    "orthogonal_segments": 1814,
+    "block_interior_crossings": 0,
+    "includes": [
+      "randomized block sizes and positions",
+      "backward and self-feedback edges",
+      "overlap separation",
+      "unconnected obstacles"
+    ]
+  },
+  "interaction_checks": [
+    "scaled SVG/fallback coordinate mapping",
+    "drag and resize preview",
+    "single commit on release",
+    "pointer-capture release",
+    "Escape, cancel, blur and project-change rollback",
+    "keyboard movement",
+    "auto-layout reset",
+    "layout save/restore",
+    "stale layout deletion cleanup",
+    "connection controls preserved"
+  ],
+  "hdl_generators_unchanged": true,
+  "filter_fixture_pairs_unchanged": 24,
+  "native_browser_qa": "Not performed: file:// observation is blocked by browser protocol policy. jsdom interactions and independent geometry checks passed.",
+  "hardware": "No new hardware or vendor simulation run: this change only adds layout data and drawing/interaction; emitted HDL is byte-identical for the same electrical system."
+}

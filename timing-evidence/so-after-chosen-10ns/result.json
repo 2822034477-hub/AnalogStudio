@@ -1,0 +1,52 @@
+{
+  "name": "so",
+  "variant": "after",
+  "rtl": "so-after-chosen\\digital_filter.v",
+  "fixed": {
+    "coefficientBits": 18,
+    "coefficientFraction": 15,
+    "inputBits": 16,
+    "outputBits": 16,
+    "dataFraction": 14,
+    "sectionBits": 16,
+    "accumulatorBits": 40,
+    "rounding": "nearest"
+  },
+  "sections": [
+    {
+      "b": [
+        31269,
+        -44222,
+        31269
+      ],
+      "a": [
+        32768,
+        -44024,
+        29573
+      ],
+      "order": 2,
+      "latency": 2,
+      "inputBits": 16,
+      "outputBits": 16,
+      "requiredAccumulatorBits": 38
+    }
+  ],
+  "latency": 2,
+  "period_ns": 10.0,
+  "folder": "timing-retiming\\so-after-chosen-10ns",
+  "return_code": 0,
+  "seconds": 52.2,
+  "rtl_sha256": "b5d1ec11fc684865b49289311716f8f7568923f3775ce4cab65ab0dfadc59f98",
+  "paths": {
+    "setup.SLACK": "-3.753",
+    "setup.DATAPATH_DELAY": "13.107",
+    "setup.LOGIC_LEVELS": "17",
+    "setup.STARTPOINT_PIN": "s0/P_A1/CLK",
+    "setup.ENDPOINT_PIN": "s0/P_A1/A[0]",
+    "hold.SLACK": "0.107",
+    "hold.DATAPATH_DELAY": "0.242",
+    "hold.LOGIC_LEVELS": "0",
+    "hold.STARTPOINT_PIN": "s0/y1_reg[7]/C",
+    "hold.ENDPOINT_PIN": "s0/y2_reg[7]/D"
+  }
+}
