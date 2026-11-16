@@ -24,7 +24,7 @@ function configurations(){
  function add(kind,inputs,out,params={},timing='combinational'){
   const c=M.defaults(kind);c.moduleName='arithmetic_'+configs.length;c.inputs=c.inputs.map((p,i)=>({...p,...inputs[i]}));c.output={...c.output,...out};c.params={...c.params,...params};c.timing=timing;configs.push(M.config(c));
  }
- for(const kind of Object.keys(M.types).filter(k=>k!=='filter'))for(const timing of ['combinational','registered']){
+ for(const kind of Object.keys(M.types).filter(k=>k!=='filter'&&k!=='dds'&&k!=='offset'))for(const timing of ['combinational','registered']){
   const c=M.defaults(kind);c.timing=timing;c.moduleName='arithmetic_'+configs.length;configs.push(M.config(c));
  }
  for(const kind of ['subtract','multiply'])for(const a of [false,true])for(const b of [false,true])for(const of of [false,true])for(const rounding of ['floor','nearest']){

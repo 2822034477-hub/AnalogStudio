@@ -273,10 +273,10 @@ body.project-at-home .app-shell,body.project-at-home>.dock-status{display:none!i
 .digital-design[data-ds-view="module"] .dd-badge,.digital-design[data-ds-view="system"] .dd-badge{display:none}
 .ds-filter-save{display:flex;align-items:end;gap:12px;flex-wrap:wrap;padding:12px;margin-bottom:14px;background:#eaf2fa;border:1px solid #bfd2e5;border-radius:9px}.ds-filter-save label{width:250px;font-size:13px}.ds-filter-save span{font-size:13px;color:#48647f;flex:1;min-width:220px}
 .ds-host h3{margin:0 0 8px;font-size:18px}.ds-host h4{margin:0 0 12px}.ds-heading{display:flex;justify-content:space-between;align-items:center;gap:15px;margin:12px 0}.ds-heading p,.ds-library>p{font-size:13px;color:#48647f;margin:6px 0 12px}
-.ds-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:14px;margin:14px 0}.ds-card{background:white;border:1px solid var(--dd-line);border-radius:10px;padding:16px;min-width:0}.ds-fields{display:flex;gap:10px;flex-wrap:wrap;align-items:end}.ds-fields label{flex:1;min-width:110px;font-size:13px}.ds-host fieldset{border:1px solid #dce5ee;border-radius:7px;margin:14px 0;padding:12px}.ds-host legend{font-size:13px;font-weight:700;padding:0 7px}.ds-host label{font-size:13px}.ds-actions{display:flex;gap:7px;flex-wrap:wrap;margin-top:12px}.ds-help{font-size:12px;line-height:1.6;color:#48647f}.ds-source{white-space:pre;overflow:auto;max-height:520px;min-height:180px;font:12px/1.6 Consolas,monospace;background:#f6f8fb;padding:14px;border:1px solid #dce5ee;border-radius:7px}
+.ds-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:14px;margin:14px 0}.ds-card{background:white;border:1px solid var(--dd-line);border-radius:10px;padding:16px;min-width:0}.ds-fields{display:flex;gap:10px;flex-wrap:wrap;align-items:end}.ds-fields label{flex:1;min-width:110px;font-size:13px}.ds-host fieldset{border:1px solid #dce5ee;border-radius:7px;margin:14px 0;padding:12px}.ds-host legend{font-size:13px;font-weight:700;padding:0 7px}.ds-host label{font-size:13px}.ds-actions{display:flex;gap:7px;flex-wrap:wrap;margin-top:12px}.ds-help{font-size:12px;line-height:1.6;color:#48647f}.ds-fields label.ds-check{display:flex;align-items:center;gap:8px;flex:1 1 100%;min-width:220px;padding:6px 0}.ds-fields label.ds-check input{width:16px;height:16px;margin:0;flex:none}.ds-source{white-space:pre;overflow:auto;max-height:520px;min-height:180px;font:12px/1.6 Consolas,monospace;background:#f6f8fb;padding:14px;border:1px solid #dce5ee;border-radius:7px}
 .ds-list{list-style:none;margin:12px 0;padding:0}.ds-list li{display:flex;justify-content:space-between;align-items:center;gap:8px;padding:8px 0;border-bottom:1px solid #e5ecf3;font-size:13px}.ds-list code{overflow-wrap:anywhere}.ds-notice:empty{display:none}.ds-notice{background:#e9f5ed;border:1px solid #b5d8c1;border-radius:7px;padding:12px;font-size:13px}.ds-error{background:#fff2ed;border-color:#e0b29d;color:#8b3624}
 .ds-library{margin-top:16px}.ds-library-list{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:12px}.ds-library article{border:1px solid #dce5ee;border-radius:8px;padding:14px;min-width:0}.ds-library article p{margin:7px 0;font-size:13px}.ds-library small{font-size:12px;color:#48647f;line-height:1.6}.ds-empty{font-size:13px;color:#48647f}
-.ds-diagram{overflow:auto;max-height:650px}.ds-diagram svg{min-width:800px;width:100%;display:block}.ds-diagram text{font:12px Consolas,monospace;fill:#19334e}.ds-diagram .ds-svg-title{font-size:14px;font-weight:700}.ds-node{fill:#edf4fb;stroke:#7e9fbd}.ds-port{fill:#f5f8fc;stroke:#a4b8cc}.ds-link{fill:none;stroke:#2569a7;stroke-width:2}.ds-diagram circle{fill:#2569a7}
+.ds-diagram{overflow:auto;max-height:650px}.ds-diagram svg{min-width:800px;width:100%;display:block}.ds-diagram text{font:12px Consolas,monospace;fill:#19334e}.ds-diagram .ds-svg-title{font-size:14px;font-weight:700}.ds-node{fill:#edf4fb;stroke:#7e9fbd}.ds-port{fill:#f5f8fc;stroke:#a4b8cc}.ds-link{fill:none;stroke:#2569a7;stroke-width:2}.ds-diagram circle{fill:#2569a7}.ds-diagram circle.ds-anchor{cursor:pointer}.ds-diagram circle.ds-anchor-selected{fill:#c0392b;stroke:#ffffff;stroke-width:3}
 @media(max-width:850px){.ds-grid{grid-template-columns:minmax(0,1fr)}.ds-heading{align-items:start;flex-direction:column}.ds-fields label{min-width:90px}.ds-filter-save label{width:100%}.ds-nav button{flex:1;padding:10px}.ds-card{padding:12px}}
 
 .ds-diagram-tools{display:flex;justify-content:space-between;align-items:center;gap:12px;margin:12px 0 8px;font-size:13px;color:#48647f;flex-wrap:wrap}
@@ -544,6 +544,47 @@ body.engineering-branch-active #dockViewMenu,body.engineering-branch-active #foc
   }
   function resistor(key, label, value) { return parameter(key, label, 'Ω', 100, 1000000, value || 10000); }
   function capacitor(key, label, value) { return parameter(key, label, 'F', 1e-10, 1e-3, value || 1 / (TAU * 1000 * 10000)); }
+  function inductor(key, label, value) { return parameter(key, label, 'H', 1e-9, 1000, value == null ? 0.01 : value); }
+  function sourceResistor() { return parameter('Rs', '源电阻 Rs', 'Ω', 0.01, 1e6, 50); }
+  function rlcNetworkTF(type, p) {
+    var rs = p.Rs, r = p.R, l = p.L, c = p.C;
+    switch (type) {
+      case 'rlcSeriesRL': return { num: [r, l], den: [r + rs, l] };
+      case 'rlcSeriesRC': return { num: [1, r * c], den: [1, (r + rs) * c] };
+      case 'rlcSeriesLC': return { num: [1, 0, l * c], den: [1, rs * c, l * c] };
+      case 'rlcSeriesRLC': return { num: [1, r * c, l * c], den: [1, (r + rs) * c, l * c] };
+      case 'rlcParallelRL': return { num: [0, r * l], den: [rs * r, rs * l + r * l] };
+      case 'rlcParallelRC': return { num: [r], den: [rs + r, r * rs * c] };
+      case 'rlcParallelLC': return { num: [0, l], den: [rs, l, rs * l * c] };
+      case 'rlcParallelRLC': return { num: [0, r * l], den: [rs * r, rs * l + r * l, rs * r * l * c] };
+      default: throw new Error('未知 RLC 组态。');
+    }
+  }
+  function rlcCatalog() {
+    var defs = [
+      ['rlcSeriesRL', 'RLC 串联 RL', 'S-RL', true, ['R', 'L'], 'H(s) = (R+sL) / (Rs+R+sL)'],
+      ['rlcSeriesRC', 'RLC 串联 RC', 'S-RC', true, ['R', 'C'], 'H(s) = (1+sRC) / (1+s(Rs+R)C)'],
+      ['rlcSeriesLC', 'RLC 串联 LC', 'S-LC', true, ['L', 'C'], 'H(s) = (1+s²LC) / (1+sRsC+s²LC)'],
+      ['rlcSeriesRLC', 'RLC 串联 RLC', 'S-RLC', true, ['R', 'L', 'C'], 'H(s) = (1+sRC+s²LC) / (1+s(Rs+R)C+s²LC)'],
+      ['rlcParallelRL', 'RLC 并联 RL', 'P-RL', false, ['R', 'L'], 'H(s) = sLR / [sLR + Rs(R+sL)]'],
+      ['rlcParallelRC', 'RLC 并联 RC', 'P-RC', false, ['R', 'C'], 'H(s) = R / [R+Rs+sRRsC]'],
+      ['rlcParallelLC', 'RLC 并联 LC', 'P-LC', false, ['L', 'C'], 'H(s) = sL / [Rs+sL+s²RsLC]'],
+      ['rlcParallelRLC', 'RLC 并联 RLC', 'P-RLC', false, ['R', 'L', 'C'], 'H(s) = sLR / [sLR + Rs(R+sL+s²RLC)]']
+    ];
+    return defs.map(function (d) {
+      var params = [sourceResistor()];
+      if (d[4].indexOf('R') >= 0) params.push(resistor('R', '电阻 R', 1000));
+      if (d[4].indexOf('L') >= 0) params.push(inductor('L', '电感 L', 0.01));
+      if (d[4].indexOf('C') >= 0) params.push(capacitor('C', '电容 C', 1e-7));
+      return {
+        type: d[0], name: d[1], short: d[2], category: 'RLC 网络',
+        description: (d[3] ? 'Rs 后接串联 ' : 'Rs 后接并联 ') + d[4].join('、') + ' 网络，输出取网络两端电压。',
+        formula: d[5],
+        notes: 'H(s)=Znet/(Rs+Znet)，输出为网络两端电压；理想 R/L/C，不含寄生、损耗或负载。',
+        params: params
+      };
+    });
+  }
   function feedbackResistor(value) { return parameter('Rf', '反馈电阻 Rf', 'Ω', 0, 1000000, value == null ? 0 : value, 'linear'); }
   function noninvertingGainParams(value) { return [feedbackResistor(value), resistor('Rg', '接地电阻 Rg')]; }
   function skParams() { return [resistor('R1', '电阻 R₁'), resistor('R2', '电阻 R₂'), capacitor('C1', '电容 C₁'), capacitor('C2', '电容 C₂')].concat(noninvertingGainParams((2 - Math.sqrt(2)) * 10000)); }
@@ -560,6 +601,7 @@ body.engineering-branch-active #dockViewMenu,body.engineering-branch-active #foc
     { type: 'wien', name: '文氏桥选频网络', short: 'Wien', category: '选频网络', description: '串联 R₁/C₁ 与并联 R₂/C₂ 构成的无源文氏桥正反馈网络。', formula: 'β(s) = sR₂C₁ / [1 + s(R₁C₁ + R₂C₁ + R₂C₂) + s²R₁R₂C₁C₂]', notes: '此处仅建模无源 β(s)，并非完整自激振荡器。R₁=R₂=R、C₁=C₂=C 时，f₀=1/(2πRC)、β(f₀)=1/3；振荡幅度需非线性稳幅模型。', params: [resistor('R1', '串联电阻 R₁'), capacitor('C1', '串联电容 C₁'), resistor('R2', '并联电阻 R₂'), capacitor('C2', '并联电容 C₂')] },
     { type: 'rlcLowpass', name: 'RLC 二阶低通', short: 'RLC', category: '滤波器', description: 'R、L 串联，C 对地，输出取 C 两端。', formula: 'H(s) = 1 / (LCs² + RCs + 1)', notes: '理想电压源与高阻负载；f₀=1/(2π√LC)，Q=√(L/C)/R。没有包含电感损耗、寄生或负载。', params: [parameter('R', '串联电阻 R', 'Ω', 0.1, 1e5, TAU * 10), parameter('L', '电感 L', 'H', 1e-6, 100, 0.01), capacitor('C', '并联电容 C', 1 / (Math.pow(TAU * 1000, 2) * 0.01))] }
   ];
+  catalog = catalog.concat(rlcCatalog());
   var byType = {};
   catalog.forEach(function (entry) { byType[entry.type] = entry; });
   function id() { serial += 1; return 'aw-' + Date.now().toString(36) + '-' + serial.toString(36); }
@@ -800,6 +842,17 @@ body.engineering-branch-active #dockViewMenu,body.engineering-branch-active #foc
       out.f0 = 1 / (TAU * Math.sqrt(out.a)); out.Q = Math.sqrt(p.L / p.C) / p.R;
       out.damping = 1 / (2 * out.Q);
     }
+    if (/^rlc(Series|Parallel)/.test(node.type)) {
+      var rtf = rlcNetworkTF(node.type, p), rd0 = rtf.den[0];
+      out.K = rtf.num[0] / rd0;
+      if (rtf.den.length === 2) out.f0 = 1 / (TAU * (rtf.den[1] / rd0));
+      else {
+        out.b = rtf.den[1] / rd0; out.a = rtf.den[2] / rd0;
+        out.f0 = 1 / (TAU * Math.sqrt(out.a));
+        out.Q = out.b === 0 ? Infinity : Math.sqrt(out.a) / out.b;
+        out.damping = out.b / (2 * Math.sqrt(out.a));
+      }
+    }
     if (node.type === 'wien') {
       out.a = p.R1 * p.R2 * p.C1 * p.C2;
       out.b = p.R1 * p.C1 + p.R2 * p.C1 + p.R2 * p.C2;
@@ -811,6 +864,7 @@ body.engineering-branch-active #dockViewMenu,body.engineering-branch-active #foc
   function blockTF(node) {
     var p = validatedParams(node), info = derived(node);
     var n, d, warnings = [];
+    if (/^rlc(Series|Parallel)/.test(node.type)) { var ntf = rlcNetworkTF(node.type, p); return { num: ntf.num, den: ntf.den, warnings: [] }; }
     switch (node.type) {
       case 'activeLP': n = [info.K]; d = [1, p.R * p.C]; break;
       case 'activeHP': n = [0, info.K * p.R * p.C]; d = [1, p.R * p.C]; break;
@@ -1134,7 +1188,11 @@ body.engineering-branch-active #dockViewMenu,body.engineering-branch-active #foc
     secondLP: 'Sallen–Key 低通', secondHP: 'Sallen–Key 高通',
     integrator: '理想积分器', practicalIntegrator: '实际积分器',
     differentiator: '理想微分器', practicalDifferentiator: '实际微分器',
-    gain: '运放放大器', wien: '文氏桥选频网络', rlcLowpass: 'RLC 低通网络'
+    gain: '运放放大器', wien: '文氏桥选频网络', rlcLowpass: 'RLC 低通网络',
+    rlcSeriesRL: '串联 RL 网络', rlcSeriesRC: '串联 RC 网络',
+    rlcSeriesLC: '串联 LC 网络', rlcSeriesRLC: '串联 RLC 网络',
+    rlcParallelRL: '并联 RL 网络', rlcParallelRC: '并联 RC 网络',
+    rlcParallelLC: '并联 LC 网络', rlcParallelRLC: '并联 RLC 网络'
   };
   const esc = value => String(value == null ? '' : value).replace(/[&<>"']/g, ch => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[ch]));
   const number = value => Number.isFinite(Number(value)) ? Number(value) : 1;
@@ -1229,6 +1287,15 @@ body.engineering-branch-active #dockViewMenu,body.engineering-branch-active #foc
       + terminal(55, 135, 'Vin') + terminal(675, 135, 'Vout') + txt(598, 193, '输出接高阻负载', 'small');
   }
 
+  function rlcNetworkUnit(type) {
+    var series = type.indexOf('Series') >= 0;
+    var parts = type.replace(/^rlc(Series|Parallel)/, '');
+    return line(55, 135, 112, 135) + resistor(155, 135, 'Rs') + line(198, 135, 250, 135)
+      + path([[250, 85], [630, 85], [630, 185], [250, 185], [250, 85]])
+      + txt(275, 110, (series ? '串联 ' : '并联 ') + parts, 'label')
+      + txt(275, 140, 'Znet / (Rs + Znet)', 'small')
+      + line(630, 135, 675, 135) + terminal(55, 135, 'Vin') + terminal(675, 135, 'Vout');
+  }
   function unit(type, params, options) {
     let body = '';
     let note = '元件名称与下方器件参数对应；模型忽略寄生参数和器件非理想特性。';
@@ -1241,6 +1308,7 @@ body.engineering-branch-active #dockViewMenu,body.engineering-branch-active #foc
       body = wienUnit();
       note = '这是无源选频反馈网络；完整文氏桥振荡器还需放大与稳幅环节。';
     } else if (type === 'rlcLowpass') body = rlcUnit();
+    else if (/^rlc(Series|Parallel)/.test(type)) body = rlcNetworkUnit(type);
     else if (type === 'gain') {
       const topology = typeof options === 'string' ? options : options && options.topology || params && params.topology;
       const inverting = topology === 'inverting';
@@ -1487,7 +1555,7 @@ function clear(id){for(const [key,v]of pendingViews)if(v.id===id)pendingViews.de
   const $ = id => document.getElementById(id);
   if (!C || !S) { $('transferFunction').textContent = '模块文件未完整加载，请将整个文件夹解压后重新打开 index.html。'; return; }
   const entries = Object.fromEntries(C.catalog.map(x => [x.type, x]));
-  const icons = { activeLP:'⌁', activeHP:'⌁', secondLP:'∿', secondHP:'∿', integrator:'∫', practicalIntegrator:'∫', differentiator:'∂', practicalDifferentiator:'∂', gain:'K', wien:'◇', rlcLowpass:'⌁' };
+  const icons = { activeLP:'⌁', activeHP:'⌁', secondLP:'∿', secondHP:'∿', integrator:'∫', practicalIntegrator:'∫', differentiator:'∂', practicalDifferentiator:'∂', gain:'K', wien:'◇', rlcLowpass:'⌁', rlcSeriesRL:'S', rlcSeriesRC:'S', rlcSeriesLC:'S', rlcSeriesRLC:'S', rlcParallelRL:'P', rlcParallelRC:'P', rlcParallelLC:'P', rlcParallelRLC:'P' };
   const STORAGE = 'analog-studio.workspace.v2', OLD_STORAGE = 'analog-studio.workspace.v1', SAVED = 'analog-studio.projects.v1';
   const clone = x => JSON.parse(JSON.stringify(x));
   const esc = x => String(x).replace(/[&<>"']/g, ch => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[ch]));
@@ -1763,6 +1831,7 @@ function clear(id){for(const [key,v]of pendingViews)if(v.id===id)pendingViews.de
     else if (node.type==='practicalDifferentiator') { f=1/(2*Math.PI*p.Rin*p.Cin); label='限增益拐点'; note='高频增益 = '+fmt(-p.Rf/p.Rin); }
     else if (node.type==='wien') { f=1/(2*Math.PI*Math.sqrt(p.R1*p.R2*p.C1*p.C2)); label='零相位频率 f₀'; note='理想起振临界 A = '+fmt(1+p.R1/p.R2+p.C2/p.C1); }
     else if (node.type==='rlcLowpass') { f=1/(2*Math.PI*Math.sqrt(p.L*p.C)); label='固有频率 f₀'; note='Q = '+fmt(Math.sqrt(p.L/p.C)/p.R); }
+    else if (/^rlc(Series|Parallel)/.test(node.type)) { const d=C.derived(node); f=d.f0; label=d.a?'固有频率 f₀':'−3 dB 拐点'; note=d.a?('Q = '+fmt(d.Q)+' · K = '+fmt(d.K)):('一阶网络 · K = '+fmt(d.K)); }
     else return {f:null,label:'电阻设定电压增益',value:fmt(C.derived(node).K)+' V/V',note:node.topology==='inverting'?'反相 · −Rf/Rin':'同相 · 1 + Rf/Rg'};
     return {f,label,value:engineering(f,'Hz'),note};
   }
@@ -2672,11 +2741,30 @@ function sections(m){
  const z=factorRoots(m);
  if(Math.max(m.a.length,m.b.length)<=3)return timing([{b:m.b.every(x=>x===0)?[0]:m.b.slice(z.delaySamples),a:m.a.slice()}],z.delaySamples);
  const ps=pack(z.poles),zs=pack(z.zeros),n=Math.max(1,ps.length,zs.length),out=[];
+ // Roots of a packed group: a real pair has two roots, a complex conjugate
+ // pair is stored once (im>0) and expands to (re, +/- im).
+ const groupRoots=g=>{const r=[];for(const root of (g&&g.roots)||[]){r.push({re:root.re,im:root.im});if(root.im)r.push({re:root.re,im:-root.im});}return r;};
+ const rootDistance=(a,b)=>Math.hypot(a.re-b.re,a.im-b.im);
+ const groupDistance=(a,b)=>{
+  const A=groupRoots(a),B=groupRoots(b);
+  if(!A.length||!B.length)return Infinity;
+  if(A.length===1)return Math.min(...B.map(z=>rootDistance(A[0],z)));
+  if(B.length===1)return Math.min(...A.map(z=>rootDistance(z,B[0])));
+  return Math.min(rootDistance(A[0],B[0])+rootDistance(A[1],B[1]),
+                  rootDistance(A[0],B[1])+rootDistance(A[1],B[0]));
+ };
  for(let i=0;i<n;i++){
-  const p=ps[i]||{c:[1],radius:0,roots:[]};let j=0;
-  if(zs.length)for(let k=1;k<zs.length;k++)if(Math.abs(zs[k].radius-p.radius)<Math.abs(zs[j].radius-p.radius))j=k;
-  out.push({a:p.c,b:zs.length?zs.splice(j,1)[0].c:[1]});
+  // Step 1: take the remaining pole group closest to the unit circle.
+  let pi=0;
+  for(let k=1;k<ps.length;k++)if(ps[k].radius>ps[pi].radius)pi=k;
+  const p=ps.length?ps.splice(pi,1)[0]:{c:[1],radius:0,roots:[]};
+  // Step 2: take the zero group whose roots are closest to this pole group.
+  let zi=-1,best=Infinity;
+  for(let k=0;k<zs.length;k++){const d=groupDistance(p,zs[k]);if(d<best){best=d;zi=k;}}
+  out.push({a:p.c,b:zi>=0?zs.splice(zi,1)[0].c:[1],radius:p.radius});
  }
+ // Step 5: cascade from poles nearest the unit circle last (ascending radius).
+ out.sort((a,b)=>a.radius-b.radius);
  if(z.gain===0){out.forEach((s,i)=>s.b=s.b.map(x=>i?x:0));}
  else{
   const peaks=out.map(s=>peak(s.b,s.a));
@@ -3331,20 +3419,21 @@ function route(a,b,boxes){
  const points=[];for(let k=found;k>=0;k=previous[k])points.push(point(Math.floor(k/3)));points.reverse();
  return simplify([{x:a.x,y:a.y},...points,{x:b.x,y:b.y}]);
 }
+function label(p){const w=p.width,f=p.fraction;if(f===0)return (p.signed?'s':'us')+'['+w+':0]';return (p.signed?'s.':'us.')+'['+(w-f)+':'+f+']';}
 function build(state,override){
  const saved=override||state.layout||{},pending=[];
  for(const [i,n]of state.instances.entries()){
   const d=state.modules.find(m=>m.key===n.moduleKey).design,inputs=d.ports.filter(p=>p.direction==='input'),outputs=d.ports.filter(p=>p.direction==='output');
   pending.push({id:n.id,kind:'module',title:n.id+' · '+d.moduleName,subtitle:d.kind+' · '+d.latency+' 拍',design:d,inputs,outputs,minW:220,minH:Math.max(108,68+22*Math.max(inputs.length,outputs.length)),x:350,y:32+i*180,w:330,h:128});
  }
- let l=0,r=0;for(const p of state.ports){const input=p.direction==='input';pending.push({id:(input?'in:':'out:')+p.name,kind:p.direction,title:p.name+' · '+p.direction,subtitle:p.width+' 位 · '+(p.signed?'signed':'unsigned')+' · F='+p.fraction,port:p,minW:180,minH:66,x:input?24:900,y:40+(input?l++:r++)*112,w:210,h:72});}
+ let l=0,r=0;for(const p of state.ports){const input=p.direction==='input';pending.push({id:(input?'in:':'out:')+p.name,kind:p.direction,title:p.name+' · '+p.direction,subtitle:label(p),port:p,minW:180,minH:66,x:input?24:900,y:40+(input?l++:r++)*112,w:210,h:72});}
  // Honor existing positions first; find clear space for newly imported blocks.
  const order=pending.slice().sort((a,b)=>Number(!!saved[b.id])-Number(!!saved[a.id])),placed=[];
  for(const b of order)placed.push(place({...b,...saved[b.id]},placed));
  const boxes=pending.map(b=>placed.find(p=>p.id===b.id)),anchors=new Map();
  for(const box of boxes){
   if(box.kind==='module'){
-   for(const [ports,input]of [[box.inputs,true],[box.outputs,false]])ports.forEach((p,i)=>anchors.set(box.id+':'+p.name,{owner:box.id,x:input?box.x:box.x+box.w,y:box.y+60+Math.round(i*Math.max(22,(box.h-80)/Math.max(1,ports.length-1))),side:input?'left':'right',label:p.name}));
+   for(const [ports,input]of [[box.inputs,true],[box.outputs,false]])ports.forEach((p,i)=>anchors.set(box.id+':'+p.name,{owner:box.id,x:input?box.x:box.x+box.w,y:box.y+60+Math.round(i*Math.max(22,(box.h-80)/Math.max(1,ports.length-1))),side:input?'left':'right',label:p.name+' · '+label(p)}));
   }else anchors.set(box.id,{owner:box.id,x:box.kind==='input'?box.x+box.w:box.x,y:box.y+Math.round(box.h/2),side:box.kind==='input'?'right':'left',label:box.port.name});
  }
  const routes=state.connections.map(c=>{const a=anchors.get(c.from),b=anchors.get(c.to),points=a&&b?route(a,b,boxes):null;return {...c,points,d:points?points.map((p,i)=>(i?'L':'M')+p.x+' '+p.y).join(' '):''};});
@@ -3363,13 +3452,38 @@ const reserved=new Set(('always always_comb always_ff always_latch and assign au
 function id(x){if(typeof x!=='string'||! /^[A-Za-z_][A-Za-z0-9_]{0,63}$/.test(x)||reserved.has(x))throw Error('请输入合法且非保留字的 Verilog 名称。');return x;}
 function int(x,lo,hi,label){if(!Number.isInteger(x)||x<lo||x>hi)throw Error(label+' 应为 '+lo+'～'+hi+' 的整数。');return x;}
 function fmt(p){if(!p||typeof p.signed!=='boolean')throw Error('接口须明确有符号或无符号。');return {width:int(p.width,1,128,'接口位宽'),signed:p.signed,fraction:int(p.fraction,0,127,'小数位数')};}
-function port(p,direction){return {name:id(p.name),direction,...fmt(p)};}
-const match=(a,b)=>a.width===b.width&&a.signed===b.signed&&a.fraction===b.fraction;
-const describe=p=>p.width+' 位 · '+(p.signed?'signed':'unsigned')+' · F='+p.fraction;
+function port(p,direction){const q={name:id(p.name),direction,...fmt(p)};if(p.constant===true){q.constant=true;q.format=['bin','dec','hex'].includes(p.format)?p.format:'dec';q.value=String(p.value??'0').replace(/[\s_]/g,'');}return q;}
+const constBounds=p=>p.signed?[-(1n<<BigInt(p.width-1)),(1n<<BigInt(p.width-1))-1n]:[0n,(1n<<BigInt(p.width))-1n];
+function parseConstant(p){
+ let text=String(p.value??'0').replace(/[\s_]/g,'');
+ if(!text)throw Error('请输入常数值。');
+ let v;
+ try{
+  if(p.format==='bin')v=BigInt('0b'+text);
+  else if(p.format==='hex')v=BigInt('0x'+text);
+  else if(p.format==='dec')v=BigInt(text);
+  else throw Error('常数进制无效。');
+ }catch(e){throw Error('常数值不是合法的 '+p.format+' 数。');}
+ const mod=1n<<BigInt(p.width);
+ if(p.format!=='dec'){if(v<0n||v>=mod)throw Error('常数值超出位宽。');if(p.signed&&v>=mod/2n)v-=mod;}
+ const [lo,hi]=constBounds(p);
+ if(v<lo||v>hi)throw Error('常数值超出接口范围。');
+ return v;
+}
+function constLiteral(p){const v=parseConstant(p),w=p.width;if(p.signed)return v<0n?'-'+w+"'sd"+(-v):w+"'sd"+v;return w+"'d"+v;}
+const match=(a,b)=>a.width===b.width;
+const formatPort=p=>{
+ const w=p.width,f=p.fraction;
+ if(f===0)return (p.signed?'s':'us')+'['+w+':0]';
+ return (p.signed?'s.':'us.')+'['+(w-f)+':'+f+']';
+};
+const describe=formatPort;
 const D=()=>root.DigitalDesign||(typeof require==='function'?require('./digital-design.js'):null);
-const types={subtract:'减法器',multiply:'乘法器',absolute:'绝对值',gain:'常系数增益',quantize:'量化器 / 格式转换',delay:'直通 / 延时',integrator:'积分滤波器',filter:'已有滤波器'};
+const types={subtract:'减法器',multiply:'乘法器',absolute:'绝对值',gain:'常系数增益',quantize:'量化器 / 格式转换',delay:'直通 / 延时',integrator:'积分滤波器',dds:'DDS 波形发生器',offset:'偏移二进制转有符号',filter:'已有滤波器'};
 function defaults(kind='subtract'){
  if(!types[kind]||kind==='filter')throw Error('请选择基础模块类型。');
+ if(kind==='dds')return {kind,moduleName:'dds_wave',timing:'registered',inputs:[{name:'freq_word',width:24,signed:true,fraction:0}],output:{name:'data_out',width:16,signed:true,fraction:0},params:{waveform:'sine',tableLength:256,accWidth:24}};
+ if(kind==='offset')return {kind,moduleName:'offset_to_signed',timing:'combinational',inputs:[{name:'data_in',width:16,signed:false,fraction:0}],output:{name:'data_out',width:16,signed:true,fraction:0},params:{mode:'forward',rounding:'floor',overflow:'wrap',gainInteger:1,gainFraction:0,stepShift:8}};
  const f={width:16,signed:true,fraction:8};
  return {kind,moduleName:'digital_'+kind,timing:kind==='integrator'?'registered':'combinational',inputs:(['subtract','multiply'].includes(kind)?['a','b']:['data_in']).map(name=>({name,...f})),output:{name:'data_out',...f,...(kind==='integrator'?{width:24,fraction:16}:{})},params:{rounding:'floor',overflow:'wrap',gainInteger:1,gainFraction:0,stepShift:8}};
 }
@@ -3377,6 +3491,36 @@ function config(value){
  if(!value||!types[value.kind])throw Error('不支持的模块类型。');
  const name=id(value.moduleName);
  if(value.kind==='filter')return {kind:'filter',moduleName:name,model:D().fromCoefficients(value.model)};
+ if(value.kind==='dds'){
+  const base=defaults('dds'),output=port(value.output||base.output,'output');
+  if(output.width!==16||!output.signed||output.fraction!==0)throw Error('DDS 输出必须为 16 bit signed、0 位小数。');
+  const p={...base.params,...value.params};
+  if(!['sine','square','triangle'].includes(p.waveform))throw Error('不支持的 DDS 波形。');
+  const tableLength=int(p.tableLength,16,4096,'波表长度');
+  if((tableLength&(tableLength-1))!==0)throw Error('波表长度必须是 2 的幂。');
+  const accWidth=int(p.accWidth,8,32,'相位累加器位宽');
+  if(tableLength>2**accWidth)throw Error('波表长度不能超过 2^累加器位宽。');
+  const inputs=(value.inputs||[]).map(v=>port(v,'input'));
+  if(inputs.length!==1||inputs[0].name!=='freq_word')throw Error('DDS 必须且只能有 freq_word 一个输入端口。');
+  if(inputs[0].width!==accWidth||!inputs[0].signed||inputs[0].fraction!==0)throw Error('freq_word 必须为 signed、0 位小数，位宽等于相位累加器位宽。');
+  let output2=null;
+  if(p.waveform==='sine'){
+   output2=port(value.output2||{name:'data_out_q',direction:'output',width:16,signed:true,fraction:0},'output');
+   if(output2.name===output.name)throw Error('正交输出端口名不能与主输出相同。');
+   if(output2.width!==16||!output2.signed||output2.fraction!==0)throw Error('DDS 正交输出必须为 16 bit signed、0 位小数。');
+  }
+  return {kind:'dds',moduleName:name,timing:'registered',inputs,output,output2,params:{waveform:p.waveform,tableLength,accWidth}};
+ }
+ if(value.kind==='offset'){
+  const base=defaults('offset'),inputs=(value.inputs||[]).map(p=>port(p,'input')),output=port(value.output||base.output,'output');
+  const mode=(value.params?.mode==='reverse')?'reverse':'forward';
+  if(inputs.length!==1||inputs[0].name!=='data_in')throw Error('偏移二进制转换必须且只能有 data_in 一个输入。');
+  if(inputs[0].width<2)throw Error('偏移二进制输入位宽至少为 2。');
+  if(inputs[0].width!==output.width||inputs[0].fraction!==output.fraction)throw Error('输入输出位宽和小数位必须相同。');
+  if(mode==='forward'&&(inputs[0].signed||!output.signed))throw Error('正向转换要求 unsigned 输入、signed 输出。');
+  if(mode==='reverse'&&(!inputs[0].signed||output.signed))throw Error('逆向转换要求 signed 输入、unsigned 输出。');
+  return {kind:'offset',moduleName:name,timing:'combinational',inputs,output,params:{mode,rounding:'floor',overflow:'wrap',gainInteger:1,gainFraction:0,stepShift:8}};
+ }
  const base=defaults(value.kind),timing=value.kind==='integrator'?'registered':value.timing;
  if(!['combinational','registered'].includes(timing))throw Error('请选择组合逻辑或打一拍。');
  const inputs=value.inputs.map(p=>port(p,'input')),output=port(value.output,'output');
@@ -3432,7 +3576,37 @@ function legacyPrimitive(c){
 // Keep expressions at their actual arithmetic precision. Assignment handles
 // ordinary extension/truncation; intermediates are needed only before rounding,
 // a precision-losing right shift, or a repeated saturation comparison.
+function ddsVerilog(c){
+ const N=c.params.tableLength,B=Math.round(Math.log2(N)),AW=c.params.accWidth,A=32767,Q=c.output2;
+ const sample=i=>{
+  if(c.params.waveform==='sine')return Math.round(A*Math.sin(2*Math.PI*i/N));
+  if(c.params.waveform==='square')return i<N/2?A:-A;
+  return Math.round(A*(i<N/2?(4*i/N-1):(3-4*i/N)));
+ };
+ const sv=v=>v<0?"-16'sd"+(-v):"16'sd"+v;
+ const step=(50e6/2**AW).toFixed(3);
+ const lines=['// DDS waveform generator; '+N+' x 16-bit ROM (BRAM), phase accumulator '+AW+'-bit.',
+  '// freq_word +1 = fs / 2^'+AW+'; at 50 MHz = '+step+' Hz per LSB.',
+  'module '+c.moduleName+'(','  input wire clk,','  input wire rst_n,','  input wire signed ['+(AW-1)+':0] freq_word,',
+  '  output reg signed [15:0] data_out'+(Q?',':''),...(Q?['  output reg signed [15:0] '+Q.name]:[]),');',
+  '  reg ['+(AW-1)+':0] phase;',
+  '  wire ['+(AW-1)+':0] phase_next = phase + freq_word;',
+  '  wire ['+(B-1)+':0] idx = phase_next['+(AW-1)+':'+(AW-B)+'];'];
+ if(Q)lines.push('  wire ['+(B-1)+':0] idx_q = idx + '+(N/4)+';');
+ lines.push('  (* rom_style = "block" *) reg signed [15:0] rom [0:'+(N-1)+'];','  initial begin');
+ for(let i=0;i<N;i++)lines.push('    rom['+i+'] = '+sv(sample(i))+';');
+ lines.push('  end','  always @(posedge clk) begin','    if (!rst_n) begin','      phase <= 0;','      data_out <= 0;');
+ if(Q)lines.push('      '+Q.name+' <= 0;');
+ lines.push('    end else begin','      phase <= phase_next;','      data_out <= rom[idx];');
+ if(Q)lines.push('      '+Q.name+' <= rom[idx_q];');
+ lines.push('    end','  end','endmodule','');
+ return lines.join('\n');
+}
 function primitive(c){
+ if(c.kind==='offset'){
+  const w=c.output.width,rev=c.params.mode==='reverse';
+  return ['// Offset binary <-> signed: flip the MSB.','module '+c.moduleName+'(','  input wire '+(rev?'signed ':'')+'['+(w-1)+':0] data_in,','  output wire '+(rev?'':'signed ')+'['+(w-1)+':0] data_out',');','  assign data_out = {~data_in['+(w-1)+'], data_in['+(w-2)+':0]};','endmodule',''].join('\n');
+ }
  const out=c.output,lines=['// '+types[c.kind]+'; explicit interface formats.',
   '// Output overflow: '+c.params.overflow+'; rounding: '+c.params.rounding+'.',
   'module '+c.moduleName+'(',...(c.timing==='registered'?['  input wire clk,','  input wire rst_n,']:[]),
@@ -3550,7 +3724,8 @@ function withdrawnFilter(m,q,name){
 
 function create(value){
  const c=config(value);let ports,verilog,latency,clocked;
- if(c.kind==='filter'){
+ if(c.kind==='dds'){ports=c.inputs.concat(c.output,c.output2?[c.output2]:[]);verilog=ddsVerilog(c);clocked=true;latency=1;
+ }else if(c.kind==='filter'){
   const q=D().quantize(c.model),f=c.model.fixed;ports=[{name:'data_in',direction:'input',width:f.inputBits,signed:true,fraction:f.dataFraction},{name:'data_out',direction:'output',width:f.outputBits,signed:true,fraction:f.dataFraction}];
   verilog=D().generateVerilog(c.model,{moduleName:c.moduleName});latency=q.latency;clocked=true;
  }else{ports=c.inputs.concat(c.output);verilog=primitive(c);clocked=c.timing==='registered';latency=clocked?1:0;}
@@ -3586,7 +3761,7 @@ function endpoint(s,key,source){
 }
 function check(s,complete=false){
  const driven=new Set(),edges=new Map(s.instances.map(n=>[n.id,[]]));
- for(const c of s.connections){const a=endpoint(s,c.from,true),b=endpoint(s,c.to,false);if(!match(a,b))throw Error('接口不匹配：位宽、符号和小数位必须全部相同。');if(driven.has(c.to))throw Error('一个输入只能连接一个驱动。');driven.add(c.to);
+ for(const c of s.connections){const a=endpoint(s,c.from,true),b=endpoint(s,c.to,false);if(!match(a,b))throw Error('接口不匹配：位宽必须相同。');if(driven.has(c.to))throw Error('一个输入只能连接一个驱动。');driven.add(c.to);
   if(edges.has(a.owner)&&edges.has(b.owner)){const n=s.instances.find(n=>n.id===b.owner),p=s.modules.find(p=>p.key===n.moduleKey).design;if(!p.clocked)edges.get(a.owner).push(b.owner);}}
  const visiting=new Set(),done=new Set();function visit(k){if(visiting.has(k))throw Error('存在纯组合反馈环路，请加入打一拍模块或积分状态。');if(done.has(k))return;visiting.add(k);for(const v of edges.get(k))visit(v);visiting.delete(k);done.add(k);}for(const k of edges.keys())visit(k);
  const defs=definitions(s);if(defs.has(s.topName))throw Error('系统顶层名称与导入模块名称重复。');
@@ -3598,24 +3773,36 @@ function check(s,complete=false){
 }
 function validateState(v){
  if(v==null)return empty();if(v.version!==1||!['filter','module','system'].includes(v.view)||!Array.isArray(v.modules)||v.modules.length>40||!Array.isArray(v.instances)||v.instances.length>32||!Array.isArray(v.ports)||v.ports.length>32||!Array.isArray(v.connections)||v.connections.length>160)throw Error('系统工作台数据无效或超出容量。');
- const s={version:1,view:v.view,topName:id(v.topName),modules:v.modules.map(m=>({key:id(m.key),design:load(m.design)})),instances:v.instances.map(n=>({id:id(n.id),moduleKey:id(n.moduleKey)})),ports:v.ports.map(p=>{if(!['input','output'].includes(p.direction))throw Error('顶层端口方向无效。');return port(p,p.direction);}),connections:v.connections.map(c=>({from:String(c.from),to:String(c.to)}))};
+ const s={version:1,view:v.view,topName:id(v.topName),modules:v.modules.map(m=>({key:id(m.key),design:load(m.design)})),instances:v.instances.map(n=>({id:id(n.id),moduleKey:id(n.moduleKey)})),ports:v.ports.map(p=>{
+  let q;
+  if(p.direction==='constant')q=port({...p,direction:'input',constant:true},'input');
+  else if(p.constant===true)q=port(p,'input');
+  else{if(!['input','output'].includes(p.direction))throw Error('顶层端口方向无效。');q=port(p,p.direction);}
+  if(q.constant){
+   if(q.direction!=='input')throw Error('常数只能作为输入激励。');
+   if(!['bin','dec','hex'].includes(q.format))throw Error('常数进制必须是 bin/dec/hex。');
+   parseConstant(q);q.value=String(q.value);
+  }else{delete q.constant;delete q.format;delete q.value;}
+  return q;
+ }),connections:v.connections.map(c=>({from:String(c.from),to:String(c.to)}))};
  if(new Set(s.modules.map(m=>m.key)).size!==s.modules.length||new Set(s.instances.map(m=>m.id)).size!==s.instances.length||new Set(s.ports.map(p=>p.name)).size!==s.ports.length||s.instances.some(n=>['in','out','clk','rst_n'].includes(n.id)||!s.modules.some(m=>m.key===n.moduleKey)))throw Error('模块或实例名称重复，或引用丢失。');
  if(v.layout!==undefined)s.layout=root.DigitalSystemLayout.validateLayout(v.layout,[...s.instances.map(n=>n.id),...s.ports.map(p=>(p.direction==='input'?'in:':'out:')+p.name)]);
  return check(s);
 }
 function connect(value,from,to){const s=validateState(value);s.connections.push({from,to});return check(s);}
 function generateSystem(value){
- const s=check(validateState(value),true),clocked=s.instances.some(n=>s.modules.find(m=>m.key===n.moduleKey).design.clocked),ports=[...(clocked?['input wire clk','input wire rst_n']:[]),...s.ports.map(p=>decl(p))];
+ const s=check(validateState(value),true),clocked=s.instances.some(n=>s.modules.find(m=>m.key===n.moduleKey).design.clocked),ports=[...(clocked?['input wire clk','input wire rst_n']:[]),...s.ports.filter(p=>!p.constant).map(p=>decl(p))];
  const lines=['// AnalogStudio digital system. Module names and saved HDL are preserved.','// Common clock; synchronous active-low reset. Interfaces are never resized here.','module '+s.topName+'(',ports.map(p=>'  '+p).join(',\n'),');'];
  const signal=key=>{const e=endpoint(s,key,true);return e.owner==='in'?e.name:'n_'+e.owner+'_'+e.name;};
  // Declare all nets before any instance: feedback may reference a later instance.
- for(const n of s.instances)for(const o of s.modules.find(m=>m.key===n.moduleKey).design.ports.filter(o=>o.direction==='output'))lines.push('  '+decl({...o,name:'n_'+n.id+'_'+o.name},'wire').replace('wire wire','wire')+';');
+  for(const p of s.ports.filter(p=>p.constant))lines.push('  localparam '+(p.signed?'signed ':'')+'['+(p.width-1)+':0] '+p.name+' = '+constLiteral(p)+';');
+for(const n of s.instances)for(const o of s.modules.find(m=>m.key===n.moduleKey).design.ports.filter(o=>o.direction==='output'))lines.push('  '+decl({...o,name:'n_'+n.id+'_'+o.name},'wire').replace('wire wire','wire')+';');
  for(const n of s.instances){const p=s.modules.find(m=>m.key===n.moduleKey).design;
   const pins=[...(p.clocked?['.clk(clk)','.rst_n(rst_n)']:[]),...p.ports.map(o=>'.'+o.name+'('+(o.direction==='output'?'n_'+n.id+'_'+o.name:signal(s.connections.find(c=>c.to===n.id+':'+o.name).from))+')')];lines.push('  '+p.moduleName+' '+n.id+'('+pins.join(', ')+');');}
  for(const o of s.ports.filter(p=>p.direction==='output'))lines.push('  assign '+o.name+' = '+signal(s.connections.find(c=>c.to==='out:'+o.name).from)+';');
  lines.push('endmodule','',...definitions(s).values(),'');return lines.join('\n');
 }
-root.DigitalModules={types,defaults,config,create,load,fmt,match,describe,id,empty,validateState,connect,check,endpoint,generateSystem};
+root.DigitalModules={types,defaults,config,create,load,fmt,match,describe,format:formatPort,id,empty,validateState,connect,check,endpoint,generateSystem};
 if(typeof module!=='undefined'&&module.exports)module.exports=root.DigitalModules;
 })(typeof window!=='undefined'?window:globalThis);
 
@@ -3625,7 +3812,7 @@ if(typeof module!=='undefined'&&module.exports)module.exports=root.DigitalModule
 const L=root.DigitalSystemLayout,esc=x=>String(x).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 let serial=0;
 function newId(){return 'ds-canvas-'+(++serial);}
-function markup(state,layout,id='ds-canvas',selected=null){
+function markup(state,layout,id='ds-canvas',selected=null,pending=null){
  const scene=L.build(state,layout),defs=['<pattern id="'+id+'-grid" width="20" height="20" patternUnits="userSpaceOnUse"><path d="M20 0 H0 V20" fill="none" stroke="#edf2f7" stroke-width="1"/></pattern>',
  '<marker id="'+id+'-arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0 0 L10 5 L0 10 z" fill="#2569a7"/></marker>'];
  const blocks=scene.boxes.map((b,i)=>{
@@ -3633,7 +3820,7 @@ function markup(state,layout,id='ds-canvas',selected=null){
   const subtitle=b.design?(root.DigitalModules.types[b.design.kind]+' · '+b.design.latency+' 拍'):b.subtitle;
   const ports=[...scene.anchors.entries()].filter(([_,p])=>p.owner===b.id).map(([key,p])=>{
    const x=p.x-b.x,y=p.y-b.y,label=b.kind==='module'?'<text x="'+(p.side==='left'?12:b.w-12)+'" y="'+(y+4)+'" text-anchor="'+(p.side==='left'?'start':'end')+'" clip-path="url(#'+clip+')">'+esc(p.label)+'</text>':'';
-   return '<circle cx="'+x+'" cy="'+y+'" r="4" data-ds-anchor="'+esc(key)+'"/>'+label;
+   return '<circle cx="'+x+'" cy="'+y+'" r="4" class="ds-anchor'+(key===pending?' ds-anchor-selected':'')+'" data-ds-anchor="'+esc(key)+'"/>'+label;
   }).join('');
   return '<g class="ds-block'+(selected?.kind==='node'&&selected.id===b.id?' ds-selected':'')+'" data-ds-node="'+esc(b.id)+'" transform="translate('+b.x+' '+b.y+')" tabindex="0" role="group" aria-label="'+esc(b.title+'；可拖动，右下角调整大小；Delete 删除，右键操作')+'"><title>'+esc(b.title+' · '+subtitle)+'</title><rect class="'+(b.kind==='module'?'ds-node':'ds-port')+'" width="'+b.w+'" height="'+b.h+'" rx="9"/><g clip-path="url(#'+clip+')"><text x="14" y="24" class="ds-svg-title">'+esc(b.title)+'</text><text x="14" y="44">'+esc(subtitle)+'</text></g>'+ports+'<g data-ds-resize="'+esc(b.id)+'" class="ds-resize-handle" aria-label="调整模块大小"><rect x="'+(b.w-23)+'" y="'+(b.h-23)+'" width="23" height="23" fill="transparent"/><path d="M'+(b.w-18)+' '+(b.h-5)+' L'+(b.w-5)+' '+(b.h-18)+' M'+(b.w-11)+' '+(b.h-5)+' L'+(b.w-5)+' '+(b.h-11)+'"/></g></g>';
  });
@@ -3645,7 +3832,7 @@ function mount(element,options){
  const doc=element.ownerDocument,id=options.id||newId(),raf=root.requestAnimationFrame?.bind(root)||(fn=>root.setTimeout(fn,16)),caf=root.cancelAnimationFrame?.bind(root)||root.clearTimeout.bind(root);
  let drag=null,frame=null,disposed=false;
  const active=()=>!disposed&&options.isActive?.()!==false;
- function paint(layout){if(!disposed)element.innerHTML=markup(options.getState(),layout,id,options.getSelection?.());}
+ function paint(layout){if(!disposed)element.innerHTML=markup(options.getState(),layout,id,options.getSelection?.(),options.getPending?.());}
  function focusSelection(){const s=options.getSelection?.();if(!s)return;const node=s.kind==='wire'?[...element.querySelectorAll('.ds-link')].find(n=>n.dataset.dsFrom===s.from&&n.dataset.dsTo===s.to):[...element.querySelectorAll('[data-ds-node]')].find(n=>n.dataset.dsNode===s.id);node?.focus?.({preventScroll:true});}
  function target(e){const wire=e.target.closest?.('[data-ds-wire]');if(wire)return {kind:'wire',from:wire.dataset.dsFrom,to:wire.dataset.dsTo};const node=e.target.closest?.('[data-ds-node]');return node?{kind:'node',id:node.dataset.dsNode}:null;}
  function point(e){
@@ -3658,7 +3845,7 @@ function mount(element,options){
  function release(d){try{if(element.hasPointerCapture?.(d.pointerId))element.releasePointerCapture(d.pointerId);}catch{}}
  function cancel(repaint=true){if(!drag)return;const d=drag;drag=null;if(frame!==null){caf(frame);frame=null;}delete element.dataset.gesture;release(d);if(repaint)paint();}
  function down(e){
-  if(!active()||e.button!==0||e.isPrimary===false||drag)return;const selection=target(e);options.onSelect?.(selection);
+  if(!active()||e.button!==0||e.isPrimary===false||drag)return;const anchor=e.target.closest?.('[data-ds-anchor]');if(anchor){options.onAnchor?.(anchor.dataset.dsAnchor,e);e.preventDefault();return;}const selection=target(e);options.onSelect?.(selection);
   if(selection?.kind!=='node'){paint();focusSelection();if(selection)e.preventDefault();return;}
   const node=e.target.closest?.('[data-ds-node]');if(!node||!element.contains(node))return;
   const p=point(e);if(!p)return;const scene=L.build(options.getState()),box=scene.boxes.find(b=>b.id===node.dataset.dsNode);if(!box)return;
@@ -3706,7 +3893,7 @@ function attach(container,options={}){
  filterSave.innerHTML='<label>Verilog 模块名<input data-ds="filter-name" value="digital_filter" maxlength="64"></label><button type="button" data-ds="save-filter">保存当前滤波器设计</button><button type="button" class="dd-primary" data-ds="filter-to-system">保存并导入系统工作台</button><span>配置、接口与 Verilog 一起保存；导入后填写系统端口并连接。</span>';
  const header=container.querySelector('.dd-header');header.querySelector('h2').textContent='数字系统设计平台';header.querySelector('p').textContent='独立模块设计 · 保存并组合 · Verilog 生成';header.after(nav);nav.after(filterSave);filterSave.after(host);
  const canvasId=root.DigitalSystemCanvas.newId();
- let state=M.empty(),draft=M.defaults(),catalog=[],revision=0,disposed=false,choosing=null,canvasView=null,selected=null,clipboard=null,menu=null,menuPoint=null,importName='digital_filter';
+ let state=M.empty(),draft=M.defaults(),catalog=[],revision=0,disposed=false,choosing=null,canvasView=null,selected=null,pendingAnchor=null,clipboard=null,menu=null,menuPoint=null,importName='digital_filter';
  const undo=[],redo=[],$=k=>host.querySelector('[data-ds="'+k+'"]');
  function readLibrary(){const values=JSON.parse(root.localStorage.getItem(STORE)||'[]');if(!Array.isArray(values)||values.length>40)throw Error('浏览器模块库无效，原数据未覆盖。');return values.map(M.load);}
  function stored(){try{return readLibrary();}catch{return [];}}
@@ -3765,12 +3952,32 @@ function attach(container,options={}){
  }
  const numeric=(el,label)=>{if(!el.value.trim())throw Error(label+' 不能为空。');const x=Number(el.value);if(!Number.isFinite(x))throw Error(label+' 不是有效数字。');return x;};
  function formatFields(p,key){return '<label>位宽<input type="number" min="1" max="128" data-ds-field="'+key+'.width" value="'+p.width+'"></label><label>符号<select data-ds-field="'+key+'.signed"><option value="true"'+(p.signed?' selected':'')+'>signed</option><option value="false"'+(!p.signed?' selected':'')+'>unsigned</option></select></label><label>小数位 F<input type="number" min="0" max="127" data-ds-field="'+key+'.fraction" value="'+p.fraction+'"></label>';}
- function readDraft(){const c=copy(draft);c.kind=$('kind').value;c.moduleName=$('module-name').value;c.timing=$('timing').value;for(const field of host.querySelectorAll('[data-ds-field]')){const keys=field.dataset.dsField.split('.');let target=c;for(const k of keys.slice(0,-1))target=target[k];const k=keys.at(-1);target[k]=k==='signed'?field.value==='true':numeric(field,k);}c.params.rounding=$('rounding').value;c.params.overflow=$('overflow').value;return M.config(c);}
+ function readDraft(){const c=copy(draft);c.kind=$('kind').value;c.moduleName=$('module-name').value;c.timing=$('timing').value;if(c.kind==='offset'){const mode=$('offset-mode').value,ow=Number($('offset-width').value),of=Number($('offset-frac').value);c.timing='combinational';c.params={...c.params,mode};c.inputs=[{name:'data_in',width:ow,signed:mode==='reverse',fraction:of}];c.output={name:'data_out',width:ow,signed:mode!=='reverse',fraction:of};return M.config(c);}if(c.kind==='dds'){const aw=Number($('dds-acc').value),wf=$('dds-wave').value;c.inputs=[{name:'freq_word',width:aw,signed:true,fraction:0}];c.output={name:'data_out',width:16,signed:true,fraction:0};c.output2=wf==='sine'?{name:'data_out_q',width:16,signed:true,fraction:0}:null;c.timing='registered';c.params={waveform:wf,tableLength:Number($('dds-table').value),accWidth:aw};return M.config(c);}for(const field of host.querySelectorAll('[data-ds-field]')){const keys=field.dataset.dsField.split('.');let target=c;for(const k of keys.slice(0,-1))target=target[k];const k=keys.at(-1);target[k]=k==='signed'?field.value==='true':numeric(field,k);}c.params.rounding=$('rounding').value;c.params.overflow=$('saturate').checked?'saturate':'wrap';return M.config(c);}
  function endpoints(source){const out=[];for(const p of state.ports.filter(p=>p.direction===(source?'input':'output')))out.push({key:(source?'in:':'out:')+p.name,p,label:'系统 '+p.name});for(const n of state.instances){const d=state.modules.find(m=>m.key===n.moduleKey).design;for(const p of d.ports.filter(p=>p.direction===(source?'output':'input')))out.push({key:n.id+':'+p.name,p,label:n.id+'.'+p.name});}return out;}
- function refreshDest(){const selected=$('to').value,a=endpoints(true).find(e=>e.key===$('from').value);$('to').innerHTML='<option value="">选择接收端</option>'+endpoints(false).map(e=>{const occupied=state.connections.some(c=>c.to===e.key),ok=a&&M.match(a.p,e.p)&&!occupied;return '<option value="'+esc(e.key)+'"'+(!ok?' disabled':'')+'>'+esc(e.label+' · '+M.describe(e.p)+(occupied?' · 已连接':!ok?' · 格式不同':''))+'</option>';}).join('');if([...$('to').options].some(o=>o.value===selected&&!o.disabled))$('to').value=selected;}
+ function setConnectHint(text,error=false){const el=$('connect-hint');if(el){el.textContent=text;el.classList.toggle('ds-error',error);}}
+ function selectWithPending(value){if(pendingAnchor){pendingAnchor=null;canvasView?.draw();}select(value);}
+ function clickAnchor(key){
+  const src=endpoints(true).find(e=>e.key===key),dst=endpoints(false).find(e=>e.key===key);
+  if(!pendingAnchor){
+   if(!src){setConnectHint('请先点击驱动端（系统输入/常数或实例输出）。',true);return;}
+   pendingAnchor=key;canvasView?.draw();setConnectHint('已选驱动端 '+src.label+' ['+M.describe(src.p)+']，请点击位宽相同的接收端。');return;
+  }
+  const a=endpoints(true).find(e=>e.key===pendingAnchor);
+  if(!a){pendingAnchor=null;canvasView?.draw();setConnectHint('驱动端已失效，请重新选择。',true);return;}
+  if(!dst){
+   if(src){pendingAnchor=key;canvasView?.draw();setConnectHint('已切换驱动端 '+src.label+' ['+M.describe(src.p)+']，请点击接收端。');}
+   else setConnectHint('请点击接收端（系统输出或实例输入）。',true);
+   return;
+  }
+  if(a.p.width!==dst.p.width){setConnectHint('位宽不同：'+a.p.width+' vs '+dst.p.width+'，不能连接。',true);return;}
+  if(state.connections.some(c=>c.to===key)){setConnectHint('该接收端已连接。',true);return;}
+  const from=pendingAnchor;pendingAnchor=null;
+  act(()=>change('连接 '+from+' → '+key,next=>M.connect(next,from,key)));
+ }
+ function refreshDest(){const selected=$('to').value,a=endpoints(true).find(e=>e.key===$('from').value);$('to').innerHTML='<option value="">选择接收端</option>'+endpoints(false).map(e=>{const occupied=state.connections.some(c=>c.to===e.key),ok=a&&M.match(a.p,e.p)&&!occupied;return '<option value="'+esc(e.key)+'"'+(!ok?' disabled':'')+'>'+esc(e.label+' · '+M.describe(e.p)+(occupied?' · 已连接':!ok?' · 位宽不同':''))+'</option>';}).join('');if([...$('to').options].some(o=>o.value===selected&&!o.disabled))$('to').value=selected;}
  function libraryCard(p,i){const keys=new Set(state.modules.filter(m=>same(m.design,p)).map(m=>m.key)),count=state.instances.filter(n=>keys.has(n.moduleKey)).length;return `<article><div><strong>${esc(p.moduleName)}</strong><p>${esc(M.types[p.kind]+' · '+p.latency+'拍')}</p><small>${p.ports.map(x=>esc(x.name+': '+M.describe(x))).join('<br>')}</small></div><div class="ds-actions"><button type="button" data-import-design="${i}">导入工作台</button><button type="button" data-edit="${i}">编辑配置</button><button type="button" data-export-package="${i}">导出设计 JSON</button><button type="button" data-export-v="${i}">导出 .v</button><button type="button" data-export-zip="${i}">配置 + Verilog ZIP</button><button type="button" class="ds-delete" data-delete-design="${i}">${count?'删除设计及 '+count+' 个实例':'删除设计'}</button></div></article>`;}
  function render(){
-  closeMenu();canvasView?.destroy();canvasView=null;refreshCatalog();selected=validSelection(selected);container.dataset.dsView=state.view;host.hidden=false;filterSave.hidden=state.view!=='filter';
+  pendingAnchor=null;closeMenu();canvasView?.destroy();canvasView=null;refreshCatalog();selected=validSelection(selected);container.dataset.dsView=state.view;host.hidden=false;filterSave.hidden=state.view!=='filter';
   for(const b of nav.querySelectorAll('[data-ds-tab]')){b.classList.toggle('active',b.dataset.dsTab===state.view);b.setAttribute('aria-pressed',String(b.dataset.dsTab===state.view));}updateHistory();
   host.innerHTML=`<p data-ds="notice" class="ds-notice" role="status"></p>
   <section data-ds="module-panel"${state.view!=='module'?' hidden':''}>
@@ -3778,14 +3985,29 @@ function attach(container,options={}){
    <div class="ds-grid"><section class="ds-card"><div class="ds-fields">
     <label>模块类型<select data-ds="kind">${Object.entries(M.types).filter(([k])=>k!=='filter').map(([k,v])=>'<option value="'+k+'"'+(k===draft.kind?' selected':'')+'>'+v+'</option>').join('')}</select></label>
     <label>Verilog 模块名<input data-ds="module-name" value="${esc(draft.moduleName)}" maxlength="64"></label>
-    <label>实现形式<select data-ds="timing"${draft.kind==='integrator'?' disabled':''}><option value="combinational"${draft.timing==='combinational'?' selected':''}>组合逻辑 · 0 拍</option><option value="registered"${draft.timing==='registered'?' selected':''}>寄存输出 · 1 拍</option></select></label></div>
+    <label>实现形式<select data-ds="timing"${draft.kind==='integrator'||draft.kind==='dds'?' disabled':''}><option value="combinational"${draft.timing==='combinational'?' selected':''}>组合逻辑 · 0 拍</option><option value="registered"${draft.timing==='registered'?' selected':''}>寄存输出 · 1 拍</option></select></label></div>
+    <fieldset class="dds-only"${draft.kind==='dds'?'':' hidden'}><legend>DDS 参数</legend><div class="ds-fields">
+     <label>波形<select data-ds="dds-wave"><option value="sine"${draft.kind==='dds'&&draft.params.waveform==='sine'?' selected':''}>正弦波</option><option value="square"${draft.kind==='dds'&&draft.params.waveform==='square'?' selected':''}>方波</option><option value="triangle"${draft.kind==='dds'&&draft.params.waveform==='triangle'?' selected':''}>三角波</option></select></label>
+     <label>波表长度<select data-ds="dds-table">${[16,64,256,1024,4096].map(n=>'<option value="'+n+'"'+(draft.kind==='dds'&&draft.params.tableLength===n?' selected':'')+'>'+n+'</option>').join('')}</select></label>
+     <label>相位累加器位宽<input type="number" min="8" max="32" data-ds="dds-acc" value="${draft.kind==='dds'?draft.params.accWidth:24}"></label>
+     <label>频率控制字<input value="freq_word · s[${draft.kind==='dds'?draft.params.accWidth:24}:0]" disabled></label>
+     <label>正交输出<input value="${draft.kind==='dds'&&draft.params.waveform==='sine'?'data_out_q · s[16:0]':'无（仅正弦波）'}" disabled></label>
+    </div><p class="ds-help">相位字每 +1 = 50 MHz / 2^${draft.kind==='dds'?draft.params.accWidth:24} ≈ ${(50e6/2**(draft.kind==='dds'?draft.params.accWidth:24)).toFixed(3)} Hz；f_out = freq_word × 该步进。${draft.kind==='dds'&&draft.params.waveform==='sine'?'正弦模式默认 data_out(I) + data_out_q(Q) 两路正交。':''}</p></fieldset>
+    <fieldset class="offset-only"${draft.kind==='offset'?'':' hidden'}><legend>偏移二进制转换</legend><div class="ds-fields">
+     <label>方向<select data-ds="offset-mode"><option value="forward"${draft.kind==='offset'&&draft.params.mode!=='reverse'?' selected':''}>正向：偏移二进制 → 有符号</option><option value="reverse"${draft.kind==='offset'&&draft.params.mode==='reverse'?' selected':''}>逆向：有符号 → 偏移二进制</option></select></label>
+     <label>位宽<input type="number" min="2" max="128" data-ds="offset-width" value="${draft.kind==='offset'?draft.inputs[0].width:16}"></label>
+     <label>小数位 F<input type="number" min="0" max="127" data-ds="offset-frac" value="${draft.kind==='offset'?draft.inputs[0].fraction:0}"></label>
+     <label>输入<input value="${draft.kind==='offset'?esc(M.describe(draft.inputs[0])):''}" disabled></label>
+     <label>输出<input value="${draft.kind==='offset'?esc(M.describe(draft.output)):''}" disabled></label>
+    </div><p class="ds-help">直接翻转最高位：正向 data_out = {~data_in[MSB], data_in[MSB-1:0]}；逆向同一操作，端口符号相反。</p></fieldset>
+    <div${draft.kind==='dds'||draft.kind==='offset'?' hidden':''}>
     ${draft.inputs.map((p,i)=>'<fieldset><legend>输入 '+esc(p.name)+'</legend><div class="ds-fields">'+formatFields(p,'inputs.'+i)+'</div></fieldset>').join('')}
     <fieldset><legend>输出 ${esc(draft.output.name)}</legend><div class="ds-fields">${formatFields(draft.output,'output')}</div></fieldset><div class="ds-fields">
     ${draft.kind==='gain'?'<label>增益整数<input type="number" data-ds-field="params.gainInteger" value="'+draft.params.gainInteger+'"></label><label>增益小数位<input type="number" data-ds-field="params.gainFraction" value="'+draft.params.gainFraction+'"></label>':''}
     ${draft.kind==='integrator'?'<label>积分步长 μ = 2⁻ˢ<input type="number" min="0" max="127" data-ds-field="params.stepShift" value="'+draft.params.stepShift+'"></label>':''}
-    <label>舍入<select data-ds="rounding"><option value="floor"${draft.params.rounding==='floor'?' selected':''}>向负无穷取整</option><option value="nearest"${draft.params.rounding==='nearest'?' selected':''}>最近值，半值远离零</option></select></label>
-    <label>超范围处理<select data-ds="overflow"><option value="wrap"${draft.params.overflow==='wrap'?' selected':''}>按输出位宽取位</option><option value="saturate"${draft.params.overflow==='saturate'?' selected':''}>饱和</option></select></label></div>
-    <p class="ds-help">接口由你定义；系统仅连接位宽、符号和小数位完全相同的接口。寄存输出统一使用 clk 和同步低有效 rst_n。</p>
+    <label>舍入<select data-ds="rounding"><option value="floor"${draft.params.rounding==='floor'?' selected':''}>向负无穷取整</option><option value="nearest"${draft.params.rounding==='nearest'?' selected':''}>最近值，半值远离零</option></select></label><label class="ds-check"><input type="checkbox" data-ds="saturate"${draft.params.overflow==='saturate'?' checked':''}> 饱和保护（超范围钳位到最大 / 最小值）</label></div>
+    <p class="ds-help">接口由你定义；系统仅连接位宽、符号和小数位完全相同的接口。寄存输出统一使用 clk 和同步低有效 rst_n。勾选饱和保护后，输出超出位宽范围会被钳位到最大 / 最小值；不勾选则按输出位宽回绕。</p>
+    </div>
     <div class="ds-actions"><button type="button" class="dd-primary" data-ds="save-module">保存模块设计</button><button type="button" data-ds="preview">预览 Verilog</button></div></section>
     <section class="ds-card"><h4>对应 Verilog</h4><pre data-ds="source" class="ds-source">先设计模块，再预览或保存。</pre></section></div>
   </section>
@@ -3793,9 +4015,9 @@ function attach(container,options={}){
    <div class="ds-heading"><div><h3>数字系统工作台</h3><p>从已保存设计导入；模块名保持不变，多次使用生成独立实例。</p></div><div class="ds-actions"><button type="button" data-ds="import-file">导入设计 / 系统 JSON</button><button type="button" data-ds="export-system-json">导出系统配置</button><button type="button" data-ds="export-system">生成系统 Verilog</button></div></div>
    <div class="ds-card ds-fields"><label>滤波器 JSON 的 Verilog 模块名<input data-ds="import-filter-name" value="${esc(importName)}" maxlength="64"></label><button type="button" data-ds="import-filter-file">导入滤波器模型 JSON</button><span class="ds-help">支持滤波器页导出的模型 JSON，保存为模块后自动加入工作台。</span></div>
    <div class="ds-fields ds-card"><label>系统顶层模块名<input data-ds="top-name" value="${esc(state.topName)}"></label><label>已保存模块<select data-ds="saved-select"><option value="">选择一个已有设计</option>${catalog.map((p,i)=>'<option value="'+i+'">'+esc(p.moduleName+' · '+M.types[p.kind]+' · '+p.latency+'拍')+'</option>').join('')}</select></label><label>实例名<input data-ds="instance-name" value="${nextId()}"></label><button type="button" data-ds="add-instance">导入到工作台</button></div>
-   <div class="ds-grid"><section class="ds-card"><h4>系统端口</h4><div class="ds-fields"><label>名称<input data-ds="port-name" value="x"></label><label>方向<select data-ds="port-direction"><option value="input">input</option><option value="output">output</option></select></label><label>位宽<input type="number" data-ds="port-width" value="16"></label><label>符号<select data-ds="port-signed"><option value="true">signed</option><option value="false">unsigned</option></select></label><label>小数位 F<input type="number" data-ds="port-fraction" value="8"></label><button type="button" data-ds="add-port">添加端口</button></div>
-   <ul class="ds-list">${state.ports.map((p,i)=>'<li><span>'+esc(p.direction+' '+p.name+' · '+M.describe(p))+'</span><button type="button" data-remove-port="'+i+'">删除</button></li>').join('')}</ul></section>
-   <section class="ds-card"><h4>连接</h4><label>驱动端<select data-ds="from"><option value="">选择驱动端</option>${endpoints(true).map(e=>'<option value="'+esc(e.key)+'">'+esc(e.label+' · '+M.describe(e.p))+'</option>').join('')}</select></label><label>接收端<select data-ds="to"><option value="">先选择驱动端</option></select></label><button type="button" data-ds="connect">连接相同接口</button><ul class="ds-list">${state.connections.map((c,i)=>'<li><code>'+esc(c.from+' → '+c.to)+'</code><button type="button" data-remove-link="'+i+'">断开</button></li>').join('')}</ul></section></div>
+   <div class="ds-grid"><section class="ds-card"><h4>系统端口</h4><div class="ds-fields"><label>名称<input data-ds="port-name" value="x"></label><label>方向<select data-ds="port-direction"><option value="input">input</option><option value="output">output</option><option value="constant">常数激励</option></select></label><label>位宽<input type="number" data-ds="port-width" value="16"></label><label>符号<select data-ds="port-signed"><option value="true">signed</option><option value="false">unsigned</option></select></label><label>小数位 F<input type="number" data-ds="port-fraction" value="8"></label><label data-ds="const-value-label" hidden>常数值<input data-ds="port-value" value="0"></label><label data-ds="const-format-label" hidden>常数进制<select data-ds="port-format"><option value="dec">10 进制</option><option value="bin">2 进制</option><option value="hex">16 进制</option></select></label><button type="button" data-ds="add-port">添加端口 / 常数</button></div>
+   <ul class="ds-list">${state.ports.map((p,i)=>'<li><span>'+esc((p.constant?'constant ':'')+p.name+' · '+M.describe(p)+(p.constant?' · '+p.format+' '+p.value:''))+'</span><button type="button" data-remove-port="'+i+'">删除</button></li>').join('')}</ul></section>
+   <section class="ds-card"><h4>连接</h4><label>驱动端<select data-ds="from"><option value="">选择驱动端</option>${endpoints(true).map(e=>'<option value="'+esc(e.key)+'">'+esc(e.label+' · '+M.describe(e.p))+'</option>').join('')}</select></label><label>接收端<select data-ds="to"><option value="">先选择驱动端</option></select></label><button type="button" data-ds="connect">连接相同位宽</button><p class="ds-help" data-ds="connect-hint">点击画布端口直接连线：先点驱动端，再点位宽相同的接收端。</p><ul class="ds-list">${state.connections.map((c,i)=>'<li><code>'+esc(c.from+' → '+c.to)+'</code><button type="button" data-remove-link="'+i+'">断开</button></li>').join('')}</ul></section></div>
    <div class="ds-diagram-tools"><span>拖动 / 缩放 · 右键复制 / 粘贴 · Delete 删除 · Ctrl+Z 撤销</span><button type="button" data-ds="reset-layout">重新排列</button></div>
    <div class="ds-selection"><span data-ds="selection"></span><button type="button" data-ds="delete-selected" disabled>删除选中项</button></div>
    <section class="ds-card ds-diagram" data-ds="diagram" tabindex="0">${root.DigitalSystemCanvas.markup(state,undefined,canvasId,selected)}</section>
@@ -3803,10 +4025,12 @@ function attach(container,options={}){
   </section>
   <details class="ds-card ds-library"${state.view!=='filter'?' open':''}><summary>已保存模块设计（${catalog.length}）</summary><p>每个设计包含配置、接口和 Verilog。删除已使用的设计也会移除当前系统的对应实例与连线，可撤销恢复。</p><div class="ds-library-list">${catalog.map(libraryCard).join('')||'<p class="ds-empty">尚无模块。先保存基础模块，或在滤波器页保存并导入。</p>'}</div></details>
   <input type="file" data-ds="file" accept=".json,application/json" hidden>`;
-  $('from').addEventListener('change',refreshDest);$('kind').addEventListener('change',()=>{draft=M.defaults($('kind').value);render();});
+  $('from').addEventListener('change',refreshDest);$('kind').addEventListener('change',()=>{draft=M.defaults($('kind').value);render();});if(draft.kind==='dds'){const wf=$('dds-wave'),ac=$('dds-acc');if(wf)wf.addEventListener('change',()=>{draft.params.waveform=wf.value;draft.params.tableLength=Number($('dds-table').value);draft.params.accWidth=Number(ac.value)||draft.params.accWidth;render();});if(ac)ac.addEventListener('change',()=>{draft.params.accWidth=Number(ac.value)||draft.params.accWidth;draft.params.waveform=$('dds-wave').value;draft.params.tableLength=Number($('dds-table').value);render();});}
+if(draft.kind==='offset'){const syncOffset=()=>{const mode=$('offset-mode').value,ow=Number($('offset-width').value)||16,of=Number($('offset-frac').value)||0;draft.params={...draft.params,mode};draft.inputs=[{name:'data_in',width:ow,signed:mode==='reverse',fraction:of}];draft.output={name:'data_out',width:ow,signed:mode!=='reverse',fraction:of};render();};for(const k of ['offset-mode','offset-width','offset-frac']){const el=$(k);if(el)el.addEventListener('change',syncOffset);}}
+if($('port-direction')){const syncConst=()=>{const on=$('port-direction').value==='constant';$('const-value-label').hidden=!on;$('const-format-label').hidden=!on;};$('port-direction').addEventListener('change',syncConst);syncConst();}
   $('top-name').addEventListener('change',()=>act(()=>change('修改顶层名称',next=>{next.topName=M.id($('top-name').value);},{render:false})));
   $('import-filter-name').addEventListener('input',()=>{importName=$('import-filter-name').value;});$('file').addEventListener('change',readFile);
-  canvasView=root.DigitalSystemCanvas.mount($('diagram'),{id:canvasId,getState:()=>state,getSelection:()=>selected,isActive:()=>state.view==='system'&&options.isActive?.()!==false,onSelect:select,onContextMenu:openMenu,onCommit(layout){change(layout?'调整画布布局':'重新排列',next=>{if(layout)next.layout=layout;else delete next.layout;},{render:false});}});updateSelection();
+  canvasView=root.DigitalSystemCanvas.mount($('diagram'),{id:canvasId,getState:()=>state,getSelection:()=>selected,isActive:()=>state.view==='system'&&options.isActive?.()!==false,onSelect:selectWithPending,onAnchor:clickAnchor,getPending:()=>pendingAnchor,onContextMenu:openMenu,onCommit(layout){change(layout?'调整画布布局':'重新排列',next=>{if(layout)next.layout=layout;else delete next.layout;},{render:false});}});updateSelection();
  }
  function act(fn){try{fn();}catch(error){notify(error.message,true);}}
  function send(filename,content,mime='text/plain'){return Promise.resolve(options.onDownload(filename,content,mime)).catch(e=>{if(!disposed)notify(e.message,true);return false;});}
@@ -3822,7 +4046,7 @@ function attach(container,options={}){
   if(action==='preview')$('source').textContent=M.create(readDraft()).verilog;
   if(action==='import-file'||action==='import-filter-file'){choosing={revision,context:options.getContextToken?.(),filterName:state.view==='module'?$('module-name').value:importName};$('file').click();}
   if(action==='add-instance'){if($('saved-select').value==='')throw Error('请先选择一个已保存的模块。');addInstance(catalog[Number($('saved-select').value)],$('instance-name').value);}
-  if(action==='add-port'){const p={name:M.id($('port-name').value),direction:$('port-direction').value,width:numeric($('port-width'),'位宽'),signed:$('port-signed').value==='true',fraction:numeric($('port-fraction'),'小数位')};change('添加端口 '+p.name,next=>{next.ports.push(p);});}
+  if(action==='add-port'){const dir=$('port-direction').value;const p={name:M.id($('port-name').value),direction:dir==='constant'?'input':dir,width:numeric($('port-width'),'位宽'),signed:$('port-signed').value==='true',fraction:numeric($('port-fraction'),'小数位')};if(dir==='constant'){p.constant=true;p.format=$('port-format').value;p.value=$('port-value').value;}change('添加端口 '+p.name,next=>{next.ports.push(p);});}
   if(action==='connect'){const from=$('from').value,to=$('to').value;change('连接 '+from+' → '+to,next=>M.connect(next,from,to));}
   if(action==='reset-layout')canvasView?.reset();if(action==='delete-selected')deleteSelected();
   if(action==='export-system'){const code=M.generateSystem(state);$('system-source').hidden=false;$('system-source').textContent=code;send(state.topName+'.v',code);}

@@ -18,7 +18,7 @@ function assertPortable(value){
 async function run(){
 const b=boot(),{w,P,$,click,downloads}=b;await pause();assert(P.isHome());
 const initialLegacy=legacyProject(b);assert(await P.importFile(file({format:'analog-studio',schemaVersion:2,state:initialLegacy.circuit})));assert(!P.isHome());assert.deepEqual(b.errors,[]);assert(P.dirty());assert.equal($('[data-dirty]').dataset.dirty,'true');
-const original=js(P.snapshot());assertPortable(original);assert.equal(Object.keys(original.circuit.experiments).length,11);assert.equal(P.validate(original).project.name,original.name);
+const original=js(P.snapshot());assertPortable(original);assert.equal(Object.keys(original.circuit.experiments).length,19);assert.equal(P.validate(original).project.name,original.name);
 click('#projectHub');assert($('#projectDialog').open);$('#projectNameEdit').value='My full project';$('#projectNameEdit').dispatchEvent(new w.Event('input',{bubbles:true}));click('#projectClose');assert.equal(P.snapshot().name,'My full project');
 // Save cancellation, double click, download failure, and explicit confirmation.
 click('#exportButton');assert.equal(downloads.length,1);click('#exportButton');assert.equal(downloads.length,1);assert(P.dirty());click('[data-project=cancel]');assert(P.dirty());
@@ -39,7 +39,7 @@ const full=js(P.snapshot()),legacyFull=legacyProject(b);assertPortable(full);P.v
 // Rename and Save As canceled keeps name; successful export explicitly adopts new name.
 click('#projectSaveAs');$('#projectSaveName').value='Another project';click('[data-project=cancel]');assert.equal(P.snapshot().name,'My full project');assert(!P.dirty());click('#projectSaveAs');$('#projectSaveName').value='Another project';click('[data-project=downloadAs]');assert.equal(P.snapshot().name,'My full project');click('[data-project=saved]');assert.equal(P.snapshot().name,'Another project');assert(!P.dirty());
 // New is only committed by Create. Wizard cancellation does not replace the current design.
-const beforeNew=js(P.snapshot());P.newProject();assert($('#projectDialog').open);assert.deepEqual(js(P.snapshot()),beforeNew);click('[data-project=cancel]');assert.deepEqual(js(P.snapshot()),beforeNew);P.newProject();createProject(b);assert.equal(P.snapshot().circuit.workspace.children.length,0);assert.equal(P.snapshot().name,'未命名工程');assert.equal(P.snapshot().feedback.fields.Gain,'2');assert.equal($('#libraryList').querySelectorAll('[data-type]').length,11);assert(P.dirty());assertPortable(js(P.snapshot()));
+const beforeNew=js(P.snapshot());P.newProject();assert($('#projectDialog').open);assert.deepEqual(js(P.snapshot()),beforeNew);click('[data-project=cancel]');assert.deepEqual(js(P.snapshot()),beforeNew);P.newProject();createProject(b);assert.equal(P.snapshot().circuit.workspace.children.length,0);assert.equal(P.snapshot().name,'未命名工程');assert.equal(P.snapshot().feedback.fields.Gain,'2');assert.equal($('#libraryList').querySelectorAll('[data-type]').length,19);assert(P.dirty());assertPortable(js(P.snapshot()));
 // Cancel protects current work. Repeated actions never replace pending confirmation.
 const empty=js(P.snapshot());P.newProject();assert($('#projectDialog').open);P.newProject();click('[data-project=cancel]');assert.deepEqual(js(P.snapshot()),empty);
 P.newProject();click('[data-project=discard]');assert($('#projectWizardCreate'));assert.deepEqual(js(P.snapshot()),empty);click('[data-project=cancel]');assert.deepEqual(js(P.snapshot()),empty);

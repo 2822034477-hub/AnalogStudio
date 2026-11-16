@@ -4,7 +4,7 @@
 const L=root.DigitalSystemLayout,esc=x=>String(x).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 let serial=0;
 function newId(){return 'ds-canvas-'+(++serial);}
-function markup(state,layout,id='ds-canvas',selected=null){
+function markup(state,layout,id='ds-canvas',selected=null,pending=null){
  const scene=L.build(state,layout),defs=['<pattern id="'+id+'-grid" width="20" height="20" patternUnits="userSpaceOnUse"><path d="M20 0 H0 V20" fill="none" stroke="#edf2f7" stroke-width="1"/></pattern>',
  '<marker id="'+id+'-arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0 0 L10 5 L0 10 z" fill="#2569a7"/></marker>'];
  const blocks=scene.boxes.map((b,i)=>{
@@ -12,7 +12,7 @@ function markup(state,layout,id='ds-canvas',selected=null){
   const subtitle=b.design?(root.DigitalModules.types[b.design.kind]+' · '+b.design.latency+' 拍'):b.subtitle;
   const ports=[...scene.anchors.entries()].filter(([_,p])=>p.owner===b.id).map(([key,p])=>{
    const x=p.x-b.x,y=p.y-b.y,label=b.kind==='module'?'<text x="'+(p.side==='left'?12:b.w-12)+'" y="'+(y+4)+'" text-anchor="'+(p.side==='left'?'start':'end')+'" clip-path="url(#'+clip+')">'+esc(p.label)+'</text>':'';
-   return '<circle cx="'+x+'" cy="'+y+'" r="4" data-ds-anchor="'+esc(key)+'"/>'+label;
+   return '<circle cx="'+x+'" cy="'+y+'" r="4" class="ds-anchor'+(key===pending?' ds-anchor-selected':'')+'" data-ds-anchor="'+esc(key)+'"/>'+label;
   }).join('');
   return '<g class="ds-block'+(selected?.kind==='node'&&selected.id===b.id?' ds-selected':'')+'" data-ds-node="'+esc(b.id)+'" transform="translate('+b.x+' '+b.y+')" tabindex="0" role="group" aria-label="'+esc(b.title+'；可拖动，右下角调整大小；Delete 删除，右键操作')+'"><title>'+esc(b.title+' · '+subtitle)+'</title><rect class="'+(b.kind==='module'?'ds-node':'ds-port')+'" width="'+b.w+'" height="'+b.h+'" rx="9"/><g clip-path="url(#'+clip+')"><text x="14" y="24" class="ds-svg-title">'+esc(b.title)+'</text><text x="14" y="44">'+esc(subtitle)+'</text></g>'+ports+'<g data-ds-resize="'+esc(b.id)+'" class="ds-resize-handle" aria-label="调整模块大小"><rect x="'+(b.w-23)+'" y="'+(b.h-23)+'" width="23" height="23" fill="transparent"/><path d="M'+(b.w-18)+' '+(b.h-5)+' L'+(b.w-5)+' '+(b.h-18)+' M'+(b.w-11)+' '+(b.h-5)+' L'+(b.w-5)+' '+(b.h-11)+'"/></g></g>';
  });
@@ -24,7 +24,7 @@ function mount(element,options){
  const doc=element.ownerDocument,id=options.id||newId(),raf=root.requestAnimationFrame?.bind(root)||(fn=>root.setTimeout(fn,16)),caf=root.cancelAnimationFrame?.bind(root)||root.clearTimeout.bind(root);
  let drag=null,frame=null,disposed=false;
  const active=()=>!disposed&&options.isActive?.()!==false;
- function paint(layout){if(!disposed)element.innerHTML=markup(options.getState(),layout,id,options.getSelection?.());}
+ function paint(layout){if(!disposed)element.innerHTML=markup(options.getState(),layout,id,options.getSelection?.(),options.getPending?.());}
  function focusSelection(){const s=options.getSelection?.();if(!s)return;const node=s.kind==='wire'?[...element.querySelectorAll('.ds-link')].find(n=>n.dataset.dsFrom===s.from&&n.dataset.dsTo===s.to):[...element.querySelectorAll('[data-ds-node]')].find(n=>n.dataset.dsNode===s.id);node?.focus?.({preventScroll:true});}
  function target(e){const wire=e.target.closest?.('[data-ds-wire]');if(wire)return {kind:'wire',from:wire.dataset.dsFrom,to:wire.dataset.dsTo};const node=e.target.closest?.('[data-ds-node]');return node?{kind:'node',id:node.dataset.dsNode}:null;}
  function point(e){
@@ -37,7 +37,7 @@ function mount(element,options){
  function release(d){try{if(element.hasPointerCapture?.(d.pointerId))element.releasePointerCapture(d.pointerId);}catch{}}
  function cancel(repaint=true){if(!drag)return;const d=drag;drag=null;if(frame!==null){caf(frame);frame=null;}delete element.dataset.gesture;release(d);if(repaint)paint();}
  function down(e){
-  if(!active()||e.button!==0||e.isPrimary===false||drag)return;const selection=target(e);options.onSelect?.(selection);
+  if(!active()||e.button!==0||e.isPrimary===false||drag)return;const anchor=e.target.closest?.('[data-ds-anchor]');if(anchor){options.onAnchor?.(anchor.dataset.dsAnchor,e);e.preventDefault();return;}const selection=target(e);options.onSelect?.(selection);
   if(selection?.kind!=='node'){paint();focusSelection();if(selection)e.preventDefault();return;}
   const node=e.target.closest?.('[data-ds-node]');if(!node||!element.contains(node))return;
   const p=point(e);if(!p)return;const scene=L.build(options.getState()),box=scene.boxes.find(b=>b.id===node.dataset.dsNode);if(!box)return;

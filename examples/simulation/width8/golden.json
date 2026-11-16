@@ -292,9 +292,9 @@
       ],
       "order": 2,
       "latency": 2,
-      "inputBits": 8,
-      "outputBits": 8,
-      "requiredAccumulatorBits": 23
+      "inputBits": 12,
+      "outputBits": 12,
+      "requiredAccumulatorBits": 27
     }
   ],
   "scale": 256,

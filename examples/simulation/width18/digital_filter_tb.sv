@@ -31,52 +31,52 @@ module digital_filter_tb;
     if(data_out !== 18'sd1704) begin $display("Mismatch sample 5: %d",data_out); errors=errors+1; end
     @(negedge clk);
     data_in=-18'sd99629; @(posedge clk); #1;
-    if(data_out !== 18'sd3305) begin $display("Mismatch sample 6: %d",data_out); errors=errors+1; end
+    if(data_out !== 18'sd3306) begin $display("Mismatch sample 6: %d",data_out); errors=errors+1; end
     @(negedge clk);
     data_in=-18'sd114154; @(posedge clk); #1;
-    if(data_out !== 18'sd2899) begin $display("Mismatch sample 7: %d",data_out); errors=errors+1; end
+    if(data_out !== 18'sd2900) begin $display("Mismatch sample 7: %d",data_out); errors=errors+1; end
     @(negedge clk);
     data_in=-18'sd60803; @(posedge clk); #1;
-    if(data_out !== 18'sd826) begin $display("Mismatch sample 8: %d",data_out); errors=errors+1; end
+    if(data_out !== 18'sd827) begin $display("Mismatch sample 8: %d",data_out); errors=errors+1; end
     @(negedge clk);
     data_in=18'sd111032; @(posedge clk); #1;
-    if(data_out !== -18'sd1233) begin $display("Mismatch sample 9: %d",data_out); errors=errors+1; end
+    if(data_out !== -18'sd1232) begin $display("Mismatch sample 9: %d",data_out); errors=errors+1; end
     @(negedge clk);
     data_in=18'sd18871; @(posedge clk); #1;
-    if(data_out !== -18'sd2971) begin $display("Mismatch sample 10: %d",data_out); errors=errors+1; end
+    if(data_out !== -18'sd2970) begin $display("Mismatch sample 10: %d",data_out); errors=errors+1; end
     @(negedge clk);
     data_in=18'sd39850; @(posedge clk); #1;
-    if(data_out !== -18'sd5663) begin $display("Mismatch sample 11: %d",data_out); errors=errors+1; end
+    if(data_out !== -18'sd5662) begin $display("Mismatch sample 11: %d",data_out); errors=errors+1; end
     @(negedge clk);
     data_in=-18'sd92415; @(posedge clk); #1;
-    if(data_out !== -18'sd10360) begin $display("Mismatch sample 12: %d",data_out); errors=errors+1; end
+    if(data_out !== -18'sd10358) begin $display("Mismatch sample 12: %d",data_out); errors=errors+1; end
     @(negedge clk);
     data_in=18'sd1132; @(posedge clk); #1;
-    if(data_out !== -18'sd15966) begin $display("Mismatch sample 13: %d",data_out); errors=errors+1; end
+    if(data_out !== -18'sd15965) begin $display("Mismatch sample 13: %d",data_out); errors=errors+1; end
     @(negedge clk);
     data_in=-18'sd117541; @(posedge clk); #1;
     if(data_out !== -18'sd18198) begin $display("Mismatch sample 14: %d",data_out); errors=errors+1; end
     @(negedge clk);
     data_in=18'sd124030; @(posedge clk); #1;
-    if(data_out !== -18'sd15028) begin $display("Mismatch sample 15: %d",data_out); errors=errors+1; end
+    if(data_out !== -18'sd15029) begin $display("Mismatch sample 15: %d",data_out); errors=errors+1; end
     @(negedge clk);
     data_in=-18'sd15931; @(posedge clk); #1;
-    if(data_out !== -18'sd8128) begin $display("Mismatch sample 16: %d",data_out); errors=errors+1; end
+    if(data_out !== -18'sd8129) begin $display("Mismatch sample 16: %d",data_out); errors=errors+1; end
     @(negedge clk);
     data_in=18'sd84064; @(posedge clk); #1;
-    if(data_out !== -18'sd2345) begin $display("Mismatch sample 17: %d",data_out); errors=errors+1; end
+    if(data_out !== -18'sd2346) begin $display("Mismatch sample 17: %d",data_out); errors=errors+1; end
     @(negedge clk);
     data_in=18'sd122943; @(posedge clk); #1;
     if(data_out !== -18'sd217) begin $display("Mismatch sample 18: %d",data_out); errors=errors+1; end
     @(negedge clk);
     data_in=-18'sd36718; @(posedge clk); #1;
-    if(data_out !== -18'sd2321) begin $display("Mismatch sample 19: %d",data_out); errors=errors+1; end
+    if(data_out !== -18'sd2320) begin $display("Mismatch sample 19: %d",data_out); errors=errors+1; end
     @(negedge clk);
     data_in=-18'sd10551; @(posedge clk); #1;
-    if(data_out !== -18'sd4794) begin $display("Mismatch sample 20: %d",data_out); errors=errors+1; end
+    if(data_out !== -18'sd4793) begin $display("Mismatch sample 20: %d",data_out); errors=errors+1; end
     @(negedge clk);
     data_in=18'sd127380; @(posedge clk); #1;
-    if(data_out !== -18'sd4906) begin $display("Mismatch sample 21: %d",data_out); errors=errors+1; end
+    if(data_out !== -18'sd4905) begin $display("Mismatch sample 21: %d",data_out); errors=errors+1; end
     @(negedge clk);
     data_in=18'sd77795; @(posedge clk); #1;
     if(data_out !== -18'sd1894) begin $display("Mismatch sample 22: %d",data_out); errors=errors+1; end
@@ -91,10 +91,10 @@ module digital_filter_tb;
     if(data_out !== 18'sd12372) begin $display("Mismatch sample 25: %d",data_out); errors=errors+1; end
     @(negedge clk);
     data_in=-18'sd112697; @(posedge clk); #1;
-    if(data_out !== 18'sd12797) begin $display("Mismatch sample 26: %d",data_out); errors=errors+1; end
+    if(data_out !== 18'sd12798) begin $display("Mismatch sample 26: %d",data_out); errors=errors+1; end
     @(negedge clk);
     data_in=18'sd57978; @(posedge clk); #1;
-    if(data_out !== 18'sd13701) begin $display("Mismatch sample 27: %d",data_out); errors=errors+1; end
+    if(data_out !== 18'sd13702) begin $display("Mismatch sample 27: %d",data_out); errors=errors+1; end
     @(negedge clk);
     data_in=18'sd69521; @(posedge clk); #1;
     if(data_out !== 18'sd16637) begin $display("Mismatch sample 28: %d",data_out); errors=errors+1; end
@@ -115,16 +115,16 @@ module digital_filter_tb;
     if(data_out !== -18'sd2982) begin $display("Mismatch sample 33: %d",data_out); errors=errors+1; end
     @(negedge clk);
     data_in=-18'sd24497; @(posedge clk); #1;
-    if(data_out !== -18'sd1094) begin $display("Mismatch sample 34: %d",data_out); errors=errors+1; end
+    if(data_out !== -18'sd1095) begin $display("Mismatch sample 34: %d",data_out); errors=errors+1; end
     @(negedge clk);
     data_in=18'sd37218; @(posedge clk); #1;
-    if(data_out !== 18'sd3704) begin $display("Mismatch sample 35: %d",data_out); errors=errors+1; end
+    if(data_out !== 18'sd3703) begin $display("Mismatch sample 35: %d",data_out); errors=errors+1; end
     @(negedge clk);
     data_in=18'sd90457; @(posedge clk); #1;
-    if(data_out !== 18'sd7005) begin $display("Mismatch sample 36: %d",data_out); errors=errors+1; end
+    if(data_out !== 18'sd7004) begin $display("Mismatch sample 36: %d",data_out); errors=errors+1; end
     @(negedge clk);
     data_in=-18'sd42268; @(posedge clk); #1;
-    if(data_out !== 18'sd7062) begin $display("Mismatch sample 37: %d",data_out); errors=errors+1; end
+    if(data_out !== 18'sd7061) begin $display("Mismatch sample 37: %d",data_out); errors=errors+1; end
     @(negedge clk);
     data_in=18'sd92403; @(posedge clk); #1;
     if(data_out !== 18'sd4616) begin $display("Mismatch sample 38: %d",data_out); errors=errors+1; end
@@ -181,10 +181,10 @@ module digital_filter_tb;
     if(data_out !== -18'sd6634) begin $display("Mismatch sample 55: %d",data_out); errors=errors+1; end
     @(negedge clk);
     data_in=-18'sd109267; @(posedge clk); #1;
-    if(data_out !== -18'sd2973) begin $display("Mismatch sample 56: %d",data_out); errors=errors+1; end
+    if(data_out !== -18'sd2974) begin $display("Mismatch sample 56: %d",data_out); errors=errors+1; end
     @(negedge clk);
     data_in=-18'sd117592; @(posedge clk); #1;
-    if(data_out !== 18'sd1805) begin $display("Mismatch sample 57: %d",data_out); errors=errors+1; end
+    if(data_out !== 18'sd1804) begin $display("Mismatch sample 57: %d",data_out); errors=errors+1; end
     @(negedge clk);
     data_in=-18'sd94233; @(posedge clk); #1;
     if(data_out !== 18'sd5646) begin $display("Mismatch sample 58: %d",data_out); errors=errors+1; end
@@ -196,19 +196,19 @@ module digital_filter_tb;
     if(data_out !== 18'sd8121) begin $display("Mismatch sample 60: %d",data_out); errors=errors+1; end
     @(negedge clk);
     data_in=18'sd48732; @(posedge clk); #1;
-    if(data_out !== 18'sd7093) begin $display("Mismatch sample 61: %d",data_out); errors=errors+1; end
+    if(data_out !== 18'sd7094) begin $display("Mismatch sample 61: %d",data_out); errors=errors+1; end
     @(negedge clk);
     data_in=18'sd83467; @(posedge clk); #1;
-    if(data_out !== 18'sd2608) begin $display("Mismatch sample 62: %d",data_out); errors=errors+1; end
+    if(data_out !== 18'sd2610) begin $display("Mismatch sample 62: %d",data_out); errors=errors+1; end
     @(negedge clk);
     data_in=-18'sd72722; @(posedge clk); #1;
-    if(data_out !== -18'sd5131) begin $display("Mismatch sample 63: %d",data_out); errors=errors+1; end
+    if(data_out !== -18'sd5129) begin $display("Mismatch sample 63: %d",data_out); errors=errors+1; end
     @(negedge clk);
     data_in=-18'sd42379; @(posedge clk); #1;
-    if(data_out !== -18'sd11502) begin $display("Mismatch sample 64: %d",data_out); errors=errors+1; end
+    if(data_out !== -18'sd11500) begin $display("Mismatch sample 64: %d",data_out); errors=errors+1; end
     @(negedge clk);
     data_in=-18'sd120496; @(posedge clk); #1;
-    if(data_out !== -18'sd12907) begin $display("Mismatch sample 65: %d",data_out); errors=errors+1; end
+    if(data_out !== -18'sd12906) begin $display("Mismatch sample 65: %d",data_out); errors=errors+1; end
     @(negedge clk);
     data_in=18'sd60527; @(posedge clk); #1;
     if(data_out !== -18'sd9277) begin $display("Mismatch sample 66: %d",data_out); errors=errors+1; end
@@ -259,64 +259,64 @@ module digital_filter_tb;
     if(data_out !== -18'sd4441) begin $display("Mismatch sample 81: %d",data_out); errors=errors+1; end
     @(negedge clk);
     data_in=-18'sd100225; @(posedge clk); #1;
-    if(data_out !== -18'sd7052) begin $display("Mismatch sample 82: %d",data_out); errors=errors+1; end
+    if(data_out !== -18'sd7051) begin $display("Mismatch sample 82: %d",data_out); errors=errors+1; end
     @(negedge clk);
     data_in=18'sd43986; @(posedge clk); #1;
-    if(data_out !== -18'sd8385) begin $display("Mismatch sample 83: %d",data_out); errors=errors+1; end
+    if(data_out !== -18'sd8384) begin $display("Mismatch sample 83: %d",data_out); errors=errors+1; end
     @(negedge clk);
     data_in=-18'sd42743; @(posedge clk); #1;
-    if(data_out !== -18'sd9373) begin $display("Mismatch sample 84: %d",data_out); errors=errors+1; end
+    if(data_out !== -18'sd9372) begin $display("Mismatch sample 84: %d",data_out); errors=errors+1; end
     @(negedge clk);
     data_in=18'sd69332; @(posedge clk); #1;
-    if(data_out !== -18'sd10122) begin $display("Mismatch sample 85: %d",data_out); errors=errors+1; end
+    if(data_out !== -18'sd10121) begin $display("Mismatch sample 85: %d",data_out); errors=errors+1; end
     @(negedge clk);
     data_in=18'sd76835; @(posedge clk); #1;
-    if(data_out !== -18'sd9423) begin $display("Mismatch sample 86: %d",data_out); errors=errors+1; end
+    if(data_out !== -18'sd9422) begin $display("Mismatch sample 86: %d",data_out); errors=errors+1; end
     @(negedge clk);
     data_in=-18'sd56538; @(posedge clk); #1;
-    if(data_out !== -18'sd8268) begin $display("Mismatch sample 87: %d",data_out); errors=errors+1; end
+    if(data_out !== -18'sd8267) begin $display("Mismatch sample 87: %d",data_out); errors=errors+1; end
     @(negedge clk);
     data_in=-18'sd73651; @(posedge clk); #1;
-    if(data_out !== -18'sd7110) begin $display("Mismatch sample 88: %d",data_out); errors=errors+1; end
+    if(data_out !== -18'sd7109) begin $display("Mismatch sample 88: %d",data_out); errors=errors+1; end
     @(negedge clk);
     data_in=18'sd1352; @(posedge clk); #1;
     if(data_out !== -18'sd6271) begin $display("Mismatch sample 89: %d",data_out); errors=errors+1; end
     @(negedge clk);
     data_in=18'sd124935; @(posedge clk); #1;
-    if(data_out !== -18'sd4717) begin $display("Mismatch sample 90: %d",data_out); errors=errors+1; end
+    if(data_out !== -18'sd4718) begin $display("Mismatch sample 90: %d",data_out); errors=errors+1; end
     @(negedge clk);
     data_in=18'sd99770; @(posedge clk); #1;
-    if(data_out !== -18'sd1221) begin $display("Mismatch sample 91: %d",data_out); errors=errors+1; end
+    if(data_out !== -18'sd1222) begin $display("Mismatch sample 91: %d",data_out); errors=errors+1; end
     @(negedge clk);
     data_in=18'sd55761; @(posedge clk); #1;
-    if(data_out !== 18'sd2511) begin $display("Mismatch sample 92: %d",data_out); errors=errors+1; end
+    if(data_out !== 18'sd2510) begin $display("Mismatch sample 92: %d",data_out); errors=errors+1; end
     @(negedge clk);
     data_in=18'sd18684; @(posedge clk); #1;
-    if(data_out !== 18'sd3392) begin $display("Mismatch sample 93: %d",data_out); errors=errors+1; end
+    if(data_out !== 18'sd3391) begin $display("Mismatch sample 93: %d",data_out); errors=errors+1; end
     @(negedge clk);
     data_in=-18'sd61397; @(posedge clk); #1;
     if(data_out !== 18'sd1165) begin $display("Mismatch sample 94: %d",data_out); errors=errors+1; end
     @(negedge clk);
     data_in=-18'sd71794; @(posedge clk); #1;
-    if(data_out !== -18'sd278) begin $display("Mismatch sample 95: %d",data_out); errors=errors+1; end
+    if(data_out !== -18'sd277) begin $display("Mismatch sample 95: %d",data_out); errors=errors+1; end
     @(negedge clk);
     data_in=18'sd84373; @(posedge clk); #1;
     if(data_out !== 18'sd2333) begin $display("Mismatch sample 96: %d",data_out); errors=errors+1; end
     @(negedge clk);
     data_in=-18'sd127504; @(posedge clk); #1;
-    if(data_out !== 18'sd8187) begin $display("Mismatch sample 97: %d",data_out); errors=errors+1; end
+    if(data_out !== 18'sd8186) begin $display("Mismatch sample 97: %d",data_out); errors=errors+1; end
     @(negedge clk);
     data_in=-18'sd46961; @(posedge clk); #1;
-    if(data_out !== 18'sd13714) begin $display("Mismatch sample 98: %d",data_out); errors=errors+1; end
+    if(data_out !== 18'sd13713) begin $display("Mismatch sample 98: %d",data_out); errors=errors+1; end
     @(negedge clk);
     data_in=18'sd105634; @(posedge clk); #1;
-    if(data_out !== 18'sd15192) begin $display("Mismatch sample 99: %d",data_out); errors=errors+1; end
+    if(data_out !== 18'sd15191) begin $display("Mismatch sample 99: %d",data_out); errors=errors+1; end
     @(negedge clk);
     data_in=-18'sd101479; @(posedge clk); #1;
-    if(data_out !== 18'sd11321) begin $display("Mismatch sample 100: %d",data_out); errors=errors+1; end
+    if(data_out !== 18'sd11320) begin $display("Mismatch sample 100: %d",data_out); errors=errors+1; end
     @(negedge clk);
     data_in=-18'sd79836; @(posedge clk); #1;
-    if(data_out !== 18'sd5676) begin $display("Mismatch sample 101: %d",data_out); errors=errors+1; end
+    if(data_out !== 18'sd5675) begin $display("Mismatch sample 101: %d",data_out); errors=errors+1; end
     @(negedge clk);
     data_in=18'sd95539; @(posedge clk); #1;
     if(data_out !== 18'sd234) begin $display("Mismatch sample 102: %d",data_out); errors=errors+1; end
@@ -376,19 +376,19 @@ module digital_filter_tb;
     if(data_out !== 18'sd2855) begin $display("Mismatch sample 120: %d",data_out); errors=errors+1; end
     @(negedge clk);
     data_in=18'sd75240; @(posedge clk); #1;
-    if(data_out !== -18'sd3676) begin $display("Mismatch sample 121: %d",data_out); errors=errors+1; end
+    if(data_out !== -18'sd3675) begin $display("Mismatch sample 121: %d",data_out); errors=errors+1; end
     @(negedge clk);
     data_in=18'sd20519; @(posedge clk); #1;
     if(data_out !== -18'sd10147) begin $display("Mismatch sample 122: %d",data_out); errors=errors+1; end
     @(negedge clk);
     data_in=18'sd102234; @(posedge clk); #1;
-    if(data_out !== -18'sd13469) begin $display("Mismatch sample 123: %d",data_out); errors=errors+1; end
+    if(data_out !== -18'sd13470) begin $display("Mismatch sample 123: %d",data_out); errors=errors+1; end
     @(negedge clk);
     data_in=-18'sd59663; @(posedge clk); #1;
-    if(data_out !== -18'sd12700) begin $display("Mismatch sample 124: %d",data_out); errors=errors+1; end
+    if(data_out !== -18'sd12701) begin $display("Mismatch sample 124: %d",data_out); errors=errors+1; end
     @(negedge clk);
     data_in=18'sd9116; @(posedge clk); #1;
-    if(data_out !== -18'sd9375) begin $display("Mismatch sample 125: %d",data_out); errors=errors+1; end
+    if(data_out !== -18'sd9376) begin $display("Mismatch sample 125: %d",data_out); errors=errors+1; end
     @(negedge clk);
     data_in=18'sd59979; @(posedge clk); #1;
     if(data_out !== -18'sd4666) begin $display("Mismatch sample 126: %d",data_out); errors=errors+1; end
@@ -418,7 +418,7 @@ module digital_filter_tb;
     if(data_out !== 18'sd4164) begin $display("Mismatch sample 134: %d",data_out); errors=errors+1; end
     @(negedge clk);
     data_in=18'sd0; @(posedge clk); #1;
-    if(data_out !== 18'sd2688) begin $display("Mismatch sample 135: %d",data_out); errors=errors+1; end
+    if(data_out !== 18'sd2689) begin $display("Mismatch sample 135: %d",data_out); errors=errors+1; end
     @(negedge clk);
     data_in=18'sd0; @(posedge clk); #1;
     if(data_out !== 18'sd1503) begin $display("Mismatch sample 136: %d",data_out); errors=errors+1; end
@@ -457,52 +457,52 @@ module digital_filter_tb;
     if(data_out !== 18'sd1704) begin $display("Mismatch post-reset sample 5: %d",data_out); errors=errors+1; end
     @(negedge clk);
     data_in=-18'sd99629; @(posedge clk); #1;
-    if(data_out !== 18'sd3305) begin $display("Mismatch post-reset sample 6: %d",data_out); errors=errors+1; end
+    if(data_out !== 18'sd3306) begin $display("Mismatch post-reset sample 6: %d",data_out); errors=errors+1; end
     @(negedge clk);
     data_in=-18'sd114154; @(posedge clk); #1;
-    if(data_out !== 18'sd2899) begin $display("Mismatch post-reset sample 7: %d",data_out); errors=errors+1; end
+    if(data_out !== 18'sd2900) begin $display("Mismatch post-reset sample 7: %d",data_out); errors=errors+1; end
     @(negedge clk);
     data_in=-18'sd60803; @(posedge clk); #1;
-    if(data_out !== 18'sd826) begin $display("Mismatch post-reset sample 8: %d",data_out); errors=errors+1; end
+    if(data_out !== 18'sd827) begin $display("Mismatch post-reset sample 8: %d",data_out); errors=errors+1; end
     @(negedge clk);
     data_in=18'sd111032; @(posedge clk); #1;
-    if(data_out !== -18'sd1233) begin $display("Mismatch post-reset sample 9: %d",data_out); errors=errors+1; end
+    if(data_out !== -18'sd1232) begin $display("Mismatch post-reset sample 9: %d",data_out); errors=errors+1; end
     @(negedge clk);
     data_in=18'sd18871; @(posedge clk); #1;
-    if(data_out !== -18'sd2971) begin $display("Mismatch post-reset sample 10: %d",data_out); errors=errors+1; end
+    if(data_out !== -18'sd2970) begin $display("Mismatch post-reset sample 10: %d",data_out); errors=errors+1; end
     @(negedge clk);
     data_in=18'sd39850; @(posedge clk); #1;
-    if(data_out !== -18'sd5663) begin $display("Mismatch post-reset sample 11: %d",data_out); errors=errors+1; end
+    if(data_out !== -18'sd5662) begin $display("Mismatch post-reset sample 11: %d",data_out); errors=errors+1; end
     @(negedge clk);
     data_in=-18'sd92415; @(posedge clk); #1;
-    if(data_out !== -18'sd10360) begin $display("Mismatch post-reset sample 12: %d",data_out); errors=errors+1; end
+    if(data_out !== -18'sd10358) begin $display("Mismatch post-reset sample 12: %d",data_out); errors=errors+1; end
     @(negedge clk);
     data_in=18'sd1132; @(posedge clk); #1;
-    if(data_out !== -18'sd15966) begin $display("Mismatch post-reset sample 13: %d",data_out); errors=errors+1; end
+    if(data_out !== -18'sd15965) begin $display("Mismatch post-reset sample 13: %d",data_out); errors=errors+1; end
     @(negedge clk);
     data_in=-18'sd117541; @(posedge clk); #1;
     if(data_out !== -18'sd18198) begin $display("Mismatch post-reset sample 14: %d",data_out); errors=errors+1; end
     @(negedge clk);
     data_in=18'sd124030; @(posedge clk); #1;
-    if(data_out !== -18'sd15028) begin $display("Mismatch post-reset sample 15: %d",data_out); errors=errors+1; end
+    if(data_out !== -18'sd15029) begin $display("Mismatch post-reset sample 15: %d",data_out); errors=errors+1; end
     @(negedge clk);
     data_in=-18'sd15931; @(posedge clk); #1;
-    if(data_out !== -18'sd8128) begin $display("Mismatch post-reset sample 16: %d",data_out); errors=errors+1; end
+    if(data_out !== -18'sd8129) begin $display("Mismatch post-reset sample 16: %d",data_out); errors=errors+1; end
     @(negedge clk);
     data_in=18'sd84064; @(posedge clk); #1;
-    if(data_out !== -18'sd2345) begin $display("Mismatch post-reset sample 17: %d",data_out); errors=errors+1; end
+    if(data_out !== -18'sd2346) begin $display("Mismatch post-reset sample 17: %d",data_out); errors=errors+1; end
     @(negedge clk);
     data_in=18'sd122943; @(posedge clk); #1;
     if(data_out !== -18'sd217) begin $display("Mismatch post-reset sample 18: %d",data_out); errors=errors+1; end
     @(negedge clk);
     data_in=-18'sd36718; @(posedge clk); #1;
-    if(data_out !== -18'sd2321) begin $display("Mismatch post-reset sample 19: %d",data_out); errors=errors+1; end
+    if(data_out !== -18'sd2320) begin $display("Mismatch post-reset sample 19: %d",data_out); errors=errors+1; end
     @(negedge clk);
     data_in=-18'sd10551; @(posedge clk); #1;
-    if(data_out !== -18'sd4794) begin $display("Mismatch post-reset sample 20: %d",data_out); errors=errors+1; end
+    if(data_out !== -18'sd4793) begin $display("Mismatch post-reset sample 20: %d",data_out); errors=errors+1; end
     @(negedge clk);
     data_in=18'sd127380; @(posedge clk); #1;
-    if(data_out !== -18'sd4906) begin $display("Mismatch post-reset sample 21: %d",data_out); errors=errors+1; end
+    if(data_out !== -18'sd4905) begin $display("Mismatch post-reset sample 21: %d",data_out); errors=errors+1; end
     @(negedge clk);
     data_in=18'sd77795; @(posedge clk); #1;
     if(data_out !== -18'sd1894) begin $display("Mismatch post-reset sample 22: %d",data_out); errors=errors+1; end
@@ -517,10 +517,10 @@ module digital_filter_tb;
     if(data_out !== 18'sd12372) begin $display("Mismatch post-reset sample 25: %d",data_out); errors=errors+1; end
     @(negedge clk);
     data_in=-18'sd112697; @(posedge clk); #1;
-    if(data_out !== 18'sd12797) begin $display("Mismatch post-reset sample 26: %d",data_out); errors=errors+1; end
+    if(data_out !== 18'sd12798) begin $display("Mismatch post-reset sample 26: %d",data_out); errors=errors+1; end
     @(negedge clk);
     data_in=18'sd57978; @(posedge clk); #1;
-    if(data_out !== 18'sd13701) begin $display("Mismatch post-reset sample 27: %d",data_out); errors=errors+1; end
+    if(data_out !== 18'sd13702) begin $display("Mismatch post-reset sample 27: %d",data_out); errors=errors+1; end
     @(negedge clk);
     data_in=18'sd69521; @(posedge clk); #1;
     if(data_out !== 18'sd16637) begin $display("Mismatch post-reset sample 28: %d",data_out); errors=errors+1; end
@@ -541,16 +541,16 @@ module digital_filter_tb;
     if(data_out !== -18'sd2982) begin $display("Mismatch post-reset sample 33: %d",data_out); errors=errors+1; end
     @(negedge clk);
     data_in=-18'sd24497; @(posedge clk); #1;
-    if(data_out !== -18'sd1094) begin $display("Mismatch post-reset sample 34: %d",data_out); errors=errors+1; end
+    if(data_out !== -18'sd1095) begin $display("Mismatch post-reset sample 34: %d",data_out); errors=errors+1; end
     @(negedge clk);
     data_in=18'sd37218; @(posedge clk); #1;
-    if(data_out !== 18'sd3704) begin $display("Mismatch post-reset sample 35: %d",data_out); errors=errors+1; end
+    if(data_out !== 18'sd3703) begin $display("Mismatch post-reset sample 35: %d",data_out); errors=errors+1; end
     @(negedge clk);
     data_in=18'sd90457; @(posedge clk); #1;
-    if(data_out !== 18'sd7005) begin $display("Mismatch post-reset sample 36: %d",data_out); errors=errors+1; end
+    if(data_out !== 18'sd7004) begin $display("Mismatch post-reset sample 36: %d",data_out); errors=errors+1; end
     @(negedge clk);
     data_in=-18'sd42268; @(posedge clk); #1;
-    if(data_out !== 18'sd7062) begin $display("Mismatch post-reset sample 37: %d",data_out); errors=errors+1; end
+    if(data_out !== 18'sd7061) begin $display("Mismatch post-reset sample 37: %d",data_out); errors=errors+1; end
     @(negedge clk);
     data_in=18'sd92403; @(posedge clk); #1;
     if(data_out !== 18'sd4616) begin $display("Mismatch post-reset sample 38: %d",data_out); errors=errors+1; end
@@ -607,10 +607,10 @@ module digital_filter_tb;
     if(data_out !== -18'sd6634) begin $display("Mismatch post-reset sample 55: %d",data_out); errors=errors+1; end
     @(negedge clk);
     data_in=-18'sd109267; @(posedge clk); #1;
-    if(data_out !== -18'sd2973) begin $display("Mismatch post-reset sample 56: %d",data_out); errors=errors+1; end
+    if(data_out !== -18'sd2974) begin $display("Mismatch post-reset sample 56: %d",data_out); errors=errors+1; end
     @(negedge clk);
     data_in=-18'sd117592; @(posedge clk); #1;
-    if(data_out !== 18'sd1805) begin $display("Mismatch post-reset sample 57: %d",data_out); errors=errors+1; end
+    if(data_out !== 18'sd1804) begin $display("Mismatch post-reset sample 57: %d",data_out); errors=errors+1; end
     @(negedge clk);
     data_in=-18'sd94233; @(posedge clk); #1;
     if(data_out !== 18'sd5646) begin $display("Mismatch post-reset sample 58: %d",data_out); errors=errors+1; end
@@ -622,19 +622,19 @@ module digital_filter_tb;
     if(data_out !== 18'sd8121) begin $display("Mismatch post-reset sample 60: %d",data_out); errors=errors+1; end
     @(negedge clk);
     data_in=18'sd48732; @(posedge clk); #1;
-    if(data_out !== 18'sd7093) begin $display("Mismatch post-reset sample 61: %d",data_out); errors=errors+1; end
+    if(data_out !== 18'sd7094) begin $display("Mismatch post-reset sample 61: %d",data_out); errors=errors+1; end
     @(negedge clk);
     data_in=18'sd83467; @(posedge clk); #1;
-    if(data_out !== 18'sd2608) begin $display("Mismatch post-reset sample 62: %d",data_out); errors=errors+1; end
+    if(data_out !== 18'sd2610) begin $display("Mismatch post-reset sample 62: %d",data_out); errors=errors+1; end
     @(negedge clk);
     data_in=-18'sd72722; @(posedge clk); #1;
-    if(data_out !== -18'sd5131) begin $display("Mismatch post-reset sample 63: %d",data_out); errors=errors+1; end
+    if(data_out !== -18'sd5129) begin $display("Mismatch post-reset sample 63: %d",data_out); errors=errors+1; end
     @(negedge clk);
     data_in=-18'sd42379; @(posedge clk); #1;
-    if(data_out !== -18'sd11502) begin $display("Mismatch post-reset sample 64: %d",data_out); errors=errors+1; end
+    if(data_out !== -18'sd11500) begin $display("Mismatch post-reset sample 64: %d",data_out); errors=errors+1; end
     @(negedge clk);
     data_in=-18'sd120496; @(posedge clk); #1;
-    if(data_out !== -18'sd12907) begin $display("Mismatch post-reset sample 65: %d",data_out); errors=errors+1; end
+    if(data_out !== -18'sd12906) begin $display("Mismatch post-reset sample 65: %d",data_out); errors=errors+1; end
     @(negedge clk);
     data_in=18'sd60527; @(posedge clk); #1;
     if(data_out !== -18'sd9277) begin $display("Mismatch post-reset sample 66: %d",data_out); errors=errors+1; end
@@ -685,64 +685,64 @@ module digital_filter_tb;
     if(data_out !== -18'sd4441) begin $display("Mismatch post-reset sample 81: %d",data_out); errors=errors+1; end
     @(negedge clk);
     data_in=-18'sd100225; @(posedge clk); #1;
-    if(data_out !== -18'sd7052) begin $display("Mismatch post-reset sample 82: %d",data_out); errors=errors+1; end
+    if(data_out !== -18'sd7051) begin $display("Mismatch post-reset sample 82: %d",data_out); errors=errors+1; end
     @(negedge clk);
     data_in=18'sd43986; @(posedge clk); #1;
-    if(data_out !== -18'sd8385) begin $display("Mismatch post-reset sample 83: %d",data_out); errors=errors+1; end
+    if(data_out !== -18'sd8384) begin $display("Mismatch post-reset sample 83: %d",data_out); errors=errors+1; end
     @(negedge clk);
     data_in=-18'sd42743; @(posedge clk); #1;
-    if(data_out !== -18'sd9373) begin $display("Mismatch post-reset sample 84: %d",data_out); errors=errors+1; end
+    if(data_out !== -18'sd9372) begin $display("Mismatch post-reset sample 84: %d",data_out); errors=errors+1; end
     @(negedge clk);
     data_in=18'sd69332; @(posedge clk); #1;
-    if(data_out !== -18'sd10122) begin $display("Mismatch post-reset sample 85: %d",data_out); errors=errors+1; end
+    if(data_out !== -18'sd10121) begin $display("Mismatch post-reset sample 85: %d",data_out); errors=errors+1; end
     @(negedge clk);
     data_in=18'sd76835; @(posedge clk); #1;
-    if(data_out !== -18'sd9423) begin $display("Mismatch post-reset sample 86: %d",data_out); errors=errors+1; end
+    if(data_out !== -18'sd9422) begin $display("Mismatch post-reset sample 86: %d",data_out); errors=errors+1; end
     @(negedge clk);
     data_in=-18'sd56538; @(posedge clk); #1;
-    if(data_out !== -18'sd8268) begin $display("Mismatch post-reset sample 87: %d",data_out); errors=errors+1; end
+    if(data_out !== -18'sd8267) begin $display("Mismatch post-reset sample 87: %d",data_out); errors=errors+1; end
     @(negedge clk);
     data_in=-18'sd73651; @(posedge clk); #1;
-    if(data_out !== -18'sd7110) begin $display("Mismatch post-reset sample 88: %d",data_out); errors=errors+1; end
+    if(data_out !== -18'sd7109) begin $display("Mismatch post-reset sample 88: %d",data_out); errors=errors+1; end
     @(negedge clk);
     data_in=18'sd1352; @(posedge clk); #1;
     if(data_out !== -18'sd6271) begin $display("Mismatch post-reset sample 89: %d",data_out); errors=errors+1; end
     @(negedge clk);
     data_in=18'sd124935; @(posedge clk); #1;
-    if(data_out !== -18'sd4717) begin $display("Mismatch post-reset sample 90: %d",data_out); errors=errors+1; end
+    if(data_out !== -18'sd4718) begin $display("Mismatch post-reset sample 90: %d",data_out); errors=errors+1; end
     @(negedge clk);
     data_in=18'sd99770; @(posedge clk); #1;
-    if(data_out !== -18'sd1221) begin $display("Mismatch post-reset sample 91: %d",data_out); errors=errors+1; end
+    if(data_out !== -18'sd1222) begin $display("Mismatch post-reset sample 91: %d",data_out); errors=errors+1; end
     @(negedge clk);
     data_in=18'sd55761; @(posedge clk); #1;
-    if(data_out !== 18'sd2511) begin $display("Mismatch post-reset sample 92: %d",data_out); errors=errors+1; end
+    if(data_out !== 18'sd2510) begin $display("Mismatch post-reset sample 92: %d",data_out); errors=errors+1; end
     @(negedge clk);
     data_in=18'sd18684; @(posedge clk); #1;
-    if(data_out !== 18'sd3392) begin $display("Mismatch post-reset sample 93: %d",data_out); errors=errors+1; end
+    if(data_out !== 18'sd3391) begin $display("Mismatch post-reset sample 93: %d",data_out); errors=errors+1; end
     @(negedge clk);
     data_in=-18'sd61397; @(posedge clk); #1;
     if(data_out !== 18'sd1165) begin $display("Mismatch post-reset sample 94: %d",data_out); errors=errors+1; end
     @(negedge clk);
     data_in=-18'sd71794; @(posedge clk); #1;
-    if(data_out !== -18'sd278) begin $display("Mismatch post-reset sample 95: %d",data_out); errors=errors+1; end
+    if(data_out !== -18'sd277) begin $display("Mismatch post-reset sample 95: %d",data_out); errors=errors+1; end
     @(negedge clk);
     data_in=18'sd84373; @(posedge clk); #1;
     if(data_out !== 18'sd2333) begin $display("Mismatch post-reset sample 96: %d",data_out); errors=errors+1; end
     @(negedge clk);
     data_in=-18'sd127504; @(posedge clk); #1;
-    if(data_out !== 18'sd8187) begin $display("Mismatch post-reset sample 97: %d",data_out); errors=errors+1; end
+    if(data_out !== 18'sd8186) begin $display("Mismatch post-reset sample 97: %d",data_out); errors=errors+1; end
     @(negedge clk);
     data_in=-18'sd46961; @(posedge clk); #1;
-    if(data_out !== 18'sd13714) begin $display("Mismatch post-reset sample 98: %d",data_out); errors=errors+1; end
+    if(data_out !== 18'sd13713) begin $display("Mismatch post-reset sample 98: %d",data_out); errors=errors+1; end
     @(negedge clk);
     data_in=18'sd105634; @(posedge clk); #1;
-    if(data_out !== 18'sd15192) begin $display("Mismatch post-reset sample 99: %d",data_out); errors=errors+1; end
+    if(data_out !== 18'sd15191) begin $display("Mismatch post-reset sample 99: %d",data_out); errors=errors+1; end
     @(negedge clk);
     data_in=-18'sd101479; @(posedge clk); #1;
-    if(data_out !== 18'sd11321) begin $display("Mismatch post-reset sample 100: %d",data_out); errors=errors+1; end
+    if(data_out !== 18'sd11320) begin $display("Mismatch post-reset sample 100: %d",data_out); errors=errors+1; end
     @(negedge clk);
     data_in=-18'sd79836; @(posedge clk); #1;
-    if(data_out !== 18'sd5676) begin $display("Mismatch post-reset sample 101: %d",data_out); errors=errors+1; end
+    if(data_out !== 18'sd5675) begin $display("Mismatch post-reset sample 101: %d",data_out); errors=errors+1; end
     @(negedge clk);
     data_in=18'sd95539; @(posedge clk); #1;
     if(data_out !== 18'sd234) begin $display("Mismatch post-reset sample 102: %d",data_out); errors=errors+1; end
@@ -802,19 +802,19 @@ module digital_filter_tb;
     if(data_out !== 18'sd2855) begin $display("Mismatch post-reset sample 120: %d",data_out); errors=errors+1; end
     @(negedge clk);
     data_in=18'sd75240; @(posedge clk); #1;
-    if(data_out !== -18'sd3676) begin $display("Mismatch post-reset sample 121: %d",data_out); errors=errors+1; end
+    if(data_out !== -18'sd3675) begin $display("Mismatch post-reset sample 121: %d",data_out); errors=errors+1; end
     @(negedge clk);
     data_in=18'sd20519; @(posedge clk); #1;
     if(data_out !== -18'sd10147) begin $display("Mismatch post-reset sample 122: %d",data_out); errors=errors+1; end
     @(negedge clk);
     data_in=18'sd102234; @(posedge clk); #1;
-    if(data_out !== -18'sd13469) begin $display("Mismatch post-reset sample 123: %d",data_out); errors=errors+1; end
+    if(data_out !== -18'sd13470) begin $display("Mismatch post-reset sample 123: %d",data_out); errors=errors+1; end
     @(negedge clk);
     data_in=-18'sd59663; @(posedge clk); #1;
-    if(data_out !== -18'sd12700) begin $display("Mismatch post-reset sample 124: %d",data_out); errors=errors+1; end
+    if(data_out !== -18'sd12701) begin $display("Mismatch post-reset sample 124: %d",data_out); errors=errors+1; end
     @(negedge clk);
     data_in=18'sd9116; @(posedge clk); #1;
-    if(data_out !== -18'sd9375) begin $display("Mismatch post-reset sample 125: %d",data_out); errors=errors+1; end
+    if(data_out !== -18'sd9376) begin $display("Mismatch post-reset sample 125: %d",data_out); errors=errors+1; end
     @(negedge clk);
     data_in=18'sd59979; @(posedge clk); #1;
     if(data_out !== -18'sd4666) begin $display("Mismatch post-reset sample 126: %d",data_out); errors=errors+1; end
@@ -844,7 +844,7 @@ module digital_filter_tb;
     if(data_out !== 18'sd4164) begin $display("Mismatch post-reset sample 134: %d",data_out); errors=errors+1; end
     @(negedge clk);
     data_in=18'sd0; @(posedge clk); #1;
-    if(data_out !== 18'sd2688) begin $display("Mismatch post-reset sample 135: %d",data_out); errors=errors+1; end
+    if(data_out !== 18'sd2689) begin $display("Mismatch post-reset sample 135: %d",data_out); errors=errors+1; end
     @(negedge clk);
     data_in=18'sd0; @(posedge clk); #1;
     if(data_out !== 18'sd1503) begin $display("Mismatch post-reset sample 136: %d",data_out); errors=errors+1; end

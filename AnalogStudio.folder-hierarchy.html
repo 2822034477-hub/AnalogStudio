@@ -365,6 +365,47 @@ body.project-at-home .app-shell,body.project-at-home>.dock-status{display:none!i
   }
   function resistor(key, label, value) { return parameter(key, label, 'Ω', 100, 1000000, value || 10000); }
   function capacitor(key, label, value) { return parameter(key, label, 'F', 1e-10, 1e-3, value || 1 / (TAU * 1000 * 10000)); }
+  function inductor(key, label, value) { return parameter(key, label, 'H', 1e-9, 1000, value == null ? 0.01 : value); }
+  function sourceResistor() { return parameter('Rs', '源电阻 Rs', 'Ω', 0.01, 1e6, 50); }
+  function rlcNetworkTF(type, p) {
+    var rs = p.Rs, r = p.R, l = p.L, c = p.C;
+    switch (type) {
+      case 'rlcSeriesRL': return { num: [r, l], den: [r + rs, l] };
+      case 'rlcSeriesRC': return { num: [1, r * c], den: [1, (r + rs) * c] };
+      case 'rlcSeriesLC': return { num: [1, 0, l * c], den: [1, rs * c, l * c] };
+      case 'rlcSeriesRLC': return { num: [1, r * c, l * c], den: [1, (r + rs) * c, l * c] };
+      case 'rlcParallelRL': return { num: [0, r * l], den: [rs * r, rs * l + r * l] };
+      case 'rlcParallelRC': return { num: [r], den: [rs + r, r * rs * c] };
+      case 'rlcParallelLC': return { num: [0, l], den: [rs, l, rs * l * c] };
+      case 'rlcParallelRLC': return { num: [0, r * l], den: [rs * r, rs * l + r * l, rs * r * l * c] };
+      default: throw new Error('未知 RLC 组态。');
+    }
+  }
+  function rlcCatalog() {
+    var defs = [
+      ['rlcSeriesRL', 'RLC 串联 RL', 'S-RL', true, ['R', 'L'], 'H(s) = (R+sL) / (Rs+R+sL)'],
+      ['rlcSeriesRC', 'RLC 串联 RC', 'S-RC', true, ['R', 'C'], 'H(s) = (1+sRC) / (1+s(Rs+R)C)'],
+      ['rlcSeriesLC', 'RLC 串联 LC', 'S-LC', true, ['L', 'C'], 'H(s) = (1+s²LC) / (1+sRsC+s²LC)'],
+      ['rlcSeriesRLC', 'RLC 串联 RLC', 'S-RLC', true, ['R', 'L', 'C'], 'H(s) = (1+sRC+s²LC) / (1+s(Rs+R)C+s²LC)'],
+      ['rlcParallelRL', 'RLC 并联 RL', 'P-RL', false, ['R', 'L'], 'H(s) = sLR / [sLR + Rs(R+sL)]'],
+      ['rlcParallelRC', 'RLC 并联 RC', 'P-RC', false, ['R', 'C'], 'H(s) = R / [R+Rs+sRRsC]'],
+      ['rlcParallelLC', 'RLC 并联 LC', 'P-LC', false, ['L', 'C'], 'H(s) = sL / [Rs+sL+s²RsLC]'],
+      ['rlcParallelRLC', 'RLC 并联 RLC', 'P-RLC', false, ['R', 'L', 'C'], 'H(s) = sLR / [sLR + Rs(R+sL+s²RLC)]']
+    ];
+    return defs.map(function (d) {
+      var params = [sourceResistor()];
+      if (d[4].indexOf('R') >= 0) params.push(resistor('R', '电阻 R', 1000));
+      if (d[4].indexOf('L') >= 0) params.push(inductor('L', '电感 L', 0.01));
+      if (d[4].indexOf('C') >= 0) params.push(capacitor('C', '电容 C', 1e-7));
+      return {
+        type: d[0], name: d[1], short: d[2], category: 'RLC 网络',
+        description: (d[3] ? 'Rs 后接串联 ' : 'Rs 后接并联 ') + d[4].join('、') + ' 网络，输出取网络两端电压。',
+        formula: d[5],
+        notes: 'H(s)=Znet/(Rs+Znet)，输出为网络两端电压；理想 R/L/C，不含寄生、损耗或负载。',
+        params: params
+      };
+    });
+  }
   function feedbackResistor(value) { return parameter('Rf', '反馈电阻 Rf', 'Ω', 0, 1000000, value == null ? 0 : value, 'linear'); }
   function noninvertingGainParams(value) { return [feedbackResistor(value), resistor('Rg', '接地电阻 Rg')]; }
   function skParams() { return [resistor('R1', '电阻 R₁'), resistor('R2', '电阻 R₂'), capacitor('C1', '电容 C₁'), capacitor('C2', '电容 C₂')].concat(noninvertingGainParams((2 - Math.sqrt(2)) * 10000)); }
@@ -381,6 +422,7 @@ body.project-at-home .app-shell,body.project-at-home>.dock-status{display:none!i
     { type: 'wien', name: '文氏桥选频网络', short: 'Wien', category: '选频网络', description: '串联 R₁/C₁ 与并联 R₂/C₂ 构成的无源文氏桥正反馈网络。', formula: 'β(s) = sR₂C₁ / [1 + s(R₁C₁ + R₂C₁ + R₂C₂) + s²R₁R₂C₁C₂]', notes: '此处仅建模无源 β(s)，并非完整自激振荡器。R₁=R₂=R、C₁=C₂=C 时，f₀=1/(2πRC)、β(f₀)=1/3；振荡幅度需非线性稳幅模型。', params: [resistor('R1', '串联电阻 R₁'), capacitor('C1', '串联电容 C₁'), resistor('R2', '并联电阻 R₂'), capacitor('C2', '并联电容 C₂')] },
     { type: 'rlcLowpass', name: 'RLC 二阶低通', short: 'RLC', category: '滤波器', description: 'R、L 串联，C 对地，输出取 C 两端。', formula: 'H(s) = 1 / (LCs² + RCs + 1)', notes: '理想电压源与高阻负载；f₀=1/(2π√LC)，Q=√(L/C)/R。没有包含电感损耗、寄生或负载。', params: [parameter('R', '串联电阻 R', 'Ω', 0.1, 1e5, TAU * 10), parameter('L', '电感 L', 'H', 1e-6, 100, 0.01), capacitor('C', '并联电容 C', 1 / (Math.pow(TAU * 1000, 2) * 0.01))] }
   ];
+  catalog = catalog.concat(rlcCatalog());
   var byType = {};
   catalog.forEach(function (entry) { byType[entry.type] = entry; });
   function id() { serial += 1; return 'aw-' + Date.now().toString(36) + '-' + serial.toString(36); }
@@ -621,6 +663,17 @@ body.project-at-home .app-shell,body.project-at-home>.dock-status{display:none!i
       out.f0 = 1 / (TAU * Math.sqrt(out.a)); out.Q = Math.sqrt(p.L / p.C) / p.R;
       out.damping = 1 / (2 * out.Q);
     }
+    if (/^rlc(Series|Parallel)/.test(node.type)) {
+      var rtf = rlcNetworkTF(node.type, p), rd0 = rtf.den[0];
+      out.K = rtf.num[0] / rd0;
+      if (rtf.den.length === 2) out.f0 = 1 / (TAU * (rtf.den[1] / rd0));
+      else {
+        out.b = rtf.den[1] / rd0; out.a = rtf.den[2] / rd0;
+        out.f0 = 1 / (TAU * Math.sqrt(out.a));
+        out.Q = out.b === 0 ? Infinity : Math.sqrt(out.a) / out.b;
+        out.damping = out.b / (2 * Math.sqrt(out.a));
+      }
+    }
     if (node.type === 'wien') {
       out.a = p.R1 * p.R2 * p.C1 * p.C2;
       out.b = p.R1 * p.C1 + p.R2 * p.C1 + p.R2 * p.C2;
@@ -632,6 +685,7 @@ body.project-at-home .app-shell,body.project-at-home>.dock-status{display:none!i
   function blockTF(node) {
     var p = validatedParams(node), info = derived(node);
     var n, d, warnings = [];
+    if (/^rlc(Series|Parallel)/.test(node.type)) { var ntf = rlcNetworkTF(node.type, p); return { num: ntf.num, den: ntf.den, warnings: [] }; }
     switch (node.type) {
       case 'activeLP': n = [info.K]; d = [1, p.R * p.C]; break;
       case 'activeHP': n = [0, info.K * p.R * p.C]; d = [1, p.R * p.C]; break;
@@ -955,7 +1009,11 @@ body.project-at-home .app-shell,body.project-at-home>.dock-status{display:none!i
     secondLP: 'Sallen–Key 低通', secondHP: 'Sallen–Key 高通',
     integrator: '理想积分器', practicalIntegrator: '实际积分器',
     differentiator: '理想微分器', practicalDifferentiator: '实际微分器',
-    gain: '运放放大器', wien: '文氏桥选频网络', rlcLowpass: 'RLC 低通网络'
+    gain: '运放放大器', wien: '文氏桥选频网络', rlcLowpass: 'RLC 低通网络',
+    rlcSeriesRL: '串联 RL 网络', rlcSeriesRC: '串联 RC 网络',
+    rlcSeriesLC: '串联 LC 网络', rlcSeriesRLC: '串联 RLC 网络',
+    rlcParallelRL: '并联 RL 网络', rlcParallelRC: '并联 RC 网络',
+    rlcParallelLC: '并联 LC 网络', rlcParallelRLC: '并联 RLC 网络'
   };
   const esc = value => String(value == null ? '' : value).replace(/[&<>"']/g, ch => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[ch]));
   const number = value => Number.isFinite(Number(value)) ? Number(value) : 1;
@@ -1050,6 +1108,15 @@ body.project-at-home .app-shell,body.project-at-home>.dock-status{display:none!i
       + terminal(55, 135, 'Vin') + terminal(675, 135, 'Vout') + txt(598, 193, '输出接高阻负载', 'small');
   }
 
+  function rlcNetworkUnit(type) {
+    var series = type.indexOf('Series') >= 0;
+    var parts = type.replace(/^rlc(Series|Parallel)/, '');
+    return line(55, 135, 112, 135) + resistor(155, 135, 'Rs') + line(198, 135, 250, 135)
+      + path([[250, 85], [630, 85], [630, 185], [250, 185], [250, 85]])
+      + txt(275, 110, (series ? '串联 ' : '并联 ') + parts, 'label')
+      + txt(275, 140, 'Znet / (Rs + Znet)', 'small')
+      + line(630, 135, 675, 135) + terminal(55, 135, 'Vin') + terminal(675, 135, 'Vout');
+  }
   function unit(type, params, options) {
     let body = '';
     let note = '元件名称与下方器件参数对应；模型忽略寄生参数和器件非理想特性。';
@@ -1062,6 +1129,7 @@ body.project-at-home .app-shell,body.project-at-home>.dock-status{display:none!i
       body = wienUnit();
       note = '这是无源选频反馈网络；完整文氏桥振荡器还需放大与稳幅环节。';
     } else if (type === 'rlcLowpass') body = rlcUnit();
+    else if (/^rlc(Series|Parallel)/.test(type)) body = rlcNetworkUnit(type);
     else if (type === 'gain') {
       const topology = typeof options === 'string' ? options : options && options.topology || params && params.topology;
       const inverting = topology === 'inverting';
@@ -1308,7 +1376,7 @@ function clear(id){for(const [key,v]of pendingViews)if(v.id===id)pendingViews.de
   const $ = id => document.getElementById(id);
   if (!C || !S) { $('transferFunction').textContent = '模块文件未完整加载，请将整个文件夹解压后重新打开 index.html。'; return; }
   const entries = Object.fromEntries(C.catalog.map(x => [x.type, x]));
-  const icons = { activeLP:'⌁', activeHP:'⌁', secondLP:'∿', secondHP:'∿', integrator:'∫', practicalIntegrator:'∫', differentiator:'∂', practicalDifferentiator:'∂', gain:'K', wien:'◇', rlcLowpass:'⌁' };
+  const icons = { activeLP:'⌁', activeHP:'⌁', secondLP:'∿', secondHP:'∿', integrator:'∫', practicalIntegrator:'∫', differentiator:'∂', practicalDifferentiator:'∂', gain:'K', wien:'◇', rlcLowpass:'⌁', rlcSeriesRL:'S', rlcSeriesRC:'S', rlcSeriesLC:'S', rlcSeriesRLC:'S', rlcParallelRL:'P', rlcParallelRC:'P', rlcParallelLC:'P', rlcParallelRLC:'P' };
   const STORAGE = 'analog-studio.workspace.v2', OLD_STORAGE = 'analog-studio.workspace.v1', SAVED = 'analog-studio.projects.v1';
   const clone = x => JSON.parse(JSON.stringify(x));
   const esc = x => String(x).replace(/[&<>"']/g, ch => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[ch]));
@@ -1584,6 +1652,7 @@ function clear(id){for(const [key,v]of pendingViews)if(v.id===id)pendingViews.de
     else if (node.type==='practicalDifferentiator') { f=1/(2*Math.PI*p.Rin*p.Cin); label='限增益拐点'; note='高频增益 = '+fmt(-p.Rf/p.Rin); }
     else if (node.type==='wien') { f=1/(2*Math.PI*Math.sqrt(p.R1*p.R2*p.C1*p.C2)); label='零相位频率 f₀'; note='理想起振临界 A = '+fmt(1+p.R1/p.R2+p.C2/p.C1); }
     else if (node.type==='rlcLowpass') { f=1/(2*Math.PI*Math.sqrt(p.L*p.C)); label='固有频率 f₀'; note='Q = '+fmt(Math.sqrt(p.L/p.C)/p.R); }
+    else if (/^rlc(Series|Parallel)/.test(node.type)) { const d=C.derived(node); f=d.f0; label=d.a?'固有频率 f₀':'−3 dB 拐点'; note=d.a?('Q = '+fmt(d.Q)+' · K = '+fmt(d.K)):('一阶网络 · K = '+fmt(d.K)); }
     else return {f:null,label:'电阻设定电压增益',value:fmt(C.derived(node).K)+' V/V',note:node.topology==='inverting'?'反相 · −Rf/Rin':'同相 · 1 + Rf/Rg'};
     return {f,label,value:engineering(f,'Hz'),note};
   }

@@ -6,6 +6,6 @@ response(E.zpk('-2','-1',1),t=>2-Math.exp(-t));response(E.feedback(E.zpk('-2','-
 response(E.zpk('-3','-1\n-4',2),t=>1.5-4/3*Math.exp(-t)-1/6*Math.exp(-4*t));response(E.feedback(E.zpk('-3','-1\n-4',2),1,'negative'),t=>.6-Math.exp(-2*t)/3-4/15*Math.exp(-5*t));
 assert(E.step(E.zpk('0','',1),1).warning.includes('非真有理'));assert.throws(()=>E.feedback(E.zpk('','',1),1,'positive'));assert.throws(()=>E.zpk('','abc',1));assert.throws(()=>E.zpk('','-1 2 3',1));assert.throws(()=>E.zpk('','-1 2\n-2 3\n-3 4\n-4 5\n-5',1));assert.equal(C.analyzeRaw(E.feedback(g,1,'positive')).stability,'unstable');assert.equal(C.analyzeRaw(E.zpk('1','1\n-2',1)).stability,'unstable');
 // Existing catalog and composite models stay executable, finite at 1 kHz.
-assert.equal(C.catalog.length,11);for(const spec of C.catalog){const block=C.makeBlock(spec.type),tf=C.transfer(block);assert(Number.isFinite(C.evaluate(tf,1000).mag),spec.type);const raw=C.transferRaw(block);E.check(raw);}
+assert.equal(C.catalog.length,19);for(const spec of C.catalog){const block=C.makeBlock(spec.type),tf=C.transfer(block);assert(Number.isFinite(C.evaluate(tf,1000).mag),spec.type);const raw=C.transferRaw(block);E.check(raw);}
 for(const mode of ['cascade','sum']){const tree=C.makeGroup(mode,[C.makeBlock('activeLP'),C.makeBlock('activeHP')]);assert(Number.isFinite(C.evaluate(C.transfer(tree),1000).mag));}
-console.log(`PASS: ${checks} analytic sample comparisons, input guards, feedback edge cases, 11 units and cascade/sum regressions.`);
+console.log(`PASS: ${checks} analytic sample comparisons, input guards, feedback edge cases, 19 units and cascade/sum regressions.`);

@@ -34,6 +34,16 @@ const assert=require('node:assert/strict'),{boot,pause,js,file}=require('./proje
  assert.equal($('source').textContent,old.verilog);let imported=b.w.AnalogDigitalProject.snapshot().system.modules;assert.equal(imported.length,1);assert.equal(imported[0].design.verilog,old.verilog);
  click('preview');assert($('source').textContent.includes('assign data_out = data_in;'));assert(!$('source').textContent.includes('wide_value'));
  click('save-module');imported=b.w.AnalogDigitalProject.snapshot().system.modules;assert.equal(imported.length,2);assert.equal(imported[0].design.verilog,old.verilog);assert(imported[1].design.verilog.includes('assign data_out = data_in;'));
- assert.deepEqual(b.errors,[]);console.log('PASS digital system full DOM: integrated navigation, filter and registered primitive saves, design JSON/ZIP downloads, saved-only imports, port connections and graph, preserved module name in exported top, project save/restore, persistent module catalog and fresh graph per project. jsdom only.');
+ // Saturation protection checkbox drives preview and saved Verilog.
+ change($('kind'),'subtract');$('module-name').value='sat_sub';assert.equal($('saturate').checked,false);
+ click('preview');assert(!$('source').textContent.includes("16'sd32767"));
+ $('saturate').checked=true;click('preview');
+ const satDraft=b.w.DigitalModules.defaults('subtract');satDraft.moduleName='sat_sub';satDraft.params.overflow='saturate';
+ assert.equal($('source').textContent,b.w.DigitalModules.create(satDraft).verilog);
+ assert($('source').textContent.includes("16'sd32767")&&$('source').textContent.includes("-16'sd32768"));
+ click('save-module');const satMods=b.w.AnalogDigitalProject.snapshot().system.modules;
+ assert.equal(satMods.at(-1).design.verilog,$('source').textContent);
+ assert.equal(satMods.at(-1).design.config.params.overflow,'saturate');
+ assert.deepEqual(b.errors,[]);console.log('PASS digital system full DOM: integrated navigation, filter and registered primitive saves, design JSON/ZIP downloads, saved-only imports, port connections and graph, preserved module name in exported top, project save/restore, persistent module catalog and fresh graph per project, saturation checkbox preview/save. jsdom only.');
  }finally{b.dom.window.close();}
 })().catch(e=>{console.error(e);process.exitCode=1;});

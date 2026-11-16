@@ -88,11 +88,30 @@ function sections(m){
  const z=factorRoots(m);
  if(Math.max(m.a.length,m.b.length)<=3)return timing([{b:m.b.every(x=>x===0)?[0]:m.b.slice(z.delaySamples),a:m.a.slice()}],z.delaySamples);
  const ps=pack(z.poles),zs=pack(z.zeros),n=Math.max(1,ps.length,zs.length),out=[];
+ // Roots of a packed group: a real pair has two roots, a complex conjugate
+ // pair is stored once (im>0) and expands to (re, +/- im).
+ const groupRoots=g=>{const r=[];for(const root of (g&&g.roots)||[]){r.push({re:root.re,im:root.im});if(root.im)r.push({re:root.re,im:-root.im});}return r;};
+ const rootDistance=(a,b)=>Math.hypot(a.re-b.re,a.im-b.im);
+ const groupDistance=(a,b)=>{
+  const A=groupRoots(a),B=groupRoots(b);
+  if(!A.length||!B.length)return Infinity;
+  if(A.length===1)return Math.min(...B.map(z=>rootDistance(A[0],z)));
+  if(B.length===1)return Math.min(...A.map(z=>rootDistance(z,B[0])));
+  return Math.min(rootDistance(A[0],B[0])+rootDistance(A[1],B[1]),
+                  rootDistance(A[0],B[1])+rootDistance(A[1],B[0]));
+ };
  for(let i=0;i<n;i++){
-  const p=ps[i]||{c:[1],radius:0,roots:[]};let j=0;
-  if(zs.length)for(let k=1;k<zs.length;k++)if(Math.abs(zs[k].radius-p.radius)<Math.abs(zs[j].radius-p.radius))j=k;
-  out.push({a:p.c,b:zs.length?zs.splice(j,1)[0].c:[1]});
+  // Step 1: take the remaining pole group closest to the unit circle.
+  let pi=0;
+  for(let k=1;k<ps.length;k++)if(ps[k].radius>ps[pi].radius)pi=k;
+  const p=ps.length?ps.splice(pi,1)[0]:{c:[1],radius:0,roots:[]};
+  // Step 2: take the zero group whose roots are closest to this pole group.
+  let zi=-1,best=Infinity;
+  for(let k=0;k<zs.length;k++){const d=groupDistance(p,zs[k]);if(d<best){best=d;zi=k;}}
+  out.push({a:p.c,b:zi>=0?zs.splice(zi,1)[0].c:[1],radius:p.radius});
  }
+ // Step 5: cascade from poles nearest the unit circle last (ascending radius).
+ out.sort((a,b)=>a.radius-b.radius);
  if(z.gain===0){out.forEach((s,i)=>s.b=s.b.map(x=>i?x:0));}
  else{
   const peaks=out.map(s=>peak(s.b,s.a));

@@ -18,11 +18,11 @@ module digital_filter #(
   end endgenerate
   wire signed [SECTION_WIDTH-1:0] s0_out;
   digital_filter_so #(.IW(IN_WIDTH), .OW(SECTION_WIDTH), .CW(COEFF_WIDTH), .CF(COEFF_FRAC),
-    .AW(ACC_WIDTH), .NEAREST(1), .B0(18'sd9806), .B1(18'sd3726), .B2(18'sd1069), .A1(-18'sd13107), .A2(18'sd1707))
+    .AW(ACC_WIDTH), .NEAREST(1), .B0(18'sd9064), .B1(18'sd4532), .B2(18'sd1005), .A1(-18'sd13107), .A2(18'sd1707))
     s0(.clk(clk), .rst_n(rst_n), .data_in(data_in), .data_out(s0_out));
   wire signed [SECTION_WIDTH-1:0] s1_out;
   digital_filter_so #(.IW(SECTION_WIDTH), .OW(SECTION_WIDTH), .CW(COEFF_WIDTH), .CF(COEFF_FRAC),
-    .AW(ACC_WIDTH), .NEAREST(1), .B0(18'sd7154), .B1(18'sd3577), .B2(18'sd793), .A1(-18'sd19661), .A2(18'sd3757))
+    .AW(ACC_WIDTH), .NEAREST(1), .B0(18'sd7739), .B1(18'sd2941), .B2(18'sd844), .A1(-18'sd19661), .A2(18'sd3757))
     s1(.clk(clk), .rst_n(rst_n), .data_in(s0_out), .data_out(s1_out));
   wire signed [IN_WIDTH-1:0] s2_out;
   digital_filter_so #(.IW(SECTION_WIDTH), .OW(IN_WIDTH), .CW(COEFF_WIDTH), .CF(COEFF_FRAC),

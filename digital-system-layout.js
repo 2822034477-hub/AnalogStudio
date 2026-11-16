@@ -61,20 +61,21 @@ function route(a,b,boxes){
  const points=[];for(let k=found;k>=0;k=previous[k])points.push(point(Math.floor(k/3)));points.reverse();
  return simplify([{x:a.x,y:a.y},...points,{x:b.x,y:b.y}]);
 }
+function label(p){const w=p.width,f=p.fraction;if(f===0)return (p.signed?'s':'us')+'['+w+':0]';return (p.signed?'s.':'us.')+'['+(w-f)+':'+f+']';}
 function build(state,override){
  const saved=override||state.layout||{},pending=[];
  for(const [i,n]of state.instances.entries()){
   const d=state.modules.find(m=>m.key===n.moduleKey).design,inputs=d.ports.filter(p=>p.direction==='input'),outputs=d.ports.filter(p=>p.direction==='output');
   pending.push({id:n.id,kind:'module',title:n.id+' · '+d.moduleName,subtitle:d.kind+' · '+d.latency+' 拍',design:d,inputs,outputs,minW:220,minH:Math.max(108,68+22*Math.max(inputs.length,outputs.length)),x:350,y:32+i*180,w:330,h:128});
  }
- let l=0,r=0;for(const p of state.ports){const input=p.direction==='input';pending.push({id:(input?'in:':'out:')+p.name,kind:p.direction,title:p.name+' · '+p.direction,subtitle:p.width+' 位 · '+(p.signed?'signed':'unsigned')+' · F='+p.fraction,port:p,minW:180,minH:66,x:input?24:900,y:40+(input?l++:r++)*112,w:210,h:72});}
+ let l=0,r=0;for(const p of state.ports){const input=p.direction==='input';pending.push({id:(input?'in:':'out:')+p.name,kind:p.direction,title:p.name+' · '+p.direction,subtitle:label(p),port:p,minW:180,minH:66,x:input?24:900,y:40+(input?l++:r++)*112,w:210,h:72});}
  // Honor existing positions first; find clear space for newly imported blocks.
  const order=pending.slice().sort((a,b)=>Number(!!saved[b.id])-Number(!!saved[a.id])),placed=[];
  for(const b of order)placed.push(place({...b,...saved[b.id]},placed));
  const boxes=pending.map(b=>placed.find(p=>p.id===b.id)),anchors=new Map();
  for(const box of boxes){
   if(box.kind==='module'){
-   for(const [ports,input]of [[box.inputs,true],[box.outputs,false]])ports.forEach((p,i)=>anchors.set(box.id+':'+p.name,{owner:box.id,x:input?box.x:box.x+box.w,y:box.y+60+Math.round(i*Math.max(22,(box.h-80)/Math.max(1,ports.length-1))),side:input?'left':'right',label:p.name}));
+   for(const [ports,input]of [[box.inputs,true],[box.outputs,false]])ports.forEach((p,i)=>anchors.set(box.id+':'+p.name,{owner:box.id,x:input?box.x:box.x+box.w,y:box.y+60+Math.round(i*Math.max(22,(box.h-80)/Math.max(1,ports.length-1))),side:input?'left':'right',label:p.name+' · '+label(p)}));
   }else anchors.set(box.id,{owner:box.id,x:box.kind==='input'?box.x+box.w:box.x,y:box.y+Math.round(box.h/2),side:box.kind==='input'?'right':'left',label:box.port.name});
  }
  const routes=state.connections.map(c=>{const a=anchors.get(c.from),b=anchors.get(c.to),points=a&&b?route(a,b,boxes):null;return {...c,points,d:points?points.map((p,i)=>(i?'L':'M')+p.x+' '+p.y).join(' '):''};});

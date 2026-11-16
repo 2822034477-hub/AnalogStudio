@@ -55,7 +55,7 @@ const size=frame=>({width:parseFloat(frame.style.width),height:parseFloat(frame.
   assert(w.AnalogNetworks,'missing network instance API');
   assert($('#dockNetworkSelect').closest('#dockInspector'),'network picker must live with numerical controls');
   assert.deepEqual(options().map(n=>n.key),plain(w.AnalogNetworks.list()).map(n=>n.key));
-  assert.equal(options().filter(n=>n.key.startsWith('lab:')).length,11);
+  assert.equal(options().filter(n=>n.key.startsWith('lab:')).length,19);
 
   // Import actual duplicate instances in two differently nested positions.
   const C=w.AnalogCore;
@@ -137,7 +137,7 @@ const size=frame=>({width:parseFloat(frame.style.width),height:parseFloat(frame.
   assert.deepEqual(options().filter(n=>n.key.startsWith('node:')).map(n=>n.key),['node:imported_replacement_root','node:imported_replacement_leaf']);
   assert.equal($('#dockNetworkSelect').value,'node:imported_replacement_root');pick('node:imported_replacement_leaf');assert.equal($('#number-Rf').value,'18');
   assert.deepEqual(errors,[],'network controls emitted runtime errors');
-  console.log('PASS: network selector enumerates 11 lab modules and real duplicate/nested instances; hidden-diagram selection; isolated leaf/lab/group/weight edits; rename, add, delete, replacement import; atomic invalid selection.');
+  console.log('PASS: network selector enumerates 19 lab modules and real duplicate/nested instances; hidden-diagram selection; isolated leaf/lab/group/weight edits; rename, add, delete, replacement import; atomic invalid selection.');
 
   const frames=all('[data-dock-panel]');assert.equal(frames.length,8);
   const defaults=new Map(frames.map(f=>[f.dataset.dockPanel,size(f)]));
