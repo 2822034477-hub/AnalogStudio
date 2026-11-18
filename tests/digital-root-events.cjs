@@ -35,7 +35,7 @@ function mode(v){$('mode').value=v;$('mode').emit('change');}
 function setting(k,v){z(k).value=v;z(k).emit('change');}
 function point(re,im){const view=app.snapshot().editor,scale=296/(view.span*2);return {clientX:315+(re-view.centerRe)*scale,clientY:172-(im-view.centerIm)*scale};}
 function hit(kind,index,sign=1){return {closest:()=>({dataset:{rootKind:kind,rootIndex:String(index),sign:String(sign)}})};}
-const close=(a,b)=>assert(Math.abs(a-b)<1e-7,`${a} != ${b}`);
+const close=(a,b)=>assert(Math.abs(a-b)<1e-4,`${a} != ${b}`);
 assert($('status').textContent.includes('稳定'));input('b','0.4, 0.1');assert.equal(app.getModel().b[0],.4);mode('zpk');close(Number($('gain').value),.4);assert.equal(app.getModel().b.length,2);input('poles','.6 .2');close(app.getModel().a[2],.4);mode('coefficients');close(Number($('a').value.split(',')[2]),.4);for(let i=0;i<8;i++){mode('zpk');mode('coefficients');}close(app.getModel().a[2],.4);
 // Invalid draft blocks controls/code and cannot be silently discarded by switching input form.
 input('b','bad');const before=app.getModel();mode('zpk');assert.equal($('mode').value,'coefficients');assert($('verilog').disabled);assert(z('add').disabled);assert.deepEqual(app.getModel(),before);input('b','.4');assert(!z('add').disabled);
@@ -101,11 +101,11 @@ rowAction(secondId,'update',.2,0,'Enter');groups=app.snapshot().editor.rootGroup
 assert.equal(groups[1].id,secondId);close(groups[1].re,.2);close(groups[0].re,.5);
 const idsSaved=app.snapshot();app.replace(idsSaved);assert.deepEqual(app.snapshot(),idsSaved);assert(!z('add').disabled);
 rowAction(firstId,'delete');groups=app.snapshot().editor.rootGroups.poles;assert.equal(groups.length,1);assert.equal(groups[0].id,secondId);close(groups[0].re,.2);
-assert($('a').value.includes('-0.2'));assert($('equation').textContent.includes('0.2 y[n-1]'));assert(D.generateVerilog(app.getModel()).includes('.A1('));
+assert($('a').value.includes('-0.2'));assert($('equation').textContent.includes('0.200012'));assert(D.generateVerilog(app.getModel()).includes('.A1('));
 app.replace(D.serialize(D.create({gain:.2,poles:[{re:.6,im:.2}]})));groups=app.snapshot().editor.rootGroups.poles;
 const pairId=groups[0].id;assert.equal((z('list').innerHTML.match(/<tr data-root-id=/g)||[]).length,2);
 rowAction(pairId,'update',.4,-.3);groups=app.snapshot().editor.rootGroups.poles;close(groups[0].im,.3);close(app.getModel().a[2],.25);
-assert(z('list').innerHTML.includes('value="-0.3"'));assert(z('list').innerHTML.includes('value="0.3"'));
+assert(z('list').innerHTML.includes('value="-0.299'));assert(z('list').innerHTML.includes('value="0.299'));
 rowAction(pairId,'update',.4,0);groups=app.snapshot().editor.rootGroups.poles;assert(groups[0].pair);assert.equal(groups[0].id,pairId);
 const collapsed=app.snapshot();app.replace(collapsed);assert.deepEqual(app.snapshot(),collapsed);
 rowAction(pairId,'update',.4,.1);close(D.factorRoots(app.getModel()).poles[0].im,.1);
@@ -121,7 +121,7 @@ const pending=app.snapshot();pending.ui.a='1,-.9';app.replace(pending);assert(z(
 // High-order coefficient/ZPK/list/response/export round trip, including repeated factors.
 app.replace(D.defaults());mode('zpk');input('poles','.2 .11\n.3 .16\n.4 .21\n.5 .26');input('zeros','-.2\n-.3');input('gain','.01');
 assert.equal(app.getModel().a.length,9);assert.equal(app.snapshot().editor.rootGroups.poles.length,4);assert($('sos-text').textContent.includes('SOS 4 节'));assert(! $('verilog').disabled);
-const highGroups=app.snapshot().editor.rootGroups.poles;rowAction(highGroups[2].id,'update',.43,.19);assert.equal(app.getModel().a.length,9);assert($('poles').value.includes('0.43 0.19'));assert($('equation').textContent.includes('y[n-8]'));
+const highGroups=app.snapshot().editor.rootGroups.poles;rowAction(highGroups[2].id,'update',.43,.19);assert.equal(app.getModel().a.length,9);assert($('poles').value.includes('0.429'));assert($('equation').textContent.includes('y[n-8]'));
 mode('coefficients');const highSaved=app.snapshot();app.replace(highSaved);assert(!z('add').disabled);assert.deepEqual(app.snapshot(),highSaved);mode('zpk');assert.equal(app.getModel().a.length,9);
 rowAction(highGroups[0].id,'delete');assert.equal(app.getModel().a.length,7);assert($('sos-text').textContent.includes('SOS 3 节'));
 input('inputBits','18');assert.equal($('outputBits').value,'18');assert.equal(app.getModel().fixed.inputBits,18);assert.equal(app.getModel().fixed.outputBits,18);
@@ -193,5 +193,29 @@ setting('tool','add');const panBefore=app.snapshot().editor,numberBefore=D.facto
 z('plot').emit('keydown',{code:'Space'});z('plot').emit('pointerdown',{...point(.3,0),pointerId:70,target:emptyTarget});z('plot').emit('pointermove',{...point(.5,.1),pointerId:70});z('plot').emit('pointerup',{pointerId:70});z('plot').emit('click',{...point(.5,.1),target:emptyTarget});z('plot').emit('keyup',{code:'Space'});
 assert.notEqual(app.snapshot().editor.centerRe,panBefore.centerRe);assert.equal(D.factorRoots(app.getModel()).zeros.length,numberBefore);assert.equal(JSON.stringify(app.getModel()),uiModel);app.replace(uiSnapshot);
 input('b','');assert.equal($('magnitude-inset').innerHTML,'');assert.equal($('magnitude-crossings').innerHTML,'');
+// Polar placement and fixed-point coordinate snapping (including numeric and pointer placement).
+app.replace(D.serialize(D.create({gain:.2,poles:[.5]})));
+const step=Math.pow(2,-app.getModel().fixed.coefficientFraction);
+setting('coord','polar');setting('kind','zeros');setting('placement','pair');
+z('re').value='0.5';z('im').value='90';z('add').click();
+let zr=D.factorRoots(app.getModel()).zeros[0];close(Math.hypot(zr.re,zr.im),.5);close(zr.re,0);close(zr.im,.5);
+close(Number(z('re').value),.5);close(Number(z('im').value),90);
+setting('coord','cartesian');close(Number(z('re').value),0);close(Number(z('im').value),.5);
+app.replace(D.serialize(D.create({gain:.2,poles:[.8]})));
+setting('coord','cartesian');setting('kind','zeros');setting('placement','pair');
+z('re').value='.12345';z('im').value='.23456';z('add').click();
+zr=D.factorRoots(app.getModel()).zeros[0];
+assert(Math.abs(zr.re/step-Math.round(zr.re/step))<1e-7);assert(Math.abs(zr.im/step-Math.round(zr.im/step))<1e-7);
+app.replace(D.serialize(D.create({gain:.2,poles:[.8]})));
+setting('tool','add');setting('kind','zeros');setting('placement','pair');
+z('plot').emit('pointerdown',{...point(.3,.4),pointerId:91,target:emptyTarget});z('plot').emit('pointerup',{...point(.3,.4),pointerId:91});z('plot').emit('click',{...point(.3,.4),pointerId:91,target:emptyTarget});
+zr=D.factorRoots(app.getModel()).zeros[0];assert(Math.abs(zr.re/step-Math.round(zr.re/step))<1e-7);assert(Math.abs(zr.im/step-Math.round(zr.im/step))<1e-7);
+// Pointer-drag previews snap before commit as well as numeric input.
+app.replace(D.serialize(D.create({gain:.2,poles:[{re:.4,im:.3}]})));
+setting('coord','cartesian');setting('tool','select');
+z('plot').emit('pointerdown',{...point(.4,.3),pointerId:92,target:hit('poles',0)});
+z('plot').emit('pointermove',{...point(.123,.234),pointerId:92});flushFrames();z('plot').emit('pointerup',{pointerId:92});
+let dr=D.factorRoots(app.getModel()).poles[0];
+assert(Math.abs(dr.re/step-Math.round(dr.re/step))<1e-7);assert(Math.abs(dr.im/step-Math.round(dr.im/step))<1e-7);
 app.destroy();assert.equal(root.innerHTML,'');
-console.log('PASS digital controller events (minimal DOM stub): live coefficients/ZPK synchronization, switching, invalid drafts, numeric/click placement, lower-conjugate drag across axis, numeric update, bounds, pair deletion, zoom/pan and snapshot restore. Default placement, pointer/click deduplication, cancel, CTM/letterbox mapping, persisted stable IDs, per-point list edits/deletes and conjugate synchronization also covered. RAF previews perform no model publish, root analysis or HTML replacement; release commits once; Ctrl-only wheel, blur/Escape/capture/project cancellation, zero/negative K with saved roots/delay and advisory no-mutation tested. Two-curve SVG count/colors, explicit-delay alignment and zero-gain undefined phase checked. Not native browser QA.');
+console.log('PASS digital controller events (minimal DOM stub): live coefficients/ZPK synchronization, switching, invalid drafts, numeric/click placement, lower-conjugate drag across axis, numeric update, bounds, pair deletion, zoom/pan and snapshot restore. Default placement, pointer/click deduplication, cancel, CTM/letterbox mapping, persisted stable IDs, per-point list edits/deletes and conjugate synchronization also covered. RAF previews perform no model publish, root analysis or HTML replacement; release commits once; Ctrl-only wheel, blur/Escape/capture/project cancellation, zero/negative K with saved roots/delay and advisory no-mutation tested. Two-curve SVG count/colors, explicit-delay alignment and zero-gain undefined phase checked. Polar/Cartesian display, numeric and pointer fixed-grid snapping also covered. Not native browser QA.');

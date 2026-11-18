@@ -17,7 +17,7 @@ const survivor=rows[1].dataset.rootId;
 rows[1].querySelector('[data-field="re"]').value='.7';rows[1].querySelector('[data-action="update"]').click();
 assert.equal(app.snapshot().editor.rootGroups.poles[1].id,survivor);
 rows=rz('list').querySelectorAll('tbody tr');rows[0].querySelector('[data-action="delete"]').click();
-assert.equal(app.getModel().a[1],-.7);assert.equal(app.snapshot().editor.rootGroups.poles[0].id,survivor);
+assert(Math.abs(app.getModel().a[1]+.7)<1e-4);assert.equal(app.snapshot().editor.rootGroups.poles[0].id,survivor);
 const savedValid=app.snapshot();app.replace(savedValid);assert(!rz('add').disabled);assert(! $('verilog').disabled);assert.equal(root.querySelectorAll('svg').length,5);
 assert.deepEqual(app.snapshot(),savedValid);
 app.replace(D.defaults());

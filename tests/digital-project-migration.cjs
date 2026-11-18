@@ -3,7 +3,7 @@ const assert=require('node:assert/strict'),vm=require('node:vm'),fs=require('nod
 const ctx={window:{DigitalDesign:D},document:{querySelector:()=>null}};vm.createContext(ctx);vm.runInContext(fs.readFileSync(require.resolve('../engineering-branches.js'),'utf8'),ctx);
 const B=ctx.window.AnalogEngineeringBranches,plain=x=>JSON.parse(JSON.stringify(x));
 for(const direction of ['forward','reverse','design']){const type={kind:'simulation',domain:'digital',direction};assert(B.supported(type));assert.equal(B.key(type),'digital');const canonical=plain(B.normalizeType(type));assert.equal(canonical.direction,'design');assert(!/正向|逆向/.test(B.description(type)));
- const model=D.create(D.presets.notch),data={...D.serialize(model),ui:{mode:direction==='reverse'?'zpk':'coefficients',gain:'unfinished'},editor:{centerRe:.1,centerIm:.2,span:2,kind:'zeros',placement:'pair',tool:'select'}};
+ const model=D.create(D.presets.notch),data={...D.serialize(model),ui:{mode:direction==='reverse'?'zpk':'coefficients',gain:'unfinished'},editor:{centerRe:.1,centerIm:.2,span:2,kind:'zeros',placement:'pair',tool:'select',coord:'cartesian'}};
  const restored=plain(B.validate(canonical,data));assert.deepEqual(restored,data);assert.deepEqual(D.load(restored),model);assert.equal(D.generateVerilog(D.load(restored)),D.generateVerilog(model));}
 assert(!B.supported({kind:'simulation',domain:'digital',direction:'bogus'}));assert(!B.supported({kind:'board',domain:'digital',direction:'design'}));
 for(const editor of [{span:0},{centerRe:Infinity},{tool:'script'},{kind:'both'},{placement:'complex'}])assert.throws(()=>D.validate({...D.defaults(),editor}));
